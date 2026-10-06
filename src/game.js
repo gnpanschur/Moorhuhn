@@ -512,6 +512,8 @@ export class Game {
 
     this.graphics.renderBackground(this.ctx, levelCfg.theme, this.virtualWidth, this.screenHeight, this.animTime);
 
+    this.easterEggs.renderHints(this.ctx, this.animTime);
+
     const sortedChickens = [...this.chickens].sort((a, b) => a.depth - b.depth);
     for (let ch of sortedChickens) {
       this.graphics.renderChicken(this.ctx, ch, this.animTime);
