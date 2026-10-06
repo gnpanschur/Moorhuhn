@@ -1,0 +1,31 @@
+Krone
+// Zeile 235 in src/graphics.js:
+const crownX = 0; // HIER X-POSITION ANPASSEN
+
+Alle Bonusgegenstände und Accessoires (Eierschale, Krone, Stahlhelm, Jetpack, Taucherbrille) besitzen ab sofort in 
+
+src/graphics.js
+ eigene X- und Y-Variablen, damit du sie kinderleicht verschieben kannst!
+
+📌 Übersicht der Zeilen in 
+
+src/graphics.js
+:
+Bonus-Item / Outfit	Zeile in src/graphics.js	Stellschraube (X & Y)
+🥚 Eierschale	Zeile 195	const eggshellX = 0;
+const eggshellY = -22;
+👑 Goldene Krone	Zeile 216	const crownX = 0;
+const crownY = -22;
+🪖 Stahlhelm	Zeile 237	const helmetX = 0;
+const helmetY = -20;
+🚀 Jetpack	Zeile 251	const jetpackX = -22;
+const jetpackY = -10;
+🤿 Taucherbrille	Zeile 268	const scubaX = 0;
+const scubaY = -14;
+💡 So verschiebst du jeden Gegenstand:
+In X-Richtung (links/rechts):
+Kleinerer / negativer Wert = verschiebt nach links (z.B. -15)
+Größerer / positiver Wert = verschiebt nach rechts (z.B. +15)
+In Y-Richtung (hoch/runter):
+Kleinerer Wert = verschiebt weiter nach oben (z.B. -30)
+Größerer Wert = verschiebt weiter nach unten (z.B. -10)

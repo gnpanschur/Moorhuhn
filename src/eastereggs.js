@@ -112,6 +112,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 150, popupText: 'BRÜCKEN-LICHT! +150'
       });
+    } else if (theme === 'farm') {
+      // Tractor Motor secret
+      this.eggs.push({
+        id: 'tractor',
+        x: 1620, y: screenHeight * 0.76, radius: 55,
+        hits: 0, maxHits: 3,
+        reward: 225, popupText: 'TRAKTOR-MOTOR! +225'
+      });
+      // Haybale chicken secret
+      this.eggs.push({
+        id: 'haybales',
+        x: 420, y: screenHeight * 0.72, radius: 50,
+        hits: 0, maxHits: 2,
+        reward: 150, popupText: 'HEUHAUFEN-HUHN! +150'
+      });
+      // Barn Weather Vane Rooster
+      this.eggs.push({
+        id: 'barnvane',
+        x: 540, y: screenHeight * 0.22, radius: 35,
+        hits: 0, maxHits: 1,
+        reward: 175, popupText: 'GOLDENER WETTERHAHN! +175'
+      });
     }
   }
 

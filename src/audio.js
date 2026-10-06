@@ -259,6 +259,8 @@ class SoundEngine {
         this._startAquariumSynth();
       } else if (theme === 'city') {
         this._startCitySynth();
+      } else if (theme === 'farm') {
+        this._startFarmSynth();
       }
     } catch(e) {
       console.warn("Ambient synth error", e);
@@ -372,6 +374,10 @@ class SoundEngine {
   }
 
   _startCitySynth() {
+    this._startBreezeSynth();
+  }
+
+  _startFarmSynth() {
     this._startBreezeSynth();
   }
 }

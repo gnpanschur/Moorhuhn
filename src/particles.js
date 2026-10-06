@@ -102,28 +102,29 @@ export class ParticleSystem {
         });
       }
     } else if (theme === 'forest') {
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 45; i++) {
         this.weatherParticles.push({
           x: Math.random() * virtualWidth,
           y: Math.random() * screenHeight,
-          vy: 0.5 + Math.random() * 1.2,
-          vx: 0.5 + Math.random() * 1.5,
+          vy: 0.3 + Math.random() * 0.8,
+          vx: 0.4 + Math.random() * 1.0,
           rot: Math.random() * Math.PI * 2,
-          vRot: 0.05,
-          size: 5 + Math.random() * 5,
-          color: Math.random() > 0.5 ? '#d97706' : '#b45309',
-          type: 'leaf'
+          vRot: 0.04,
+          size: 4 + Math.random() * 5,
+          color: ['#f43f5e', '#fbbf24', '#e879f9', '#ffffff'][Math.floor(Math.random() * 4)],
+          type: 'petal'
         });
       }
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 25; i++) {
         this.weatherParticles.push({
           x: Math.random() * virtualWidth,
-          y: Math.random() * screenHeight,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: 3 + Math.random() * 3,
-          pulse: Math.random() * Math.PI * 2,
-          type: 'firefly'
+          y: Math.random() * screenHeight * 0.8,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.6,
+          flutter: Math.random() * Math.PI * 2,
+          size: 5 + Math.random() * 4,
+          color: Math.random() > 0.5 ? '#f59e0b' : '#38bdf8',
+          type: 'butterfly'
         });
       }
     } else if (theme === 'spooky') {
@@ -147,6 +148,33 @@ export class ParticleSystem {
           size: 4 + Math.random() * 7,
           opacity: 0.35 + Math.random() * 0.45,
           type: 'bubble'
+        });
+      }
+    } else if (theme === 'city') {
+      for (let i = 0; i < 40; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -0.2 - Math.random() * 0.5,
+          size: 3 + Math.random() * 4,
+          pulse: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.5 ? '#fef08a' : '#bae6fd',
+          type: 'citySparkle'
+        });
+      }
+    } else if (theme === 'farm') {
+      for (let i = 0; i < 50; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: 0.6 + Math.random() * 0.8,
+          vy: 0.2 + Math.random() * 0.5,
+          rot: Math.random() * Math.PI * 2,
+          vRot: 0.03,
+          size: 3 + Math.random() * 4,
+          color: Math.random() > 0.4 ? '#fef08a' : '#eab308',
+          type: 'hayDust'
         });
       }
     }
@@ -190,11 +218,20 @@ export class ParticleSystem {
         wp.x += Math.sin(wp.y * 0.02) * 0.5;
         if (wp.y > screenHeight) wp.y = -10;
         if (wp.x > virtualWidth) wp.x = 0;
-      } else if (wp.type === 'leaf') {
+      } else if (wp.type === 'leaf' || wp.type === 'petal') {
         wp.y += wp.vy;
         wp.x += Math.sin(wp.y * 0.03) * 0.8;
         wp.rot += wp.vRot;
         if (wp.y > screenHeight) wp.y = -10;
+        if (wp.x > virtualWidth) wp.x = 0;
+      } else if (wp.type === 'butterfly') {
+        wp.x += wp.vx + Math.sin(wp.flutter) * 0.8;
+        wp.y += wp.vy + Math.cos(wp.flutter * 0.7) * 0.6;
+        wp.flutter += 0.12;
+        if (wp.x < 0) wp.x = virtualWidth;
+        if (wp.x > virtualWidth) wp.x = 0;
+        if (wp.y < 0) wp.y = screenHeight * 0.8;
+        if (wp.y > screenHeight * 0.8) wp.y = 50;
       } else if (wp.type === 'firefly') {
         wp.x += (Math.random() - 0.5) * 0.6;
         wp.y += (Math.random() - 0.5) * 0.6;
@@ -211,6 +248,20 @@ export class ParticleSystem {
           wp.y = screenHeight + 20;
           wp.x = Math.random() * virtualWidth;
         }
+      } else if (wp.type === 'citySparkle') {
+        wp.x += wp.vx;
+        wp.y += wp.vy;
+        wp.pulse += 0.05;
+        if (wp.y < -10) {
+          wp.y = screenHeight + 10;
+          wp.x = Math.random() * virtualWidth;
+        }
+      } else if (wp.type === 'hayDust') {
+        wp.x += wp.vx + Math.sin(wp.y * 0.02) * 0.4;
+        wp.y += wp.vy;
+        wp.rot += wp.vRot;
+        if (wp.y > screenHeight) wp.y = -10;
+        if (wp.x > virtualWidth) wp.x = -10;
       }
     }
   }
@@ -225,7 +276,7 @@ export class ParticleSystem {
         ctx.beginPath();
         ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
         ctx.fill();
-      } else if (wp.type === 'leaf') {
+      } else if (wp.type === 'leaf' || wp.type === 'petal') {
         ctx.save();
         ctx.translate(wp.x, wp.y);
         ctx.rotate(wp.rot);
@@ -233,6 +284,29 @@ export class ParticleSystem {
         ctx.beginPath();
         ctx.ellipse(0, 0, wp.size, wp.size * 0.5, 0, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'butterfly') {
+        ctx.save();
+        ctx.translate(wp.x, wp.y);
+        const wingAngle = Math.sin(wp.flutter * 2) * 0.6;
+        ctx.fillStyle = wp.color;
+
+        // Left Wing
+        ctx.save();
+        ctx.rotate(wingAngle);
+        ctx.beginPath();
+        ctx.ellipse(-wp.size * 0.5, 0, wp.size * 0.6, wp.size * 0.35, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Right Wing
+        ctx.save();
+        ctx.rotate(-wingAngle);
+        ctx.beginPath();
+        ctx.ellipse(wp.size * 0.5, 0, wp.size * 0.6, wp.size * 0.35, -0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
         ctx.restore();
       } else if (wp.type === 'firefly') {
         const glow = (Math.sin(wp.pulse) + 1) * 0.5 * 0.8 + 0.2;
@@ -263,6 +337,24 @@ export class ParticleSystem {
         ctx.beginPath();
         ctx.arc(wp.x - wp.size * 0.3, wp.y - wp.size * 0.3, wp.size * 0.25, 0, Math.PI * 2);
         ctx.fill();
+      } else if (wp.type === 'citySparkle') {
+        const glow = (Math.sin(wp.pulse) + 1) * 0.5 * 0.7 + 0.3;
+        ctx.save();
+        ctx.globalAlpha = glow;
+        ctx.fillStyle = wp.color;
+        ctx.shadowColor = wp.color;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'hayDust') {
+        ctx.save();
+        ctx.translate(wp.x, wp.y);
+        ctx.rotate(wp.rot);
+        ctx.fillStyle = wp.color;
+        ctx.fillRect(-wp.size, -wp.size * 0.3, wp.size * 2, wp.size * 0.6);
+        ctx.restore();
       }
     }
 
