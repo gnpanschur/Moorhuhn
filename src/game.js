@@ -113,6 +113,15 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Gallische Strohhütten, Zaubertrank-Kessel, Wildschweine & goldene Abendsonne',
     easterEggs: ['Zaubertrank-Kessel (+400)', 'Wildschwein-Spieß (+300)', 'Hütten-Menhir (+350)']
+  },
+  { 
+    id: 13, 
+    name: 'Anwesen der Goldenen Kaiserin', 
+    theme: 'palace', 
+    targetScore: 2800, 
+    timeLimit: 100, 
+    desc: 'Vor dem goldenen Palast, kaiserliche Gärten, goldene Statuen & königlicher Prunk',
+    easterEggs: ['Kaiserin-Krone (+450)', 'Palast-Fountain (+350)', 'Goldene Phönix-Statue (+400)']
   }
 ];
 

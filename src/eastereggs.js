@@ -222,6 +222,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 350, popupText: 'HÜTTEN-MENHIR! +350'
       });
+    } else if (theme === 'palace') {
+      // Imperial Crown
+      this.eggs.push({
+        id: 'empresscrown',
+        x: 1200, y: screenHeight * 0.30, radius: 55,
+        hits: 0, maxHits: 3,
+        reward: 450, popupText: 'KAISERIN-KRONE! +450'
+      });
+      // Palace Marble Fountain
+      this.eggs.push({
+        id: 'palacefountain',
+        x: 1680, y: screenHeight * 0.72, radius: 50,
+        hits: 0, maxHits: 2,
+        reward: 350, popupText: 'PALAST-FOUNTAIN! +350'
+      });
+      // Golden Phoenix Statue
+      this.eggs.push({
+        id: 'phoenixstatue',
+        x: 520, y: screenHeight * 0.65, radius: 45,
+        hits: 0, maxHits: 1,
+        reward: 400, popupText: 'GOLDENE PHÖNIX-STATUE! +400'
+      });
     }
   }
 

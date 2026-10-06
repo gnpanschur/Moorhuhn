@@ -230,6 +230,19 @@ export class ParticleSystem {
           type: 'magicSparks'
         });
       }
+    } else if (theme === 'palace') {
+      for (let i = 0; i < 55; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -0.3 - Math.random() * 0.7,
+          size: 2.5 + Math.random() * 4.5,
+          pulse: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.3 ? '#facc15' : '#fef08a',
+          type: 'empressSparkles'
+        });
+      }
     }
   }
 
@@ -340,6 +353,14 @@ export class ParticleSystem {
         wp.x += wp.vx + Math.sin(wp.pulse) * 0.4;
         wp.y += wp.vy;
         wp.pulse += 0.05;
+        if (wp.y < -10) {
+          wp.y = screenHeight + 10;
+          wp.x = Math.random() * virtualWidth;
+        }
+      } else if (wp.type === 'empressSparkles') {
+        wp.x += wp.vx + Math.sin(wp.pulse) * 0.3;
+        wp.y += wp.vy;
+        wp.pulse += 0.06;
         if (wp.y < -10) {
           wp.y = screenHeight + 10;
           wp.x = Math.random() * virtualWidth;
@@ -472,6 +493,17 @@ export class ParticleSystem {
         ctx.fillStyle = wp.color;
         ctx.shadowColor = wp.color;
         ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'empressSparkles') {
+        const glow = (Math.sin(wp.pulse) + 1) * 0.5 * 0.85 + 0.15;
+        ctx.save();
+        ctx.globalAlpha = glow;
+        ctx.fillStyle = wp.color;
+        ctx.shadowColor = '#fbbf24';
+        ctx.shadowBlur = 14;
         ctx.beginPath();
         ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
         ctx.fill();
