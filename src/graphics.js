@@ -13,7 +13,7 @@ export class GraphicsRenderer {
   }
 
   _loadBackgroundImages() {
-    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium'];
+    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city'];
     themes.forEach(theme => {
       const img = new Image();
       img.src = `/bg_${theme}.jpg`;
@@ -71,6 +71,8 @@ export class GraphicsRenderer {
         this._renderSpooky(ctx, virtualWidth, screenHeight, animTime);
       } else if (theme === 'aquarium') {
         this._renderAquarium(ctx, virtualWidth, screenHeight, animTime);
+      } else if (theme === 'city') {
+        this._renderCity(ctx, virtualWidth, screenHeight, animTime);
       }
     }
 
@@ -131,6 +133,15 @@ export class GraphicsRenderer {
 
     ctx.fillStyle = '#fde047';
     ctx.fillRect(0, height * 0.8, width, height * 0.2);
+  }
+
+  _renderCity(ctx, width, height, t) {
+    const sky = ctx.createLinearGradient(0, 0, 0, height);
+    sky.addColorStop(0, '#1e1b4b');
+    sky.addColorStop(0.5, '#431407');
+    sky.addColorStop(1, '#78350f');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, width, height);
   }
 
   // --- MAIN CHICKEN DISPATCHER --- //

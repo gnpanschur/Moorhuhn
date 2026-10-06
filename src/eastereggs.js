@@ -85,19 +85,32 @@ export class EasterEggManager {
         reward: 100, popupText: 'WETTERHAHN! +100'
       });
     } else if (theme === 'aquarium') {
-      // Sunken Pirate Shipwreck Treasure
       this.eggs.push({
         id: 'shipwreck',
         x: 450, y: screenHeight * 0.65, radius: 60,
         hits: 0, maxHits: 3,
         reward: 200, popupText: 'PIRATEN-SCHATZ! +200'
       });
-      // Glowing Sea Anemone
       this.eggs.push({
         id: 'anemone',
         x: 1750, y: screenHeight * 0.75, radius: 40,
         hits: 0, maxHits: 1,
         reward: 150, popupText: 'KORALLEN-HUHN! +150'
+      });
+    } else if (theme === 'city') {
+      // Skyscraper Neon Billboard
+      this.eggs.push({
+        id: 'billboard',
+        x: 1400, y: screenHeight * 0.3, radius: 55,
+        hits: 0, maxHits: 3,
+        reward: 250, popupText: 'METROPOLIS-NEON! +250'
+      });
+      // Suspension Bridge Tower Light
+      this.eggs.push({
+        id: 'bridgetower',
+        x: 950, y: screenHeight * 0.55, radius: 40,
+        hits: 0, maxHits: 1,
+        reward: 150, popupText: 'BRÜCKEN-LICHT! +150'
       });
     }
   }

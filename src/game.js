@@ -11,7 +11,8 @@ export const LEVEL_CONFIGS = [
   { id: 3, name: 'Tropischer Strand', theme: 'beach', targetScore: 600, timeLimit: 100, desc: 'Sandstrand, Palmen & Meeresrauschen' },
   { id: 4, name: 'Verwunschener Wald', theme: 'forest', targetScore: 750, timeLimit: 100, desc: 'Dichter Nadelwald mit Glühwürmchen & Baumhöhlen' },
   { id: 5, name: 'Spukschloss bei Nacht', theme: 'spooky', targetScore: 900, timeLimit: 100, desc: 'Gotisches Schloss, Vollmond & Geisterhühner' },
-  { id: 6, name: 'Wasser-Aquarium Welt', theme: 'aquarium', targetScore: 1100, timeLimit: 100, desc: 'Unterwasser-Aquarium mit Korallen, Taucherhühnern & Schatzkisten' }
+  { id: 6, name: 'Wasser-Aquarium Welt', theme: 'aquarium', targetScore: 1100, timeLimit: 100, desc: 'Unterwasser-Aquarium mit Korallen, Taucherhühnern & Schatzkisten' },
+  { id: 7, name: 'Großstadt Metropolis', theme: 'city', targetScore: 1300, timeLimit: 100, desc: 'Skylines, Neonreklamen, Hochhäuser & Tauben-Schwärme' }
 ];
 
 export class Game {
@@ -294,14 +295,14 @@ export class Game {
     else if (rand < 0.14) type = 'golden';
     else if (rand < 0.22) type = 'helmet';
     else if (rand < 0.28 && theme === 'spooky') type = 'ghost';
-    else if (rand < 0.35) type = Math.random() > 0.5 ? 'dove' : 'owl';
+    else if (rand < 0.35 || (theme === 'city' && rand < 0.5)) type = Math.random() > 0.5 ? 'dove' : 'owl';
 
     const yPos = 80 + Math.random() * (this.screenHeight * 0.55);
     const startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
 
     let outfit = (type === 'helmet' ? 'helmet' : 'none');
     if (theme === 'aquarium' && Math.random() < 0.4) outfit = 'scuba';
-    else if (Math.random() < 0.15) outfit = 'eggshell'; // Eierschalen-Huhn!
+    else if (Math.random() < 0.15) outfit = 'eggshell';
 
     const chicken = new Chicken({
       x: startX,

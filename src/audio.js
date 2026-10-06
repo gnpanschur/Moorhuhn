@@ -257,6 +257,8 @@ class SoundEngine {
         this._startSpookySynth();
       } else if (theme === 'aquarium') {
         this._startAquariumSynth();
+      } else if (theme === 'city') {
+        this._startCitySynth();
       }
     } catch(e) {
       console.warn("Ambient synth error", e);
@@ -357,7 +359,6 @@ class SoundEngine {
   }
 
   _startAquariumSynth() {
-    // Deep underwater rumble + lowpass filtered noise
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = 'sine';
@@ -368,6 +369,10 @@ class SoundEngine {
     gain.connect(this.ambientGain);
     osc.start();
     this.ambientNodes.push(osc, gain);
+  }
+
+  _startCitySynth() {
+    this._startBreezeSynth();
   }
 }
 
