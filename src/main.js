@@ -191,11 +191,18 @@ function buildLevelGrid() {
     const card = document.createElement('div');
     card.className = `level-card ${isUnlocked ? '' : 'locked'}`;
 
+    const easterEggsList = lvl.easterEggs && lvl.easterEggs.length > 0
+      ? `<div style="margin-top: 8px; font-size: 0.78rem; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 6px 10px; border-radius: 6px; text-align: left; line-height: 1.3;">
+          🥚 <strong>Easter Eggs:</strong> ${lvl.easterEggs.join(', ')}
+         </div>`
+      : '';
+
     card.innerHTML = `
       <div class="level-num">LEVEL ${lvl.id}</div>
       <h3 style="color: #fff; margin: 6px 0;">${lvl.name}</h3>
-      <p style="font-size: 0.85rem; color: #94a3b8;">${lvl.desc}</p>
-      <div style="margin-top: 12px; font-size: 0.9rem; color: var(--primary-gold);">
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 4px;">${lvl.desc}</p>
+      ${easterEggsList}
+      <div style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-gold);">
         ${isUnlocked ? `🏆 Highscore: ${highscore}` : '🔒 Gesperrt'}
       </div>
     `;

@@ -6,14 +6,78 @@ import { Chicken } from './chicken.js';
 import { EasterEggManager } from './eastereggs.js';
 
 export const LEVEL_CONFIGS = [
-  { id: 1, name: 'Sommer auf dem Bauernhof', theme: 'summer', targetScore: 250, timeLimit: 100, desc: 'Klassische Bauernhof-Wiese mit Windmühle' },
-  { id: 2, name: 'Winter-Wunderland', theme: 'winter', targetScore: 400, timeLimit: 100, desc: 'Verschneite Berge & Schneemann-Überraschungen' },
-  { id: 3, name: 'Tropischer Strand', theme: 'beach', targetScore: 600, timeLimit: 100, desc: 'Sandstrand, Palmen & Meeresrauschen' },
-  { id: 4, name: 'Sonnige Waldlichtung', theme: 'forest', targetScore: 750, timeLimit: 100, desc: 'Blühende Blumenwiese im Mittags-Sonnenschein & Schmetterlinge' },
-  { id: 5, name: 'Spukschloss bei Nacht', theme: 'spooky', targetScore: 900, timeLimit: 100, desc: 'Gotisches Schloss, Vollmond & Geisterhühner' },
-  { id: 6, name: 'Wasser-Aquarium Welt', theme: 'aquarium', targetScore: 1100, timeLimit: 100, desc: 'Unterwasser-Aquarium mit Korallen, Taucherhühnern & Schatzkisten' },
-  { id: 7, name: 'Großstadt Metropolis', theme: 'city', targetScore: 1300, timeLimit: 100, desc: 'Sonnige Skylines, Wolkenkratzer & Tauben-Schwärme am Mittag' },
-  { id: 8, name: 'Auf einer alten Farm', theme: 'farm', targetScore: 1500, timeLimit: 100, desc: 'Alte Scheune, Heuballen, Traktor & rustikales Bauernhof-Flair' }
+  { 
+    id: 1, 
+    name: 'Sommer auf dem Bauernhof', 
+    theme: 'summer', 
+    targetScore: 250, 
+    timeLimit: 100, 
+    desc: 'Klassische Bauernhof-Wiese mit Windmühle',
+    easterEggs: ['Windmühlen-Sturm (+200)', 'Vogelscheuche (+100)', 'Plumpsklo-Huhn (+75)']
+  },
+  { 
+    id: 2, 
+    name: 'Winter-Wunderland', 
+    theme: 'winter', 
+    targetScore: 400, 
+    timeLimit: 100, 
+    desc: 'Verschneite Berge & Schneemann-Überraschungen',
+    easterEggs: ['Schneemann-Bombe (+150)', 'Weihnachts-Huhn (+200)']
+  },
+  { 
+    id: 3, 
+    name: 'Tropischer Strand', 
+    theme: 'beach', 
+    targetScore: 600, 
+    timeLimit: 100, 
+    desc: 'Sandstrand, Palmen & Meeresrauschen',
+    easterEggs: ['Kokosnuss-Bonus (+120)', 'Flaschenpost (+100)']
+  },
+  { 
+    id: 4, 
+    name: 'Sonnige Waldlichtung', 
+    theme: 'forest', 
+    targetScore: 750, 
+    timeLimit: 100, 
+    desc: 'Blühende Blumenwiese im Mittags-Sonnenschein & Schmetterlinge',
+    easterEggs: ['Baumhöhlen-Eule (+125)', 'Zauberpilz (+80)']
+  },
+  { 
+    id: 5, 
+    name: 'Spukschloss bei Nacht', 
+    theme: 'spooky', 
+    targetScore: 900, 
+    timeLimit: 100, 
+    desc: 'Gotisches Schloss, Vollmond & Geisterhühner',
+    easterEggs: ['Geister-Beschwörung (+250)', 'Wetterhahn (+100)']
+  },
+  { 
+    id: 6, 
+    name: 'Wasser-Aquarium Welt', 
+    theme: 'aquarium', 
+    targetScore: 1100, 
+    timeLimit: 100, 
+    desc: 'Unterwasser-Aquarium mit Korallen, Taucherhühnern & Schatzkisten',
+    easterEggs: ['Piraten-Schatz (+200)', 'Korallen-Huhn (+150)']
+  },
+  { 
+    id: 7, 
+    name: 'Großstadt Metropolis', 
+    theme: 'city', 
+    targetScore: 1300, 
+    timeLimit: 100, 
+    desc: 'Sonnige Skylines, Wolkenkratzer & Tauben-Schwärme am Mittag',
+    easterEggs: ['Metropolis-Neon (+250)', 'Brücken-Licht (+150)']
+  },
+  { 
+    id: 8, 
+    name: 'Auf einer alten Farm', 
+    theme: 'farm', 
+    targetScore: 1500, 
+    timeLimit: 100, 
+    desc: 'Alte Scheune, Heuballen, Traktor & rustikales Bauernhof-Flair',
+    easterEggs: ['Traktor-Motor (+225)', 'Heuhaufen-Huhn (+150)', 'Goldener Wetterhahn (+175)']
+  }
 ];
 
 export class Game {
