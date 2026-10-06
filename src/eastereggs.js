@@ -156,6 +156,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 200, popupText: 'DRACHEN-WAPPEN! +200'
       });
+    } else if (theme === 'egypt') {
+      // Great Sphinx Secret
+      this.eggs.push({
+        id: 'sphinx',
+        x: 350, y: screenHeight * 0.42, radius: 55,
+        hits: 0, maxHits: 3,
+        reward: 300, popupText: 'SPHINX-RÄTSEL! +300'
+      });
+      // Pyramid Capstone
+      this.eggs.push({
+        id: 'pyramidtop',
+        x: 1240, y: screenHeight * 0.28, radius: 45,
+        hits: 0, maxHits: 2,
+        reward: 200, popupText: 'PYRAMIDEN-SPITZE! +200'
+      });
+      // Hieroglyphic Obelisk
+      this.eggs.push({
+        id: 'obelisk',
+        x: 1850, y: screenHeight * 0.52, radius: 40,
+        hits: 0, maxHits: 1,
+        reward: 250, popupText: 'OBELISKEN-SCHATZ! +250'
+      });
     }
   }
 

@@ -86,6 +86,15 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Mittelalterliche Ritterburg, Burgzinnen & romantisches Abendlicht',
     easterEggs: ['Burgtor-Glocke (+250)', 'Ritterrüstung-Bonus (+180)', 'Drachen-Wappen (+200)']
+  },
+  { 
+    id: 10, 
+    name: 'Geheimnisvolles Ägypten', 
+    theme: 'egypt', 
+    targetScore: 2000, 
+    timeLimit: 100, 
+    desc: 'Monumentale Pyramiden, Wüstensand, Pharaonen-Schätze & die Sphinx',
+    easterEggs: ['Sphinx-Rätsel (+300)', 'Pyramiden-Spitze (+200)', 'Obelisken-Schatz (+250)']
   }
 ];
 

@@ -263,6 +263,8 @@ class SoundEngine {
         this._startFarmSynth();
       } else if (theme === 'castle') {
         this._startCastleSynth();
+      } else if (theme === 'egypt') {
+        this._startEgyptSynth();
       }
     } catch(e) {
       console.warn("Ambient synth error", e);
@@ -384,6 +386,10 @@ class SoundEngine {
   }
 
   _startCastleSynth() {
+    this._startBreezeSynth();
+  }
+
+  _startEgyptSynth() {
     this._startBreezeSynth();
   }
 }

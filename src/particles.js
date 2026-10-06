@@ -190,6 +190,19 @@ export class ParticleSystem {
           type: 'goldenEmbers'
         });
       }
+    } else if (theme === 'egypt') {
+      for (let i = 0; i < 70; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: 1.5 + Math.random() * 2.2,
+          vy: 0.2 + Math.random() * 0.6,
+          size: 2 + Math.random() * 4,
+          opacity: 0.3 + Math.random() * 0.5,
+          color: Math.random() > 0.3 ? '#fef08a' : '#d97706',
+          type: 'sandStorm'
+        });
+      }
     }
   }
 
@@ -282,6 +295,13 @@ export class ParticleSystem {
         if (wp.y < -10) {
           wp.y = screenHeight + 10;
           wp.x = Math.random() * virtualWidth;
+        }
+      } else if (wp.type === 'sandStorm') {
+        wp.x += wp.vx;
+        wp.y += wp.vy + Math.sin(wp.x * 0.01) * 0.3;
+        if (wp.x > virtualWidth + 20) {
+          wp.x = -20;
+          wp.y = Math.random() * screenHeight;
         }
       }
     }
@@ -383,6 +403,14 @@ export class ParticleSystem {
         ctx.fillStyle = wp.color;
         ctx.shadowColor = wp.color;
         ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'sandStorm') {
+        ctx.save();
+        ctx.globalAlpha = wp.opacity;
+        ctx.fillStyle = wp.color;
         ctx.beginPath();
         ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
         ctx.fill();
