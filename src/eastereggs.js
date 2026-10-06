@@ -134,6 +134,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 175, popupText: 'GOLDENER WETTERHAHN! +175'
       });
+    } else if (theme === 'castle') {
+      // Castle Gate Bell
+      this.eggs.push({
+        id: 'castlebell',
+        x: 1280, y: screenHeight * 0.42, radius: 45,
+        hits: 0, maxHits: 3,
+        reward: 250, popupText: 'BURGTOR-GLOCKE! +250'
+      });
+      // Knight Armor Bonus
+      this.eggs.push({
+        id: 'knightarmor',
+        x: 1720, y: screenHeight * 0.48, radius: 35,
+        hits: 0, maxHits: 2,
+        reward: 180, popupText: 'RITTERRÜSTUNG-BONUS! +180'
+      });
+      // Dragon Shield Emblem
+      this.eggs.push({
+        id: 'dragonshield',
+        x: 1450, y: screenHeight * 0.32, radius: 40,
+        hits: 0, maxHits: 1,
+        reward: 200, popupText: 'DRACHEN-WAPPEN! +200'
+      });
     }
   }
 

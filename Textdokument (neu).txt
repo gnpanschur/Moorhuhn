@@ -1,3 +1,11 @@
+Add Level 8: Auf einer alten Farm
+Add Level 9: eine Ritterburg im Hintergrund (golden hour)
+Add Level 10: in Ägypten
+Add Level 11: bei den Römern
+Add Level 12: in einem kleinen gallischen Dorf (golden hour)
+
+Levelauswahl: schreibe die Interaktive Easter Eggs immer zur Levelbeschreibung hinzu.
+
 Krone
 // Zeile 235 in src/graphics.js:
 const crownX = 0; // HIER X-POSITION ANPASSEN

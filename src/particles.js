@@ -177,6 +177,19 @@ export class ParticleSystem {
           type: 'hayDust'
         });
       }
+    } else if (theme === 'castle') {
+      for (let i = 0; i < 45; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: -0.4 - Math.random() * 0.8,
+          size: 2 + Math.random() * 4,
+          pulse: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.4 ? '#f97316' : '#fde047',
+          type: 'goldenEmbers'
+        });
+      }
     }
   }
 
@@ -262,6 +275,14 @@ export class ParticleSystem {
         wp.rot += wp.vRot;
         if (wp.y > screenHeight) wp.y = -10;
         if (wp.x > virtualWidth) wp.x = -10;
+      } else if (wp.type === 'goldenEmbers') {
+        wp.x += wp.vx + Math.sin(wp.pulse) * 0.3;
+        wp.y += wp.vy;
+        wp.pulse += 0.04;
+        if (wp.y < -10) {
+          wp.y = screenHeight + 10;
+          wp.x = Math.random() * virtualWidth;
+        }
       }
     }
   }
@@ -354,6 +375,17 @@ export class ParticleSystem {
         ctx.rotate(wp.rot);
         ctx.fillStyle = wp.color;
         ctx.fillRect(-wp.size, -wp.size * 0.3, wp.size * 2, wp.size * 0.6);
+        ctx.restore();
+      } else if (wp.type === 'goldenEmbers') {
+        const glow = (Math.sin(wp.pulse) + 1) * 0.5 * 0.8 + 0.2;
+        ctx.save();
+        ctx.globalAlpha = glow;
+        ctx.fillStyle = wp.color;
+        ctx.shadowColor = wp.color;
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+        ctx.fill();
         ctx.restore();
       }
     }

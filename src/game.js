@@ -77,6 +77,15 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Alte Scheune, Heuballen, Traktor & rustikales Bauernhof-Flair',
     easterEggs: ['Traktor-Motor (+225)', 'Heuhaufen-Huhn (+150)', 'Goldener Wetterhahn (+175)']
+  },
+  { 
+    id: 9, 
+    name: 'Königliche Ritterburg', 
+    theme: 'castle', 
+    targetScore: 1750, 
+    timeLimit: 100, 
+    desc: 'Mittelalterliche Ritterburg, Burgzinnen & romantisches Abendlicht',
+    easterEggs: ['Burgtor-Glocke (+250)', 'Ritterrüstung-Bonus (+180)', 'Drachen-Wappen (+200)']
   }
 ];
 
