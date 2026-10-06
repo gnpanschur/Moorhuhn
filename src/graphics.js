@@ -13,7 +13,7 @@ export class GraphicsRenderer {
   }
 
   _loadBackgroundImages() {
-    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt'];
+    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome'];
     themes.forEach(theme => {
       const img = new Image();
       img.src = `/bg_${theme}.jpg`;
@@ -79,6 +79,8 @@ export class GraphicsRenderer {
         this._renderCastle(ctx, virtualWidth, screenHeight, animTime);
       } else if (theme === 'egypt') {
         this._renderEgypt(ctx, virtualWidth, screenHeight, animTime);
+      } else if (theme === 'rome') {
+        this._renderRome(ctx, virtualWidth, screenHeight, animTime);
       }
     }
 
@@ -179,6 +181,16 @@ export class GraphicsRenderer {
     ctx.fillRect(0, 0, width, height);
     ctx.fillStyle = '#eab308';
     ctx.fillRect(0, height * 0.55, width, height * 0.45);
+  }
+
+  _renderRome(ctx, width, height, t) {
+    const sky = ctx.createLinearGradient(0, 0, 0, height);
+    sky.addColorStop(0, '#0284c7');
+    sky.addColorStop(0.7, '#bae6fd');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = '#a3e635';
+    ctx.fillRect(0, height * 0.6, width, height * 0.4);
   }
 
   // --- MAIN CHICKEN DISPATCHER --- //

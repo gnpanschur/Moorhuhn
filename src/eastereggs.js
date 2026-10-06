@@ -178,6 +178,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 250, popupText: 'OBELISKEN-SCHATZ! +250'
       });
+    } else if (theme === 'rome') {
+      // Roman Colosseum
+      this.eggs.push({
+        id: 'colosseum',
+        x: 880, y: screenHeight * 0.35, radius: 60,
+        hits: 0, maxHits: 3,
+        reward: 350, popupText: 'KOLOSSEUM-TRIUMPH! +350'
+      });
+      // Caesar Statue Laurel
+      this.eggs.push({
+        id: 'caesar',
+        x: 1400, y: screenHeight * 0.72, radius: 35,
+        hits: 0, maxHits: 2,
+        reward: 220, popupText: 'CAESAR-KRANZ! +220'
+      });
+      // SPQR Eagle Standard
+      this.eggs.push({
+        id: 'spqreagle',
+        x: 1620, y: screenHeight * 0.55, radius: 40,
+        hits: 0, maxHits: 1,
+        reward: 280, popupText: 'SPQR-ADLER! +280'
+      });
     }
   }
 

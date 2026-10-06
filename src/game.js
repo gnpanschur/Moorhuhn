@@ -95,6 +95,15 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Monumentale Pyramiden, Wüstensand, Pharaonen-Schätze & die Sphinx',
     easterEggs: ['Sphinx-Rätsel (+300)', 'Pyramiden-Spitze (+200)', 'Obelisken-Schatz (+250)']
+  },
+  { 
+    id: 11, 
+    name: 'Das Antike Rom', 
+    theme: 'rome', 
+    targetScore: 2250, 
+    timeLimit: 100, 
+    desc: 'Kolosseum, römische Säulen, Streitwagen & kaiserliche Triumphbögen',
+    easterEggs: ['Kolosseum-Triumph (+350)', 'Caesar-Kranz (+220)', 'SPQR-Adler (+280)']
   }
 ];
 

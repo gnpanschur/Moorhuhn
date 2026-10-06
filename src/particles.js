@@ -203,6 +203,20 @@ export class ParticleSystem {
           type: 'sandStorm'
         });
       }
+    } else if (theme === 'rome') {
+      for (let i = 0; i < 45; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: 0.5 + Math.random() * 0.9,
+          vy: 0.3 + Math.random() * 0.6,
+          rot: Math.random() * Math.PI * 2,
+          vRot: 0.04,
+          size: 4 + Math.random() * 5,
+          color: Math.random() > 0.4 ? '#65a30d' : '#eab308',
+          type: 'laurelLeaves'
+        });
+      }
     }
   }
 
@@ -303,6 +317,12 @@ export class ParticleSystem {
           wp.x = -20;
           wp.y = Math.random() * screenHeight;
         }
+      } else if (wp.type === 'laurelLeaves') {
+        wp.x += wp.vx + Math.sin(wp.y * 0.02) * 0.5;
+        wp.y += wp.vy;
+        wp.rot += wp.vRot;
+        if (wp.y > screenHeight) wp.y = -10;
+        if (wp.x > virtualWidth) wp.x = -10;
       }
     }
   }
@@ -413,6 +433,15 @@ export class ParticleSystem {
         ctx.fillStyle = wp.color;
         ctx.beginPath();
         ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'laurelLeaves') {
+        ctx.save();
+        ctx.translate(wp.x, wp.y);
+        ctx.rotate(wp.rot);
+        ctx.fillStyle = wp.color;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, wp.size, wp.size * 0.4, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
