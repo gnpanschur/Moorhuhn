@@ -193,121 +193,124 @@ export class GraphicsRenderer {
 
     // =========================================================================
     // --- POSITIONIERBARER BONUSPUNKTE & ACCESSORIES RENDERER ---
+    // (Wird NICHT auf unschuldige Strafvögel wie Taube oder Storch gezeichnet!)
     // =========================================================================
 
-    // 1. EIERSCHALE (Eggshell Hat / Weiße Kopfbedeckung)
-    if (outfit === 'eggshell') {
-      const eggshellX = -22; // HIER X-POSITION DER EIERSCHALE ANPASSEN (-22)
-      const eggshellY = -22; // HIER Y-POSITION DER EIERSCHALE ANPASSEN (-22)
+    if (type !== 'dove' && type !== 'owl') {
+      // 1. EIERSCHALE (Eggshell Hat / Weiße Kopfbedeckung)
+      if (outfit === 'eggshell') {
+        const eggshellX = -22; // HIER X-POSITION DER EIERSCHALE ANPASSEN (-22)
+        const eggshellY = -22; // HIER Y-POSITION DER EIERSCHALE ANPASSEN (-22)
 
-      ctx.fillStyle = '#fef3c7';
-      ctx.strokeStyle = '#78350f';
-      ctx.lineWidth = 1.8;
-      ctx.beginPath();
-      ctx.moveTo(eggshellX - 12, eggshellY);
-      ctx.lineTo(eggshellX - 10, eggshellY - 14);
-      ctx.lineTo(eggshellX - 4, eggshellY - 8);
-      ctx.lineTo(eggshellX, eggshellY - 16);
-      ctx.lineTo(eggshellX + 5, eggshellY - 9);
-      ctx.lineTo(eggshellX + 11, eggshellY - 14);
-      ctx.lineTo(eggshellX + 13, eggshellY);
-      ctx.closePath();
-      ctx.fill(); ctx.stroke();
-    }
+        ctx.fillStyle = '#fef3c7';
+        ctx.strokeStyle = '#78350f';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(eggshellX - 12, eggshellY);
+        ctx.lineTo(eggshellX - 10, eggshellY - 14);
+        ctx.lineTo(eggshellX - 4, eggshellY - 8);
+        ctx.lineTo(eggshellX, eggshellY - 16);
+        ctx.lineTo(eggshellX + 5, eggshellY - 9);
+        ctx.lineTo(eggshellX + 11, eggshellY - 14);
+        ctx.lineTo(eggshellX + 13, eggshellY);
+        ctx.closePath();
+        ctx.fill(); ctx.stroke();
+      }
 
-    // 2. WEISSE / SILBERNE KRONE (White Crown)
-    else if (outfit === 'white_crown') {
-      const whiteCrownX = -22; // HIER X-POSITION DER WEISSEN KRONE ANPASSEN
-      const whiteCrownY = -22; // HIER Y-POSITION DER WEISSEN KRONE ANPASSEN
+      // 2. WEISSE / SILBERNE KRONE (White Crown)
+      else if (outfit === 'white_crown') {
+        const whiteCrownX = -22; // HIER X-POSITION DER WEISSEN KRONE ANPASSEN
+        const whiteCrownY = -22; // HIER Y-POSITION DER WEISSEN KRONE ANPASSEN
 
-      ctx.fillStyle = '#f8fafc'; // Strahlendes Weiß / Silber
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(whiteCrownX - 12, whiteCrownY);
-      ctx.lineTo(whiteCrownX - 12, whiteCrownY - 12);
-      ctx.lineTo(whiteCrownX - 6, whiteCrownY - 5);
-      ctx.lineTo(whiteCrownX, whiteCrownY - 16);
-      ctx.lineTo(whiteCrownX + 6, whiteCrownY - 5);
-      ctx.lineTo(whiteCrownX + 12, whiteCrownY - 12);
-      ctx.lineTo(whiteCrownX + 12, whiteCrownY);
-      ctx.closePath();
-      ctx.fill(); ctx.stroke();
-    }
+        ctx.fillStyle = '#f8fafc';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(whiteCrownX - 12, whiteCrownY);
+        ctx.lineTo(whiteCrownX - 12, whiteCrownY - 12);
+        ctx.lineTo(whiteCrownX - 6, whiteCrownY - 5);
+        ctx.lineTo(whiteCrownX, whiteCrownY - 16);
+        ctx.lineTo(whiteCrownX + 6, whiteCrownY - 5);
+        ctx.lineTo(whiteCrownX + 12, whiteCrownY - 12);
+        ctx.lineTo(whiteCrownX + 12, whiteCrownY);
+        ctx.closePath();
+        ctx.fill(); ctx.stroke();
+      }
 
-    // 3. GOLDENE KRONE (Golden Crown)
-    else if (type === 'golden') {
-      const crownX = -22;  // HIER X-POSITION DER GOLDENEN KRONE ANPASSEN (-22)
-      const crownY = -22; // HIER Y-POSITION DER GOLDENEN KRONE ANPASSEN (-22)
+      // 3. GOLDENE KRONE (Golden Crown)
+      else if (type === 'golden') {
+        const crownX = -22;  // HIER X-POSITION DER GOLDENEN KRONE ANPASSEN (-22)
+        const crownY = -22; // HIER Y-POSITION DER GOLDENEN KRONE ANPASSEN (-22)
 
-      ctx.fillStyle = '#facc15';
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(crownX - 12, crownY);
-      ctx.lineTo(crownX - 12, crownY - 12);
-      ctx.lineTo(crownX - 6, crownY - 5);
-      ctx.lineTo(crownX, crownY - 16);
-      ctx.lineTo(crownX + 6, crownY - 5);
-      ctx.lineTo(crownX + 12, crownY - 12);
-      ctx.lineTo(crownX + 12, crownY);
-      ctx.closePath();
-      ctx.fill(); ctx.stroke();
-    }
+        ctx.fillStyle = '#facc15';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(crownX - 12, crownY);
+        ctx.lineTo(crownX - 12, crownY - 12);
+        ctx.lineTo(crownX - 6, crownY - 5);
+        ctx.lineTo(crownX, crownY - 16);
+        ctx.lineTo(crownX + 6, crownY - 5);
+        ctx.lineTo(crownX + 12, crownY - 12);
+        ctx.lineTo(crownX + 12, crownY);
+        ctx.closePath();
+        ctx.fill(); ctx.stroke();
+      }
 
-    // 4. STAHLHELM (Steel Helmet)
-    else if (outfit === 'helmet') {
-      const helmetX = -22; // HIER X-POSITION DES STAHLHELMS ANPASSEN (-22)
-      const helmetY = -20; // HIER Y-POSITION DES STAHLHELMS ANPASSEN (-20)
+      // 4. STAHLHELM (Steel Helmet)
+      else if (outfit === 'helmet') {
+        const helmetX = -22; // HIER X-POSITION DES STAHLHELMS ANPASSEN (-22)
+        const helmetY = -20; // HIER Y-POSITION DES STAHLHELMS ANPASSEN (-20)
 
-      ctx.fillStyle = '#64748b';
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(helmetX, helmetY, 15, Math.PI * 0.85, Math.PI * 0.15);
-      ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#64748b';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(helmetX, helmetY, 15, Math.PI * 0.85, Math.PI * 0.15);
+        ctx.fill(); ctx.stroke();
 
-      ctx.fillStyle = '#ca8a04';
-      ctx.fillRect(helmetX - 2, helmetY - 17, 4, 5);
-    }
+        ctx.fillStyle = '#ca8a04';
+        ctx.fillRect(helmetX - 2, helmetY - 17, 4, 5);
+      }
 
-    // 5. JETPACK (Raketenantrieb / Turbo)
-    else if (type === 'turbo') {
-      const jetpackX = -22; // HIER X-POSITION DES JETPACKS ANPASSEN
-      const jetpackY = -10; // HIER Y-POSITION DES JETPACKS ANPASSEN
+      // 5. JETPACK (Raketenantrieb / Turbo)
+      else if (type === 'turbo') {
+        const jetpackX = -22; // HIER X-POSITION DES JETPACKS ANPASSEN
+        const jetpackY = -10; // HIER Y-POSITION DES JETPACKS ANPASSEN
 
-      ctx.fillStyle = '#cbd5e1';
-      ctx.fillRect(jetpackX, jetpackY, 10, 20);
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(jetpackX, jetpackY - 2, 10, 4);
+        ctx.fillStyle = '#cbd5e1';
+        ctx.fillRect(jetpackX, jetpackY, 10, 20);
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(jetpackX, jetpackY - 2, 10, 4);
 
-      ctx.fillStyle = '#f97316';
-      ctx.beginPath();
-      ctx.moveTo(jetpackX, jetpackY + 20);
-      ctx.lineTo(jetpackX - 5, jetpackY + 28 + Math.random() * 5);
-      ctx.lineTo(jetpackX + 10, jetpackY + 20);
-      ctx.fill();
-    }
+        ctx.fillStyle = '#f97316';
+        ctx.beginPath();
+        ctx.moveTo(jetpackX, jetpackY + 20);
+        ctx.lineTo(jetpackX - 5, jetpackY + 28 + Math.random() * 5);
+        ctx.lineTo(jetpackX + 10, jetpackY + 20);
+        ctx.fill();
+      }
 
-    // 6. TAUCHERBRILLE (Scuba Diving Mask & Snorkel)
-    else if (outfit === 'scuba') {
-      const scubaX = -40;  // HIER X-POSITION DER TAUCHERBRILLE ANPASSEN (-40)
-      const scubaY = -20;  // HIER Y-POSITION DER TAUCHERBRILLE ANPASSEN (-20)
+      // 6. TAUCHERBRILLE (Scuba Diving Mask & Snorkel)
+      else if (outfit === 'scuba') {
+        const scubaX = -40;  // HIER X-POSITION DER TAUCHERBRILLE ANPASSEN (-40)
+        const scubaY = -20;  // HIER Y-POSITION DER TAUCHERBRILLE ANPASSEN (-20)
 
-      ctx.fillStyle = 'rgba(6, 182, 212, 0.7)';
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.ellipse(scubaX + 14, scubaY, 10, 7, 0, 0, Math.PI * 2);
-      ctx.fill(); ctx.stroke();
+        ctx.fillStyle = 'rgba(6, 182, 212, 0.7)';
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.ellipse(scubaX + 14, scubaY, 10, 7, 0, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
 
-      ctx.strokeStyle = '#facc15';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(scubaX + 18, scubaY);
-      ctx.lineTo(scubaX + 24, scubaY - 14);
-      ctx.lineTo(scubaX + 28, scubaY - 14);
-      ctx.stroke();
+        ctx.strokeStyle = '#facc15';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(scubaX + 18, scubaY);
+        ctx.lineTo(scubaX + 24, scubaY - 14);
+        ctx.lineTo(scubaX + 28, scubaY - 14);
+        ctx.stroke();
+      }
     }
 
     if (isDead) {
