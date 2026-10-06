@@ -217,6 +217,19 @@ export class ParticleSystem {
           type: 'laurelLeaves'
         });
       }
+    } else if (theme === 'gaul') {
+      for (let i = 0; i < 50; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * screenHeight,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: -0.5 - Math.random() * 1.0,
+          size: 3 + Math.random() * 5,
+          pulse: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.4 ? '#4ade80' : '#facc15',
+          type: 'magicSparks'
+        });
+      }
     }
   }
 
@@ -323,6 +336,14 @@ export class ParticleSystem {
         wp.rot += wp.vRot;
         if (wp.y > screenHeight) wp.y = -10;
         if (wp.x > virtualWidth) wp.x = -10;
+      } else if (wp.type === 'magicSparks') {
+        wp.x += wp.vx + Math.sin(wp.pulse) * 0.4;
+        wp.y += wp.vy;
+        wp.pulse += 0.05;
+        if (wp.y < -10) {
+          wp.y = screenHeight + 10;
+          wp.x = Math.random() * virtualWidth;
+        }
       }
     }
   }
@@ -442,6 +463,17 @@ export class ParticleSystem {
         ctx.fillStyle = wp.color;
         ctx.beginPath();
         ctx.ellipse(0, 0, wp.size, wp.size * 0.4, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else if (wp.type === 'magicSparks') {
+        const glow = (Math.sin(wp.pulse) + 1) * 0.5 * 0.8 + 0.2;
+        ctx.save();
+        ctx.globalAlpha = glow;
+        ctx.fillStyle = wp.color;
+        ctx.shadowColor = wp.color;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(wp.x, wp.y, wp.size, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }

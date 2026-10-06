@@ -267,6 +267,8 @@ class SoundEngine {
         this._startEgyptSynth();
       } else if (theme === 'rome') {
         this._startRomeSynth();
+      } else if (theme === 'gaul') {
+        this._startGaulSynth();
       }
     } catch(e) {
       console.warn("Ambient synth error", e);
@@ -396,6 +398,10 @@ class SoundEngine {
   }
 
   _startRomeSynth() {
+    this._startBreezeSynth();
+  }
+
+  _startGaulSynth() {
     this._startBreezeSynth();
   }
 }

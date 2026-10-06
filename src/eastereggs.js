@@ -200,6 +200,28 @@ export class EasterEggManager {
         hits: 0, maxHits: 1,
         reward: 280, popupText: 'SPQR-ADLER! +280'
       });
+    } else if (theme === 'gaul') {
+      // Magic Potion Cauldron
+      this.eggs.push({
+        id: 'cauldron',
+        x: 1300, y: screenHeight * 0.64, radius: 55,
+        hits: 0, maxHits: 3,
+        reward: 400, popupText: 'ZAUBERTRANK-KESSEL! +400'
+      });
+      // Roasted Wild Boar Spit
+      this.eggs.push({
+        id: 'wildboar',
+        x: 1620, y: screenHeight * 0.76, radius: 45,
+        hits: 0, maxHits: 2,
+        reward: 300, popupText: 'WILDSCHWEIN-SPIESS! +300'
+      });
+      // Standing Menhir Stone
+      this.eggs.push({
+        id: 'menhir',
+        x: 1040, y: screenHeight * 0.70, radius: 40,
+        hits: 0, maxHits: 1,
+        reward: 350, popupText: 'HÜTTEN-MENHIR! +350'
+      });
     }
   }
 

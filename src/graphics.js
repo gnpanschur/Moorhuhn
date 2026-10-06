@@ -13,7 +13,7 @@ export class GraphicsRenderer {
   }
 
   _loadBackgroundImages() {
-    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome'];
+    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome', 'gaul'];
     themes.forEach(theme => {
       const img = new Image();
       img.src = `/bg_${theme}.jpg`;
@@ -81,6 +81,8 @@ export class GraphicsRenderer {
         this._renderEgypt(ctx, virtualWidth, screenHeight, animTime);
       } else if (theme === 'rome') {
         this._renderRome(ctx, virtualWidth, screenHeight, animTime);
+      } else if (theme === 'gaul') {
+        this._renderGaul(ctx, virtualWidth, screenHeight, animTime);
       }
     }
 
@@ -190,6 +192,16 @@ export class GraphicsRenderer {
     ctx.fillStyle = sky;
     ctx.fillRect(0, 0, width, height);
     ctx.fillStyle = '#a3e635';
+    ctx.fillRect(0, height * 0.6, width, height * 0.4);
+  }
+
+  _renderGaul(ctx, width, height, t) {
+    const sky = ctx.createLinearGradient(0, 0, 0, height);
+    sky.addColorStop(0, '#ea580c');
+    sky.addColorStop(0.6, '#fde047');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = '#84cc16';
     ctx.fillRect(0, height * 0.6, width, height * 0.4);
   }
 

@@ -104,6 +104,15 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Kolosseum, römische Säulen, Streitwagen & kaiserliche Triumphbögen',
     easterEggs: ['Kolosseum-Triumph (+350)', 'Caesar-Kranz (+220)', 'SPQR-Adler (+280)']
+  },
+  { 
+    id: 12, 
+    name: 'Das Gallische Dorf', 
+    theme: 'gaul', 
+    targetScore: 2500, 
+    timeLimit: 100, 
+    desc: 'Gallische Strohhütten, Zaubertrank-Kessel, Wildschweine & goldene Abendsonne',
+    easterEggs: ['Zaubertrank-Kessel (+400)', 'Wildschwein-Spieß (+300)', 'Hütten-Menhir (+350)']
   }
 ];
 
