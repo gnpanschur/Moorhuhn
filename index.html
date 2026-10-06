@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moorhuhn Shooter Arcade - PC Edition</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+
+  <!-- GAME HUD OVERLAY -->
+  <div id="ui-container">
+    <!-- TOP HUD -->
+    <div class="hud-top" id="hud-top" style="display: none;">
+      <div class="hud-pill clickable" id="btn-menu">
+        <i data-lucide="arrow-left"></i>
+        <span>Menü</span>
+      </div>
+      <div class="hud-pill">
+        <span id="level-name-display">Sommer auf dem Bauernhof</span>
+      </div>
+      <div class="hud-pill">
+        <span class="score-display" id="score-display">00000</span>
+      </div>
+      <div class="hud-pill">
+        <i data-lucide="clock"></i>
+        <span class="timer-display" id="timer-display">100</span>
+      </div>
+      <div class="hud-pill" id="combo-pill" style="display: none;">
+        <span class="combo-badge" id="combo-badge">x2 COMBO</span>
+      </div>
+      <div class="hud-pill clickable" id="btn-audio">
+        <i data-lucide="volume-2" id="audio-icon"></i>
+      </div>
+    </div>
+
+    <!-- BOTTOM HUD -->
+    <div class="hud-bottom" id="hud-bottom" style="display: none;">
+      <div class="ammo-container">
+        <div id="shells-list" style="display: flex; gap: 4px;"></div>
+        <button class="reload-btn" id="btn-reload">Nachladen [R / Rechtsklick]</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
+        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Kamera-Panorama (Maus an Rand bewegen)</span>
+        <div class="minimap-bar">
+          <div class="minimap-viewport" id="minimap-viewport"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN MENU MODAL -->
+  <div class="screen-modal active" id="modal-main-menu">
+    <div class="modal-card">
+      <img src="/cover.jpg" alt="Moorhuhn Banner" class="modal-header-img" />
+      <h1 class="game-title">MOORHUHN SHOOTER</h1>
+      <p class="subtitle">Der kultige Jagd-Klassiker für PC – Mit 6 Welten & Easter Eggs</p>
+
+      <div class="menu-buttons">
+        <button class="btn-primary" id="btn-start-campaign">
+          <i data-lucide="trophy"></i>
+          <span>Kampagne Starten</span>
+        </button>
+        <button class="btn-secondary" id="btn-open-level-select">
+          <i data-lucide="map-pin"></i>
+          <span>Levelauswahl (6 Hintergründe)</span>
+        </button>
+        <button class="btn-secondary" id="btn-open-highscores">
+          <i data-lucide="award"></i>
+          <span>Highscores & Statistiken</span>
+        </button>
+        <button class="btn-secondary" id="btn-open-instructions">
+          <i data-lucide="gamepad-2"></i>
+          <span>Steuerung & PC-Anleitung</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVEL SELECT MODAL -->
+  <div class="screen-modal" id="modal-level-select">
+    <div class="modal-card">
+      <h2 class="game-title">LEVELAUSWAHL</h2>
+      <p class="subtitle">Wähle deinen Hintergrund & Themenwelt</p>
+
+      <div class="level-grid" id="level-grid-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <button class="btn-secondary" id="btn-unlock-all-levels" style="margin-top: 12px; width: 100%; border-color: var(--primary-gold); color: var(--primary-gold);">
+        🔓 Alle Level Freischalten
+      </button>
+
+      <button class="btn-secondary" id="btn-close-level-select" style="margin-top: 10px; width: 100%;">
+        Zurück zum Hauptmenü
+      </button>
+    </div>
+  </div>
+
+  <!-- INSTRUCTIONS MODAL -->
+  <div class="screen-modal" id="modal-instructions">
+    <div class="modal-card" style="text-align: left;">
+      <h2 class="game-title" style="text-align: center;">STEUERUNG (PC)</h2>
+      <p class="subtitle" style="text-align: center;">Perfekt optimiert für Maus & Tastatur</p>
+
+      <table class="stats-table">
+        <tr>
+          <td><i data-lucide="mouse"></i> <strong>Zielen & Schießen</strong></td>
+          <td style="color: #fff;">Maus bewegen & <strong>Links-Klick</strong></td>
+        </tr>
+        <tr>
+          <td><i data-lucide="rotate-ccw"></i> <strong>Nachladen</strong></td>
+          <td style="color: #fff;"><strong>Rechts-Klick</strong>, <strong>R-Taste</strong> oder <strong>Leertaste</strong></td>
+        </tr>
+        <tr>
+          <td><i data-lucide="move"></i> <strong>Panorama-Kamera (Panning)</strong></td>
+          <td style="color: #fff;">Maus an den <strong>linken / rechten Bildschirmrand</strong> bewegen oder <strong>A / D / Pfeiltasten</strong> drücken</td>
+        </tr>
+        <tr>
+          <td><i data-lucide="pause"></i> <strong>Pause</strong></td>
+          <td style="color: #fff;"><strong>ESC-Taste</strong></td>
+        </tr>
+      </table>
+
+      <h3 style="color: var(--primary-gold); margin-top: 20px; margin-bottom: 10px;">🎯 Punkte & Tipps:</h3>
+      <ul style="color: #cbd5e1; line-height: 1.6; padding-left: 20px;">
+        <li><strong>Weite Hühner (klein):</strong> 25 bis 50 Punkte</li>
+        <li><strong>Mittlere Hühner:</strong> 15 bis 20 Punkte</li>
+        <li><strong>Nahe Hühner (groß):</strong> 5 bis 10 Punkte</li>
+        <li><strong>Raketenhuhn / Goldenes Huhn:</strong> 100 - 150 Bonuspunkte!</li>
+        <li><strong>Strafvögel (Weiße Friedenstaube & Eule):</strong> Nicht abschießen! (-25 Pkt)</li>
+        <li><strong>Easter Eggs:</strong> Schieße auf Windmühlenflügel, Vogelscheuche, Schneemann, Grabsteine & Piratenschiff für Geheimboni!</li>
+      </ul>
+
+      <button class="btn-primary" id="btn-close-instructions" style="margin-top: 24px; width: 100%;">
+        Verstanden!
+      </button>
+    </div>
+  </div>
+
+  <!-- HIGH SCORES MODAL -->
+  <div class="screen-modal" id="modal-highscores">
+    <div class="modal-card">
+      <h2 class="game-title">HIGHSCORES</h2>
+      <p class="subtitle">Deine bisherigen Bestleistungen</p>
+
+      <table class="stats-table" id="highscores-table">
+        <!-- Injected via JavaScript -->
+      </table>
+
+      <button class="btn-secondary" id="btn-close-highscores" style="margin-top: 20px; width: 100%;">
+        Zurück
+      </button>
+    </div>
+  </div>
+
+  <!-- VICTORY / END GAME MODAL -->
+  <div class="screen-modal" id="modal-victory">
+    <div class="modal-card">
+      <h2 class="game-title" id="victory-title">LEVEL ABGESCHLOSSEN!</h2>
+      <p class="subtitle" id="victory-subtitle">Hervorragende Jagdleistung!</p>
+
+      <table class="stats-table">
+        <tr>
+          <td>Gesamtpunkte</td>
+          <td id="stat-score">0</td>
+        </tr>
+        <tr>
+          <td>Trefferquote (Accuracy)</td>
+          <td id="stat-accuracy">0%</td>
+        </tr>
+        <tr>
+          <td>Höchste Combo</td>
+          <td id="stat-combo">x0</td>
+        </tr>
+        <tr>
+          <td>Easter Eggs entdeckt</td>
+          <td id="stat-eastereggs">0</td>
+        </tr>
+      </table>
+
+      <div class="menu-buttons" style="margin-top: 24px;">
+        <button class="btn-primary" id="btn-next-level">
+          <i data-lucide="play"></i>
+          <span id="next-level-btn-text">Nächstes Level</span>
+        </button>
+        <button class="btn-secondary" id="btn-restart-level">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Erneut Spielen</span>
+        </button>
+        <button class="btn-secondary" id="btn-victory-menu">
+          <i data-lucide="home"></i>
+          <span>Hauptmenü</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAUSE MODAL -->
+  <div class="screen-modal" id="modal-pause">
+    <div class="modal-card">
+      <h2 class="game-title">PAUSE</h2>
+      <p class="subtitle">Spiel ist pausiert</p>
+
+      <div class="menu-buttons">
+        <button class="btn-primary" id="btn-resume">
+          <i data-lucide="play"></i>
+          <span>Fortsetzen</span>
+        </button>
+        <button class="btn-secondary" id="btn-pause-restart">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Level neu starten</span>
+        </button>
+        <button class="btn-secondary" id="btn-pause-menu">
+          <i data-lucide="home"></i>
+          <span>Hauptmenü</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
