@@ -28,6 +28,14 @@ const modalHighscores = document.getElementById('modal-highscores');
 const modalVictory = document.getElementById('modal-victory');
 const modalPause = document.getElementById('modal-pause');
 
+const btnOpenLevelSelect = document.getElementById('btn-open-level-select');
+if (btnOpenLevelSelect) {
+  const span = btnOpenLevelSelect.querySelector('span');
+  if (span) {
+    span.innerText = `Levelauswahl (${LEVEL_CONFIGS.length} Levels)`;
+  }
+}
+
 function updateUI() {
   if (game.state === 'PLAYING' || game.state === 'PAUSED') {
     hudTop.style.display = 'flex';
@@ -191,18 +199,18 @@ function buildLevelGrid() {
     const card = document.createElement('div');
     card.className = `level-card ${isUnlocked ? '' : 'locked'}`;
 
-    const easterEggsList = lvl.easterEggs && lvl.easterEggs.length > 0
-      ? `<div style="margin-top: 8px; font-size: 0.78rem; color: #38bdf8; background: rgba(56, 189, 248, 0.12); padding: 6px 10px; border-radius: 6px; text-align: left; line-height: 1.3;">
-          🥚 <strong>Easter Eggs:</strong> ${lvl.easterEggs.join(', ')}
-         </div>`
+    const easterEggsText = lvl.easterEggs && lvl.easterEggs.length > 0
+      ? `<span style="color: #38bdf8; display: block; margin-top: 6px; font-size: 0.8rem; font-weight: 600; background: rgba(56, 189, 248, 0.12); padding: 5px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">🥚 <strong>Interaktive Easter Eggs:</strong> ${lvl.easterEggs.join(', ')}</span>`
       : '';
 
     card.innerHTML = `
       <div class="level-num">LEVEL ${lvl.id}</div>
       <h3 style="color: #fff; margin: 6px 0;">${lvl.name}</h3>
-      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 4px;">${lvl.desc}</p>
-      ${easterEggsList}
-      <div style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-gold);">
+      <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 6px; line-height: 1.4;">
+        ${lvl.desc}
+        ${easterEggsText}
+      </p>
+      <div style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-gold);">
         ${isUnlocked ? `🏆 Highscore: ${highscore}` : '🔒 Gesperrt'}
       </div>
     `;
@@ -264,12 +272,37 @@ function openVictoryModal() {
   }
 
   if (isSuccess) {
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
+    launchVictoryFireworks();
   }
 
   modalVictory.classList.add('active');
+}
+
+function launchVictoryFireworks() {
+  const duration = 3.5 * 1000;
+  const animationEnd = Date.now() + duration;
+  const defaults = { startVelocity: 35, spread: 360, ticks: 70, zIndex: 9999 };
+
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Initial center burst
+  confetti({
+    particleCount: 120,
+    spread: 100,
+    origin: { y: 0.6 }
+  });
+
+  const interval = setInterval(function() {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    const particleCount = 45 * (timeLeft / duration);
+    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.15, 0.35), y: randomInRange(0.2, 0.5) } });
+    confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.65, 0.85), y: randomInRange(0.2, 0.5) } });
+  }, 250);
 }

@@ -122,6 +122,780 @@ export const LEVEL_CONFIGS = [
     timeLimit: 100, 
     desc: 'Vor dem goldenen Palast, kaiserliche Gärten, goldene Statuen & königlicher Prunk',
     easterEggs: ['Kaiserin-Krone (+450)', 'Palast-Fountain (+350)', 'Goldene Phönix-Statue (+400)']
+  },
+  { 
+    id: 14, 
+    name: 'Die windige Moorlandschaft', 
+    theme: 'moorland', 
+    targetScore: 3100, 
+    timeLimit: 100, 
+    desc: 'Das klassische Setting mit sumpfigen Wasserlöchern, schilfgedeckten Hütte, verbogenen Knorrenbäumen und nebligen Dunstfeldern am Boden.',
+    easterEggs: ['Schilfhütten-Rauch (+350)', 'Knorrenbaum-Eule (+250)', 'Sumpf-Irrlicht (+400)']
+  },
+  { 
+    id: 15, 
+    name: 'Das Drachen-Tal', 
+    theme: 'dragon_valley', 
+    targetScore: 3400, 
+    timeLimit: 100, 
+    desc: 'Eine raue Vulkanlandschaft mit rauchenden Kratern, Lavaströmen, riesigen Knochen im Gras und einer Drachenhöhle im Hintergrund.',
+    easterEggs: ['Drachenhöhlen-Auge (+450)', 'Vulkan-Ausbruch (+350)', 'Dino-Skelett (+300)']
+  },
+  { 
+    id: 16, 
+    name: 'Die Dschungel-Ruine', 
+    theme: 'jungle_ruins', 
+    targetScore: 3700, 
+    timeLimit: 100, 
+    desc: 'Ein mystischer Regenwald mit bemoosten Pyramidenruinen, riesigen Lianen, Steinstatuen und geheimnisvollen Höhleneingängen (Golden Hour).',
+    easterEggs: ['Azteken-Sonnenscheibe (+500)', 'Götzen-Steinstatue (+350)', 'Regenwald-Höhlenportal (+400)']
+  },
+  { 
+    id: 17, 
+    name: 'Die Ritterburg im Mittelalter', 
+    theme: 'medieval_fortress', 
+    targetScore: 4000, 
+    timeLimit: 100, 
+    desc: 'Eine imposante Festung mit hohen Mauern, Türmen, Zinnen, einem Burggraben und wehenden Flaggen im Wind (Golden Hour).',
+    easterEggs: ['Hauptturm-Glocke (+550)', 'Ritter-Banner (+400)', 'Zugbrücken-Kette (+350)']
+  },
+  { 
+    id: 18, 
+    name: 'Die Geheime Militärbasis', 
+    theme: 'military_base', 
+    targetScore: 4300, 
+    timeLimit: 100, 
+    desc: 'Ein abgezäuntes Areal mit Radaranlagen, Baracken, riesigen Tarnkappen-Helikoptern und Wachtürmen (Mittagssonnenlicht).',
+    easterEggs: ['Radar-Schüssel (+600)', 'Tarnkappen-Helikopter (+450)', 'Wachturm-Suchscheinwerfer (+400)']
+  },
+  { 
+    id: 19, 
+    name: 'Die Unterwasser-Kulisse (Atlantis)', 
+    theme: 'atlantis', 
+    targetScore: 4600, 
+    timeLimit: 100, 
+    desc: 'Korallenriffe, antike versunkene Säulengänge, Blasen, die nach oben steigen, und Taucher- & Fisch-Hühner in der versunkenen Stadt Atlantis.',
+    easterEggs: ['Poseidons-Dreizack (+650)', 'Atlantis-Schatztruhe (+500)', 'Riesen-Muschel-Perle (+450)']
+  },
+  { 
+    id: 20, 
+    name: 'Die Sommer-Alm in den Alpen', 
+    theme: 'alpine_meadow', 
+    targetScore: 5000, 
+    timeLimit: 100, 
+    desc: 'Eine saftige Bergwiese mit grasenden Kühen, einer Holzhütte im Hintergrund und imposanten, schroffen Felsenmassiven (Tageslicht).',
+    easterEggs: ['Alm-Kuhglocke (+700)', 'Alpen-Gipfelkreuz (+500)', 'Almhütten-Schornstein (+450)']
+  },
+  { 
+    id: 21, 
+    name: 'Das Elfen-Königreich', 
+    theme: 'elven_kingdom', 
+    targetScore: 5500, 
+    timeLimit: 100, 
+    desc: 'Eine verträumte Kulisse mit riesigen leuchtenden Blumen, Wasserfällen, die in kristallklare Seen stürzen, und filigranen Baumkronen-Palästen (Tageslicht).',
+    easterEggs: ['Zauberblüten-Glow (+750)', 'Elfen-Kristallfall (+550)', 'Baumkronen-Kristallkrone (+500)']
+  },
+  { 
+    id: 22, 
+    name: 'Der Wilde Westen (Goldgräberstadt)', 
+    theme: 'wild_west', 
+    targetScore: 6000, 
+    timeLimit: 100, 
+    desc: 'Eine staubige Western-Main-Street mit Saloon, Sheriff-Büro, hölzernen Veranden, rollenden Steppenläufern & Kakteen (Mittagszeit).',
+    easterEggs: ['Saloon-Flügeltür (+800)', 'Sheriff-Stern (+600)', 'Goldgräber-Schatztruhe (+550)']
+  },
+  { 
+    id: 23, 
+    name: 'Die Mars-Kolonie', 
+    theme: 'mars_colony', 
+    targetScore: 6500, 
+    timeLimit: 100, 
+    desc: 'Rote Felsenlandschaft, gläserne Kuppelbauten, futuristische Rover, Solarpanels und im Hintergrund der Sternenhimmel mit der Erde.',
+    easterEggs: ['Kuppel-Energie-Plasma (+850)', 'Mars-Rover-Radar (+650)', 'Solar-Fusions-Modul (+600)']
+  },
+  { 
+    id: 24, 
+    name: 'Der Süßigkeiten-Planet', 
+    theme: 'candy_planet', 
+    targetScore: 7000, 
+    timeLimit: 100, 
+    desc: 'Eine komplett essbare Welt aus riesigen Zuckerstangen, Lebkuchenhäusern, schokoladenbraunen Hügeln und Flüssen aus Limonade.',
+    easterEggs: ['Lebkuchenhaus-Glocke (+900)', 'Zuckerstangen-Wirbel (+700)', 'Limonaden-Geysir (+650)']
+  },
+  { 
+    id: 25, 
+    name: 'Der Jahrmarkt bei Nacht', 
+    theme: 'night_fair', 
+    targetScore: 7500, 
+    timeLimit: 100, 
+    desc: 'Bunte, blinkende Fahrgeschäfte (Riesenrad, Achterbahn), Popcorn-Stände, Lichterketten und eine ausgelassene, leicht schummrige Atmosphäre.',
+    easterEggs: ['Riesenrad-Lichterzauber (+1000)', 'Popcorn-Maschinen-Explosion (+750)', 'Achterbahn-Neonblitz (+700)']
+  },
+  { 
+    id: 26, 
+    name: 'Das idyllische Flussufer', 
+    theme: 'riverbank', 
+    targetScore: 8000, 
+    timeLimit: 100, 
+    desc: 'Ein breiter Fluss, der sich durch die Landschaft schlängelt. Im Hintergrund eine alte Steinbogenbrücke und weidende Schafe am Ufer (Mittagszeit).',
+    easterEggs: ['Steinbogenbrücken-Glocke (+1050)', 'Ufer-Glockenschaf (+800)', 'Fluss-Wasserfall-Bonus (+750)']
+  },
+  { 
+    id: 27, 
+    name: 'Die fliegenden Inseln (Steampunk)', 
+    theme: 'floating_islands', 
+    targetScore: 8500, 
+    timeLimit: 100, 
+    desc: 'Mehrere kleine, in der Luft schwebende Landmassen, verbunden durch Ketten und Seilbahnen, mit Windmühlen und Dampfmaschinen (Mittag).',
+    easterEggs: ['Steampunk-Windmühle (+1100)', 'Dampfmaschinen-Druckventil (+850)', 'Seilbahn-Gondel (+800)']
+  },
+  { 
+    id: 28, 
+    name: 'Das Piraten-Nest', 
+    theme: 'pirate_nest', 
+    targetScore: 9000, 
+    timeLimit: 100, 
+    desc: 'Ein karibischer Strand mit Palmen, einer Piraten-Taverne, ankernden Galeonen im Hintergrund und einer kleinen Schatzinsel.',
+    easterEggs: ['Tavernen-Totenkopf-Schild (+1200)', 'Galeonen-Kanonenschuss (+950)', 'Schatzinsel-Truhe (+900)']
+  },
+  { 
+    id: 29, 
+    name: 'Das Schrottplatz-Chaos', 
+    theme: 'junkyard', 
+    targetScore: 9500, 
+    timeLimit: 100, 
+    desc: 'Ein riesiger Berg aus alten Autos, Waschmaschinen und Metallteilen, dazwischen rauchende Fässer und ein großer Industriekran im Hintergrund (Mittagssonnenlicht).',
+    easterEggs: ['Industriekran-Magnet (+1250)', 'Rauchendes-Ölfass (+950)', 'Waschmaschinen-Trommel (+900)']
+  },
+  { 
+    id: 30, 
+    name: 'Der Obstgarten im Herbst', 
+    theme: 'autumn_orchard', 
+    targetScore: 10000, 
+    timeLimit: 100, 
+    desc: 'Ein herbstlicher Garten voller Apfelbäume, mit Holzkisten voller Ernte, einem Laubhaufen und einem alten Traktor im Hintergrund (Mittagssonne).',
+    easterEggs: ['Traktor-Hupe (+1300)', 'Holzkisten-Apfelrausch (+1000)', 'Laubhaufen-Wirbel (+950)']
+  },
+  { 
+    id: 31, 
+    name: 'Die Cyberpunk-Metropole', 
+    theme: 'cyberpunk', 
+    targetScore: 10500, 
+    timeLimit: 100, 
+    desc: 'Eine nächtliche, neonbeleuchtete Großstadt voller Hologramme, fliegender Autos (Speeder) in den oberen Ebenen und regennassen Straßen.',
+    easterEggs: ['Cyber-Cafe Neonschild (+1350)', 'Speeder-Flugtaxi (+1100)', 'Ramen-Bar-Bonus (+950)']
+  },
+  { 
+    id: 32, 
+    name: 'Der verwunschene Zauberwald', 
+    theme: 'enchanted_forest', 
+    targetScore: 11000, 
+    timeLimit: 100, 
+    desc: 'Uralte, knorrige Bäume mit leuchtenden Pilzen, mystischem Nebel, schwebenden Irrlichtern und kleinen Baumhäusern.',
+    easterEggs: ['Baumhaus-Laterne (+1400)', 'Leucht-Pilz-Zauber (+1150)', 'Schwebendes-Irrlicht (+1000)']
+  },
+  { 
+    id: 33, 
+    name: 'Die afrikanische Savanne', 
+    theme: 'savannah', 
+    targetScore: 11500, 
+    timeLimit: 100, 
+    desc: 'Endlose Graslandschaften, vereinzelte Akazienbäume, eine brennende Sonne im Dunst, und im Hintergrund ziehen Zebras oder Giraffen vorbei.',
+    easterEggs: ['Brennende Sonne (+1500)', 'Akazienbaum-Vogelnest (+1200)', 'Zebra & Giraffen-Herde (+1000)']
+  },
+  { 
+    id: 34, 
+    name: 'Der Friedhof im Mondlicht', 
+    theme: 'graveyard', 
+    targetScore: 12000, 
+    timeLimit: 100, 
+    desc: 'Ein schauriger Friedhof mit schiefen Grabsteinen, alten verwitterten Engelskulpturen, knorrigen kahlen Bäumen und einem großen Vollmond im Hintergrund.',
+    easterEggs: ['Der Große Vollmond (+1600)', 'Verwitterte Engelsstatue (+1300)', 'Schiefer Grabstein-Geist (+1100)']
+  },
+  { 
+    id: 35, 
+    name: 'Der Hafen bei Nacht', 
+    theme: 'harbor', 
+    targetScore: 12500, 
+    timeLimit: 100, 
+    desc: 'Große Frachtschiffe, riesige Containerkräne, gestapelte bunte Container, Flutlichter und das Glitzern des Wassers im Hafenbecken.',
+    easterEggs: ['Riesiger Containerkran (+1700)', 'Frachtschiff-Nebelhorn (+1400)', 'Bunter Container-Stapel (+1150)']
+  },
+  { 
+    id: 36, 
+    name: 'Die 80er-Jahre-Arcade-Halle', 
+    theme: 'arcade', 
+    targetScore: 13000, 
+    timeLimit: 100, 
+    desc: 'Ein buntes Retro-Interieur mit blinkenden Spielautomaten (Pixel-Optik), Neonröhren, Postern und Diskokugeln.',
+    easterEggs: ['Glitzernde Diskokugel (+1800)', 'Blinkender Arcade-Automat (+1500)', 'Retro-Neonröhre (+1200)']
+  },
+  { 
+    id: 37, 
+    name: 'Der Uhren-Canyon (Steampunk/Dali-Stil)', 
+    theme: 'clock_canyon', 
+    targetScore: 13500, 
+    timeLimit: 100, 
+    desc: 'Eine wüstenartige Landschaft, in der riesige antike Standuhren, Zahnräder und Pendel in der Landschaft verstreut liegen.',
+    easterEggs: ['Riesige Standuhr (+1900)', 'Schwebendes Dali-Pendel (+1600)', 'Messing-Zahnrad (+1250)']
+  },
+  { 
+    id: 38, 
+    name: 'Die arktische Eislandschaft', 
+    theme: 'arctic', 
+    targetScore: 14000, 
+    timeLimit: 100, 
+    desc: 'Eine weiße Schneelandschaft mit riesigen Gletschern, treibenden Eisschollen, Iglus und herumlatschenden Pinguinen oder Eisbären.',
+    easterEggs: ['Arktisches Iglu (+2000)', 'Vorbeimarschierender Pinguin (+1700)', 'Treibende Eisscholle (+1300)']
+  },
+  { 
+    id: 39, 
+    name: 'Das verwunschene Herrenhaus', 
+    theme: 'haunted_manor', 
+    targetScore: 14500, 
+    timeLimit: 100, 
+    desc: 'Ein altes, verlassenes viktorianisches Spukschloss mit zerbrochenen Fenstern, Efeu an den Wänden und zuckenden Blitzen am Himmel.',
+    easterEggs: ['Zuckender Wetterblitz (+2100)', 'Spukhaus-Efeuturm (+1800)', 'Zerbrochenes Schlossfenster (+1400)']
+  },
+  { 
+    id: 40, 
+    name: 'Der urbane Dachgarten', 
+    theme: 'rooftop_garden', 
+    targetScore: 15000, 
+    timeLimit: 100, 
+    desc: 'Die Dachterrasse eines modernen Wolkenkratzers mit Liegestühlen, Blumentöpfen, einer Bar und dem Panorama einer glitzernden Großstadt bei Sonnenuntergang.',
+    easterEggs: ['Skyline-Cocktail-Bar (+2200)', 'Dachterrasse-Liegestuhl (+1900)', 'Exotischer Blumentopf (+1500)']
+  },
+  { 
+    id: 41, 
+    name: 'Das Autokino der 50er', 
+    theme: 'drive_in_cinema', 
+    targetScore: 15500, 
+    timeLimit: 100, 
+    desc: 'Eine große Leinwand im Freien, davor parkende Oldtimer, ein beleuchtetes Kassenhäuschen und eine neonleuchtende Snackbar.',
+    easterEggs: ['Große Kino-Leinwand (+2300)', 'Neonleuchtende Snackbar (+2000)', 'Classic 50s Oldtimer (+1600)']
+  },
+  { 
+    id: 42, 
+    name: 'Die Kristallhöhle', 
+    theme: 'crystal_cave', 
+    targetScore: 16000, 
+    timeLimit: 100, 
+    desc: 'Ein unterirdisches Wunderland voller riesiger, leuchtender Edelsteine, stalaktitischen Felsen und kristallklarem Wasser.',
+    easterEggs: ['Riesen-Kristall-Geode (+2400)', 'Stalaktiten-Echo (+2100)', 'Kristallsee-Reflexion (+1700)']
+  },
+  { 
+    id: 43, 
+    name: 'Der Grand Canyon', 
+    theme: 'grand_canyon', 
+    targetScore: 16500, 
+    timeLimit: 100, 
+    desc: 'Gewaltige, rotbraune Felsenschluchten mit tiefen Abgründen, schroffen Felsvorsprüngen und einem Fluss ganz unten im Tal.',
+    easterEggs: ['Canyon-Adlerhorst (+2500)', 'Colorado River Biegung (+2200)', 'Canyon-Skywalk Plateau (+1800)']
+  },
+  { 
+    id: 44, 
+    name: 'Das Geister-Piratenschiff', 
+    theme: 'ghost_ship', 
+    targetScore: 17000, 
+    timeLimit: 100, 
+    desc: 'Das Deck eines riesigen, verfluchten Segelschiffs bei Nacht, mit zerrissenen Segeln, Geisterlichtern und stürmischer See.',
+    easterEggs: ['Geister-Schiffskanone (+2600)', 'Verfluchtes Steuerrad (+2300)', 'Geisterlaterne am Mast (+1900)']
+  },
+  { 
+    id: 45, 
+    name: 'Die Baustelle im Rohbau', 
+    theme: 'construction_site', 
+    targetScore: 17500, 
+    timeLimit: 100, 
+    desc: 'Stahlträger, Gerüste, Betonmischer, Kräne und offene Wände eines Hochhauses im Bau mit Blick auf den Stadtverkehr.',
+    easterEggs: ['Turmdrehkran (+2700)', 'Betonmischer-Trommel (+2400)', 'Stahlträger-Presslufthammer (+2000)']
+  },
+  { 
+    id: 46, 
+    name: 'Die verlassene Western-Mine', 
+    theme: 'western_mine', 
+    targetScore: 18000, 
+    timeLimit: 100, 
+    desc: 'Ein verrosteter Lorengleis-Eingang in den Berg, alte Holzhütten, ein Förderband und staubiger Schotterboden.',
+    easterEggs: ['Goldlore auf Schienen (+2800)', 'Förderband-Motor (+2500)', 'Dynamitkiste in der Mine (+2100)']
+  },
+  { 
+    id: 47, 
+    name: 'Der Spielzeug-Karton', 
+    theme: 'toy_box', 
+    targetScore: 18500, 
+    timeLimit: 100, 
+    desc: 'Eine Kulisse, die wie eine riesige Modelleisenbahn oder ein aus Pappe gebasteltes Kinderzimmer aussieht – mit Bauklötzen, Holzspielzeug und gemalten Wolken.',
+    easterEggs: ['Holz-Modelleisenbahn (+2900)', 'Bunter Bauklotzturm (+2600)', 'Papp-Wolkenkulisse (+2200)']
+  },
+  { 
+    id: 48, 
+    name: 'Das Bambus-Tal in Asien', 
+    theme: 'bamboo_valley', 
+    targetScore: 19000, 
+    timeLimit: 100, 
+    desc: 'Dichte, grüne Bambuswälder, traditionelle Pagoden mit geschwungenen Dächern, kleine Brücken über Koi-Teiche und sanfter Nebel.',
+    easterEggs: ['Asiatische Pagode (+3000)', 'Mondbrücke über Koi-Teich (+2700)', 'Bambus-Hain (+2300)']
+  },
+  { 
+    id: 49, 
+    name: 'Das Vampir-Schloss in den Karpaten', 
+    theme: 'vampire_castle', 
+    targetScore: 19500, 
+    timeLimit: 100, 
+    desc: 'Eine gotische Festung auf einer steilen Felsspitze, umgeben von schier endlosen, dunklen Tannenwäldern und dickem Nebel.',
+    easterEggs: ['Gotischer Schlossturm (+3100)', 'Vampir-Fledermausschwarm (+2800)', 'Karpaten-Nebelwald (+2400)']
+  },
+  { 
+    id: 50, 
+    name: 'Der U-Bahnhof / Tunnel', 
+    theme: 'subway_station', 
+    targetScore: 20000, 
+    timeLimit: 100, 
+    desc: 'Ein unterirdischer Bahnhof mit gefliesten Wänden, den Gleisen im Vordergrund, Werbetafeln und einer einfahrenden U-Bahn.',
+    easterEggs: ['Einfahrender U-Bahn-Zug (+3200)', 'Leuchtende Werbetafel (+2900)', 'U-Bahn-Gleis-Signal (+2500)']
+  },
+  { 
+    id: 51, 
+    name: 'Das schwebende Wolken-Schloss', 
+    theme: 'cloud_castle', 
+    targetScore: 20500, 
+    timeLimit: 100, 
+    desc: 'Ein Palast, der komplett aus fluffigen weißen Wolken gebaut ist, mit Regenbögen im Hintergrund und goldenen Toren.',
+    easterEggs: ['Goldenes Wolkentor (+3300)', 'Erleuchteter Regenbogen (+3000)', 'Wolkenturm-Spitze (+2600)']
+  },
+  { 
+    id: 52, 
+    name: 'Die mystische Mangrove', 
+    theme: 'mystic_mangrove', 
+    targetScore: 21000, 
+    timeLimit: 100, 
+    desc: 'Ein sumpfiges Küstengebiet mit verschlungenen Baumwurzeln, die ins Wasser ragen, trübem Wasser und geheimnisvollen Schatten.',
+    easterEggs: ['Verschlungene Mangrovenwurzel (+3400)', 'Sumpfiges Irrlicht (+3100)', 'Versunkene Ruinensteine (+2700)']
+  },
+  { 
+    id: 53, 
+    name: 'Im Weltall', 
+    theme: 'outer_space', 
+    targetScore: 21500, 
+    timeLimit: 100, 
+    desc: 'Raumschiffe fliegen vorbei, Partikel Sterne kommen entgegen. Galaxien, Andromedanebel.',
+    easterEggs: ['Vorbeifliegendes Raumschiff (+3500)', 'Andromeda-Galaxie (+3200)', 'Schwebende Raumstation (+2800)']
+  },
+  { 
+    id: 54, 
+    name: 'Das antike Rom (Kolosseum)', 
+    theme: 'colosseum_arena', 
+    targetScore: 22000, 
+    timeLimit: 100, 
+    desc: 'Die Arena des Kolosseums mit sandigem Boden, steinernen Rängen voller Zuschauer im Hintergrund und mächtigen Marmorsäulen.',
+    easterEggs: ['Gladiatoren-Goldhelm (+3600)', 'Kaiserliche Loge (+3300)', 'Marmor-Ehrensäule (+2900)']
+  },
+  { 
+    id: 55, 
+    name: 'Das Skigebiet im Winter', 
+    theme: 'ski_resort', 
+    targetScore: 22500, 
+    timeLimit: 100, 
+    desc: 'Eine Skipiste mit Sesselliften, Skihütten, Schneekanonen, verschneiten Tannen und Skifahrern im Hintergrund.',
+    easterEggs: ['Schneekanone-Power (+3700)', 'Sessellift-Gondel (+3400)', 'Skihütten-Kamin (+3000)']
+  },
+  { 
+    id: 56, 
+    name: 'Die isländische Geysir-Landschaft', 
+    theme: 'iceland_geysir', 
+    targetScore: 23000, 
+    timeLimit: 100, 
+    desc: 'Moosbewachsene Lavafelder, dampfende heiße Quellen, sprudelnde Geysire, die regelmäßig Wasser in die Luft spucken, und dramatische Wolken.',
+    easterEggs: ['Riesen-Geysir Eruption (+3800)', 'Heiße Schwefelquelle (+3500)', 'Moosiger Basaltfelsen (+3100)']
+  },
+  { 
+    id: 57, 
+    name: 'Die Großbäckerei (Riesen-Backstube)', 
+    theme: 'giant_bakery', 
+    targetScore: 23500, 
+    timeLimit: 100, 
+    desc: 'Eine surreal große Küche mit riesigen Mehl-Säcken, überdimensionalen Öfen, dampfenden Teigkesseln und Förderbändern für Brot.',
+    easterEggs: ['Riesen-Mehlsack-Explosion (+3900)', 'Glühender Backofen (+3600)', 'Teigkessel-Rührwerk (+3200)']
+  },
+  { 
+    id: 58, 
+    name: 'Das Arcade-Innenleben (Mainboard/Chip)', 
+    theme: 'arcade_chip', 
+    targetScore: 24000, 
+    timeLimit: 100, 
+    desc: 'Eine futuristische Welt im Inneren eines Computerchips mit leuchtenden Leiterbahnen, Kondensator-Türmen und pulsierenden Datenströmen.',
+    easterEggs: ['Hochleistungs-Prozessor (+4000)', 'Glühender Riesen-Kondensator (+3700)', 'Quanten-Datenbus (+3300)']
+  },
+  { 
+    id: 59, 
+    name: 'Der japanische Kirschblüten-Park', 
+    theme: 'sakura_park', 
+    targetScore: 24500, 
+    timeLimit: 100, 
+    desc: 'Ein idyllischer Garten zur Frühlingszeit mit rosa blühenden Kirschbäumen (Sakura), traditionellen roten Brücken und Steinlaternen.',
+    easterEggs: ['Traditionelle rote Brücke (+4100)', 'Uralte Steinlaterne (+3800)', 'Goldener Kaiser-Koi (+3400)']
+  },
+  { 
+    id: 60, 
+    name: 'Die Formel-1-Start-Ziel-Gerade', 
+    theme: 'formula1_track', 
+    targetScore: 25000, 
+    timeLimit: 100, 
+    desc: 'Eine Rennstrecke mit Boxengasse, Tribünen voller Fans, Startampeln, Reifenstapeln und rasant vorbeizischenden Rennwagen bei Regen.',
+    easterEggs: ['F1-Startampel (+4200)', 'Vorbeizischender Bolide (+3900)', 'Reifenstapel-Schikane (+3500)']
+  },
+  { 
+    id: 61, 
+    name: 'Das Korallenriff bei Ebbe', 
+    theme: 'coral_reef_lowtide', 
+    targetScore: 25500, 
+    timeLimit: 100, 
+    desc: 'Ein flaches Küstengebiet mit freiliegenden Korallen, glitzernden Gezeiten-Tümpeln, Seesternen und schreienden Möwen am Himmel.',
+    easterEggs: ['Riesiger Sonnen-Seestern (+4300)', 'Perlen-Riesenmuschel (+4000)', 'Kreischende Küstenmöwe (+3600)']
+  },
+  { 
+    id: 62, 
+    name: 'Das antike Künstleratelier', 
+    theme: 'artist_studio', 
+    targetScore: 26000, 
+    timeLimit: 100, 
+    desc: 'Ein chaotischer Raum voller Leinwände, Staffeleien, Farbtöpfen, antiken Statuen und einem großen Atelierfenster mit Blick auf Paris.',
+    easterEggs: ['Meisterwerk auf Staffelei (+4400)', 'Antike Marmor-Büste (+4100)', 'Bunte Farbpalette (+3700)']
+  },
+  { 
+    id: 63, 
+    name: 'Die Retro-Pixel-Wüste', 
+    theme: 'pixel_desert', 
+    targetScore: 26500, 
+    timeLimit: 100, 
+    desc: 'Pixelwelt: Eine rein 8-Bit-inspirierte Kulisse mit blockartigen Kakteen, einer pixeligen Block-Sonne und flachen Bergen im NES-Stil.',
+    easterEggs: ['Blockiger 8-Bit Kaktus (+4500)', 'Pixelige Retro-Sonne (+4200)', 'Geheimnisvoller Retro-Block (+3800)']
+  },
+  { 
+    id: 64, 
+    name: 'Das alte Ägypten (Pyramiden)', 
+    theme: 'giza_pyramids', 
+    targetScore: 27000, 
+    timeLimit: 100, 
+    desc: 'Wüstensand, die großen Pyramiden von Giza und die Sphinx im Hintergrund, dazu Hieroglyphen-Wände und gleißende Wüstensonne.',
+    easterEggs: ['Pyramiden von Gizeh (+4600)', 'Große Sphinx-Statue (+4300)', 'Uralte Hieroglyphen-Wand (+3900)']
+  },
+  { 
+    id: 65, 
+    name: 'Das Fußballstadion', 
+    theme: 'soccer_stadium', 
+    targetScore: 27500, 
+    timeLimit: 100, 
+    desc: 'Ein riesiges Flutlichtstadion mit grünem Rasen, Toren, Trainerbänken und vollbesetzten Zuschauerrängen mit Bannern.',
+    easterEggs: ['Tornetz-Kreuzeck (+4700)', 'Flutlicht-Pylone (+4300)', 'Meister-Pokal an der Trainerbank (+4000)']
+  },
+  { 
+    id: 66, 
+    name: 'Der herbeiwehende Tornado', 
+    theme: 'prairie_tornado', 
+    targetScore: 28000, 
+    timeLimit: 100, 
+    desc: 'Eine weite amerikanische Ebene, in der am Horizont ein gewaltiger Wirbelsturm aufzieht, während Blitze den Himmel erhellen.',
+    easterEggs: ['Auge des Tornados (+4800)', 'Sturm-Windrad (+4400)', 'Wetterhahn der Scheune (+4000)']
+  },
+  { 
+    id: 67, 
+    name: 'Das gemütliche Wohnzimmer', 
+    theme: 'retro_living_room', 
+    targetScore: 28500, 
+    timeLimit: 100, 
+    desc: 'Retro 70er: Eine gemütliche Stube mit orangefarbener Blümchentapete, schwerem Holzsofa, Röhrenfernseher, Plattenspieler und Kaminfeuer.',
+    easterEggs: ['Vintage-Röhrenfernseher (+4600)', 'Drehender Plattenspieler (+4200)', 'Knisterndes Kaminfeuer (+3900)']
+  },
+  { 
+    id: 68, 
+    name: 'Das Comic-Zeichenbrett', 
+    theme: 'comic_drawing_board', 
+    targetScore: 29000, 
+    timeLimit: 100, 
+    desc: 'Ein riesiges weißes Blatt Papier, auf dem mit Tinte eine Landschaft skizziert wird – mit Bleistiftlinien und Radierspuren.',
+    easterEggs: ['Auslaufendes Tintenfass (+4800)', 'Riesen-Radiergummi (+4300)', 'Comic-Sprechblase (+4000)']
+  },
+  { 
+    id: 69, 
+    name: 'Die venezianische Kanallandschaft', 
+    theme: 'venice_canals', 
+    targetScore: 29500, 
+    timeLimit: 100, 
+    desc: 'Eine romantische Wasserstraße mit historischen Palazzi, Gondeln an Holzpfählen und einer verzierten Fußgängerbrücke.',
+    easterEggs: ['Verzierte Rialto-Brücke (+4900)', 'Venezianische Gondel (+4400)', 'Historischer Palazzo-Balkon (+4100)']
+  },
+  { 
+    id: 70, 
+    name: 'Der Skatepark', 
+    theme: 'skatepark', 
+    targetScore: 30000, 
+    timeLimit: 100, 
+    desc: 'Eine urbane Anlage mit Beton-Halfpipes, Rails, Graffiti-Wänden, Skatern und einer Skyline im späten Abendlicht.',
+    easterEggs: ['Riesen-Beton-Halfpipe (+5000)', 'Graffiti-Mural-Wand (+4500)', 'Grind-Rail mit Skateboard (+4200)']
+  },
+  { 
+    id: 71, 
+    name: 'Die Polarlichter-Nacht (Aurora Borealis)', 
+    theme: 'aurora_borealis', 
+    targetScore: 30500, 
+    timeLimit: 100, 
+    desc: 'Eine dunkle Schneelandschaft in Skandinavien, über deren Himmel grüne und violette Polarlichter wabern.',
+    easterEggs: ['Polarlicht-Schleier (+5100)', 'Beleuchtetes Schnee-Iglu (+4600)', 'Verschneite Polartanne (+4300)']
+  },
+  { 
+    id: 72, 
+    name: 'Das Labor eines verrückten Professors', 
+    theme: 'mad_scientist_lab', 
+    targetScore: 31000, 
+    timeLimit: 100, 
+    desc: 'Blubbernde Reagenzgläser, riesige Tesla-Spulen mit elektrischen Funken, Laborbänke voll Chemie und grüne Flüssigkeiten in Glasbehältern.',
+    easterEggs: ['Riesige Tesla-Spule (+5200)', 'Blubberndes Reagenzglas (+4700)', 'Frankenstein-Hauptschalter (+4400)']
+  },
+  { 
+    id: 73, 
+    name: 'Das indische Taj Mahal', 
+    theme: 'taj_mahal', 
+    targetScore: 31500, 
+    timeLimit: 100, 
+    desc: 'Ein prachtvoller, weißer Marmorpalast im Hintergrund, davor spiegelnde Wasserbecken und exotische Gärten.',
+    easterEggs: ['Taj-Mahal-Marmorkuppel (+5300)', 'Spiegelndes Wasserbecken (+4800)', 'Exotischer Lotus-Garten (+4500)']
+  },
+  { 
+    id: 74, 
+    name: 'Die hängenden Gärten von Babylon', 
+    theme: 'hanging_gardens_babylon', 
+    targetScore: 32000, 
+    timeLimit: 100, 
+    desc: 'Stufenförmige Terrassenbauten mit üppiger, tropischer Vegetation, plätschernden Wasserfällen und antiken Ziegelmauern in der Wüstensonne.',
+    easterEggs: ['Babylonischer Stufen-Wasserfall (+5400)', 'Antikes Ziegelrelief-Tor (+4900)', 'Hängende Königspalmen & Oase (+4600)']
+  },
+  { 
+    id: 75, 
+    name: 'Die Zeusstatue von Olympia', 
+    theme: 'zeus_statue_olympia', 
+    targetScore: 32500, 
+    timeLimit: 100, 
+    desc: 'Das Innere eines prunkvollen griechischen Tempels mit riesigen ionischen Säulen, goldenen Verzierungen und einer kolossalen Zeus-Statue im Hintergrund.',
+    easterEggs: ['Goldener Zeus-Blitzkeil (+5500)', 'Kolossaler Elfenbeinthron (+5000)', 'Olympische Sieger-Nike (+4700)']
+  },
+  { 
+    id: 76, 
+    name: 'Der Leuchtturm von Alexandria', 
+    theme: 'lighthouse_alexandria', 
+    targetScore: 33000, 
+    timeLimit: 100, 
+    desc: 'Eine mächtige antike Hafenfestung auf einer Insel, mit einer lodernden Flamme an der Spitze und Segelschiffen im blauen Mittelmeer.',
+    easterEggs: ['Loderndes Leuchtfeuer (+5600)', 'Mächtiger Pharos-Turm (+5100)', 'Antike Mittelmeer-Galeere (+4800)']
+  },
+  { 
+    id: 77, 
+    name: 'Der Koloss von Rhodos', 
+    theme: 'colossus_rhodes', 
+    targetScore: 33500, 
+    timeLimit: 100, 
+    desc: 'Eine gigantische Bronzestatue des Sonnengottes Helios, die mit gespreizten Beinen über der Hafeneinfahrt thront, während unten kleine Boote vorbeifahren.',
+    easterEggs: ['Helios-Sonnendiadem (+5700)', 'Lodernde Koloss-Fackel (+5200)', 'Hafeneinfahrt-Boot (+4900)']
+  },
+  { 
+    id: 78, 
+    name: 'Das Mausoleum von Halikarnassos', 
+    theme: 'mausoleum_halicarnassus', 
+    targetScore: 34000, 
+    timeLimit: 100, 
+    desc: 'Ein prachtvolles weißes Grabmal mit Reliefs, Statuen und einer stufenförmigen Pyramidenkrone unter einem dramatischen Abendhimmel.',
+    easterEggs: ['Pyramiden-Quadriga (+5800)', 'Amazonen-Relieffries (+5300)', 'Mausolos-Marmorstatue (+4900)']
+  },
+  { 
+    id: 79, 
+    name: 'Der Artemistempel in Ephesos', 
+    theme: 'artemis_temple_ephesus', 
+    targetScore: 34500, 
+    timeLimit: 100, 
+    desc: 'Ein gigantischer, heiliger Wald aus über hundert reich geschmückten Marmorsäulen, davor opulente Altäre und antike Opferstätten.',
+    easterEggs: ['Kultstatue der Artemis (+5900)', 'Opulenter Opferaltar (+5400)', 'Relief-Marmorsäule (+5000)']
+  },
+  { 
+    id: 80, 
+    name: 'Chichen Itza (Die Kukulkan-Pyramide)', 
+    theme: 'chichen_itza', 
+    targetScore: 35000, 
+    timeLimit: 100, 
+    desc: 'Die Maya-Pyramide inmitten des tiefen, dichten Dschungels von Yucatán, mit steinernen Schlangenkopf-Treppen und tropischen Vögeln.',
+    easterEggs: ['Gefiederte Schlange Kukulkan (+6000)', 'Steinerner Schlangenkopf (+5500)', 'Heiliger Quetzal-Vogel (+5100)']
+  },
+  { 
+    id: 81, 
+    name: 'Christus der Erlöser (Rio de Janeiro)', 
+    theme: 'christ_redeemer_rio', 
+    targetScore: 35500, 
+    timeLimit: 100, 
+    desc: 'Die weltberühmte Statue hoch oben auf dem Corcovado, mit einem atemberaubenden Blick auf den Zuckerhut und die Bucht von Rio im Hintergrund.',
+    easterEggs: ['Segnende Hand von Christus (+6100)', 'Zuckerhut-Seilbahn (+5600)', 'Corcovado-Aussichtsplattform (+5200)']
+  },
+  { 
+    id: 82, 
+    name: 'Die Chinesische Mauer (Große Mauer)', 
+    theme: 'great_wall_china', 
+    targetScore: 36000, 
+    timeLimit: 100, 
+    desc: 'Ein endloser, steinernen Zickzack-Wall, der sich über grüne, nebelverhangene Bergketten und Wachtürme schlängelt.',
+    easterEggs: ['Kaiserlicher Signalfeuerturm (+6200)', 'Goldener Drachen-Wachturm (+5700)', 'Uraltes Mauer-Zickzack-Tor (+5300)']
+  },
+  { 
+    id: 83, 
+    name: 'Machu Picchu (Die Inka-Stadt)', 
+    theme: 'machu_picchu', 
+    targetScore: 36500, 
+    timeLimit: 100, 
+    desc: 'Die geheimnisvolle Steinstadt hoch oben in den peruanischen Anden, umgeben von steilen, nebelverhangenen Urwaldgipfeln und terrassierten Hängen.',
+    easterEggs: ['Sonnentempel von Machu Picchu (+6300)', 'Heiliger Intihuatana-Sonnensitz (+5800)', 'Terrassen-Inka-Lama (+5400)']
+  },
+  { 
+    id: 84, 
+    name: 'Petra (Das Schatzhaus in Jordanien)', 
+    theme: 'petra_jordan', 
+    targetScore: 37000, 
+    timeLimit: 100, 
+    desc: 'Eine in rosafarbene Felswände gemeißelte antike nabatäische Fassade mit riesigen Säulen und geheimnisvollen Höhleneingängen.',
+    easterEggs: ['Al-Khazneh Urne des Pharao (+6400)', 'Geheime Felsengrab-Krypta (+5900)', 'Wüstenbeduinen-Dromedar (+5500)']
+  },
+  { 
+    id: 85, 
+    name: 'Die Freiheitsstatue (New York Harbor)', 
+    theme: 'statue_of_liberty', 
+    targetScore: 37500, 
+    timeLimit: 100, 
+    desc: 'Die grüne Kupferstatue auf ihrem Sockel, im Hintergrund die Skyline von Manhattan im Dunst und vorbeiziehende Fähren.',
+    easterEggs: ['Goldene Freiheitsfackel (+6500)', 'Staten Island Fähre (+6000)', 'Manhattan Empire State Spitze (+5600)']
+  },
+  { 
+    id: 86, 
+    name: 'Der Eiffelturm (Paris bei Nacht)', 
+    theme: 'eiffel_tower_paris', 
+    targetScore: 38000, 
+    timeLimit: 100, 
+    desc: 'Das eiserne Pariser Wahrzeichen, das im Dunkeln golden funkelt, davor die von Laternen erleuchteten Ufer der Seine und schicke Altbauten.',
+    easterEggs: ['Goldener Eiffelturm-Leuchtturm (+6600)', 'Romantisches Seine-Ausflugsboot (+6100)', 'Erleuchtete Pariser Straßenlaterne (+5700)']
+  },
+  { 
+    id: 87, 
+    name: 'Stonehenge (England bei Nebel)', 
+    theme: 'stonehenge', 
+    targetScore: 38500, 
+    timeLimit: 100, 
+    desc: 'Ein mystischer prähistorischer Steinkreis auf einer weiten, nebligen Ebene, über der eine düstere, mystische Stimmung liegt.',
+    easterEggs: ['Druidischer Sonnenwende-Altarstein (+6700)', 'Schwebende megalithische Deckplatte (+6200)', 'Keltischer Rabe im Nebel (+5800)']
+  },
+  { 
+    id: 88, 
+    name: 'Der Schiefe Turm von Pisa', 
+    theme: 'leaning_tower_pisa', 
+    targetScore: 39000, 
+    timeLimit: 100, 
+    desc: 'Der berühmte, schiefe Glockenturm aus weißem Marmor, flankiert vom Dom und dem blauen italienischen Himmel.',
+    easterEggs: ['Schiefe Glockenstube an der Turmspitze (+6800)', 'Marmorkuppel des Doms zu Pisa (+6300)', 'Galileos Fallversuch-Kugel (+5900)']
+  },
+  { 
+    id: 89, 
+    name: 'Die Moai-Statuen auf der Osterinsel', 
+    theme: 'easter_island_moai', 
+    targetScore: 39500, 
+    timeLimit: 100, 
+    desc: 'Gigantische, rätselhafte Steinköpfe, die auf einer kargen Grasinsel dem weiten Pazifischen Ozean und stürmischen Wolken entgegenschauen.',
+    easterEggs: ['Zeremonieller Moai-Kopfschmuck Pukao (+6900)', 'Geheimes Vogelmann-Petroglyph (Tangata Manu) (+6400)', 'Ahu-Tongariki Ahnen-Steinplattform (+6000)']
+  },
+  { 
+    id: 90, 
+    name: 'Die Tower Bridge (London)', 
+    theme: 'tower_bridge_london', 
+    targetScore: 40000, 
+    timeLimit: 100, 
+    desc: 'Die imposante viktorianische Klappbrücke über der Themse, mit den charakteristischen Zwillings-Türmen und roten Doppeldeckerbussen im Hintergrund.',
+    easterEggs: ['Viktorianischer Nordturm-Glockenhelm (+7000)', 'Ikonischer roter Londoner Doppeldeckerbus (+6500)', 'Historisches Brücken-Klapptriebwerk (+6100)']
+  },
+  { 
+    id: 91, 
+    name: 'Grazer Uhrturm: Über Graz (Österreich)', 
+    theme: 'grazer_uhrturm', 
+    targetScore: 40500, 
+    timeLimit: 100, 
+    desc: 'Der markante Uhrturm auf dem Grazer Schlossberg hoch über der Mur und den roten Dächern der Altstadt, berühmt für seine vertauschten Uhrzeiger und die am blauen Himmel vorbeiziehenden Wolken.',
+    easterEggs: ['Großes Zifferblatt mit vertauschten Zeigern (+7100)', 'Historischer hölzerner Wehrgang-Erker (+6600)', 'Grazer Schlossberg-Hund & Steirischer Panther (+6200)']
+  },
+  { 
+    id: 92, 
+    name: 'Das Weltall', 
+    theme: 'im_weltall', 
+    targetScore: 41000, 
+    timeLimit: 100, 
+    desc: 'Tief im unendlichen Kosmos: Glänzende Nebel und Sterne fliegen einem im Hyperspace entgegen, während Moorhühner durch die Galaxie schweben.',
+    easterEggs: ['Geheimer Alien-UFO-Aufklärer (+7200)', 'Glühender Kometenschweif (+6700)', 'Funkelnder Supernova-Pulsar (+6300)']
+  },
+  { 
+    id: 93, 
+    name: 'Wien', 
+    theme: 'wien', 
+    targetScore: 41500, 
+    timeLimit: 100, 
+    desc: 'Die prunkvolle Bundeshauptstadt Wien im charmanten Schnürlregen: Stephansdom, imperiale Prachtbauten und barocke Eleganz an der Donau.',
+    easterEggs: ['Stephansdom Südturm-Steffl (+7300)', 'Wiener Riesenrad im Prater (+6800)', 'Traditioneller Wiener Fiaker (+6400)']
+  },
+  { 
+    id: 94, 
+    name: 'Mohnblumen', 
+    theme: 'mohnblumen', 
+    targetScore: 42000, 
+    timeLimit: 100, 
+    desc: 'Ein malerisches Mohnblumenfeld im warmen goldenen Abendlicht am Meer, mit sanft herabsegelnden roten Blütenblättern.',
+    easterEggs: ['Goldene Abendsonne über dem Meer (+7400)', 'Prachtvolle Riesen-Mohnblüte (+6900)', 'Historischer Holzzaun am Feldweg (+6500)']
+  },
+  { 
+    id: 95, 
+    name: 'Die Burg', 
+    theme: 'die_burg', 
+    targetScore: 42500, 
+    timeLimit: 100, 
+    desc: 'Eine wehrhafte mittelalterliche Ritterburg auf schroffen Felszinnen, umtost von einem mächtigen Sandsturm.',
+    easterEggs: ['Hoher runder Bergfried-Hauptturm (+7500)', 'Festes Burgtor mit Zugbrücke & Zwillings-Türmen (+7000)', 'Mittelalterliche Steinbrücke über die Schlucht (+6600)']
+  },
+  { 
+    id: 96, 
+    name: 'Toskana', 
+    theme: 'toskana', 
+    targetScore: 43000, 
+    timeLimit: 100, 
+    desc: 'Sanft geschwungene Hügel, Zypressen und ein traditionelles toskanisches Landgut unter ziehenden Wolken und einem erfrischenden Sommerregen.',
+    easterEggs: ['Toskanisches Steinhaus-Podere (+7600)', 'Schlanke Hügel-Zypressen (+7100)', 'Sonnenbeschienene Weinberge & Olivenhaine (+6700)']
+  },
+  { 
+    id: 97, 
+    name: 'Der Herbst', 
+    theme: 'herbst', 
+    targetScore: 43500, 
+    timeLimit: 100, 
+    desc: 'Ein prächtiger, goldener Herbstwald: Bunte Blätter segeln sanft von den Bäumen herab über rauschende Wipfel, Pilze und warmes goldenes Herbstlicht.',
+    easterEggs: ['Mächtige goldene Alteiche (+7700)', 'Kunterbunter raschelnder Laubhaufen (+7200)', 'Herbstliches Waldpilz-Nest & Kastanien (+6800)']
+  },
+  { 
+    id: 98, 
+    name: 'Schneefall', 
+    theme: 'schneefall', 
+    targetScore: 44000, 
+    timeLimit: 100, 
+    desc: 'Eine zauberhafte Winterlandschaft im dichten Schneefall: Verschneite Nadelwälder, Eisgipfel und eine gemütliche Holzhütte unter tanzenden Schneeflocken.',
+    easterEggs: ['Verschneite Blockhütte mit Kaminrauch (+7800)', 'Lustiger Schneemann mit Zylinder (+7300)', 'Glitzernde Eis-Kristall-Tanne (+6900)']
+  },
+  { 
+    id: 99, 
+    name: 'China', 
+    theme: 'china', 
+    targetScore: 44500, 
+    timeLimit: 100, 
+    desc: 'Majestätische traditionelle chinesische Berglandschaft: Pagoden, geschwungene Dächer und Reisterrassen unter ziehenden Wolken und dramatisch aufzuckenden Blitzen.',
+    easterEggs: ['Kaiserliche Goldene Pagode (+7900)', 'Traditioneller Roter Lampion-Pavillon (+7400)', 'Uralte Steinkarst-Klippen & Bambus (+7000)']
   }
 ];
 
@@ -252,6 +1026,7 @@ export class Game {
     if (difficulty === 'crazy') this.timeLeft = 75;
 
     this.score = 0;
+    this.targetScoreReached = false;
     this.shotsFired = 0;
     this.hits = 0;
     this.combo = 0;
@@ -377,6 +1152,30 @@ export class Game {
         } else {
           this.particles.addScorePopup(eggRes.x, eggRes.y, 'TREFFER!', '#facc15', 22);
         }
+      } else if (this.currentLevelConfig && this.currentLevelConfig.theme === 'alpine_meadow' && shotWorldY > 320) {
+        soundEngine.playCowMecker();
+        if (Math.random() < 0.6) {
+          this.particles.addScorePopup(shotWorldX, shotWorldY, 'Muuuh! 🐮', '#84cc16', 22);
+        }
+      }
+    }
+
+    this._checkTargetScoreReach(shotWorldX, shotWorldY);
+  }
+
+  _checkTargetScoreReach(shotX, shotY) {
+    if (!this.targetScoreReached && this.currentLevelConfig) {
+      if (this.score >= this.currentLevelConfig.targetScore) {
+        this.targetScoreReached = true;
+        soundEngine.playEasterEgg();
+        
+        const burstX = shotX || this.virtualWidth * 0.5;
+        const burstY = shotY || this.screenHeight * 0.3;
+        this.particles.spawnFireworks(burstX, burstY);
+        this.particles.spawnFireworks(this.virtualWidth * 0.25, this.screenHeight * 0.25);
+        this.particles.spawnFireworks(this.virtualWidth * 0.75, this.screenHeight * 0.25);
+
+        this.particles.addScorePopup(this.virtualWidth * 0.5, this.screenHeight * 0.2, '🎆 ZIEL ERREICHT! 🎆', '#facc15', 44);
       }
     }
   }
@@ -401,17 +1200,17 @@ export class Game {
     if (depth === 3) type = 'close';
 
     const rand = Math.random();
-    if (rand < 0.08) type = 'turbo';
-    else if (rand < 0.14) type = 'golden';
-    else if (rand < 0.22) type = 'helmet';
-    else if (rand < 0.28 && theme === 'spooky') type = 'ghost';
-    else if (rand < 0.35 || (theme === 'city' && rand < 0.5)) type = Math.random() > 0.5 ? 'dove' : 'owl';
+    if (rand < 0.08 || (theme === 'dragon_valley' && rand < 0.12) || (theme === 'military_base' && rand < 0.14)) type = 'turbo';
+    else if (rand < 0.14 || (theme === 'jungle_ruins' && rand < 0.18)) type = 'golden';
+    else if (rand < 0.22 || (theme === 'dragon_valley' && rand < 0.26) || (theme === 'medieval_fortress' && rand < 0.28) || (theme === 'military_base' && rand < 0.32)) type = 'helmet';
+    else if (rand < 0.28 && (theme === 'spooky' || theme === 'moorland' || theme === 'dragon_valley' || theme === 'jungle_ruins')) type = 'ghost';
+    else if (rand < 0.35 || (theme === 'city' && rand < 0.5) || (theme === 'moorland' && rand < 0.45) || (theme === 'jungle_ruins' && rand < 0.45)) type = Math.random() > 0.5 ? 'dove' : 'owl';
 
     const yPos = 80 + Math.random() * (this.screenHeight * 0.55);
     const startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
 
     let outfit = (type === 'helmet' ? 'helmet' : 'none');
-    if (theme === 'aquarium' && Math.random() < 0.4) outfit = 'scuba';
+    if ((theme === 'aquarium' || theme === 'atlantis') && Math.random() < 0.6) outfit = 'scuba';
     else if (Math.random() < 0.15) outfit = 'eggshell';
 
     const chicken = new Chicken({

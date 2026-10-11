@@ -3,9 +3,352 @@ Add Level 9: eine Ritterburg im Hintergrund (golden hour)
 Add Level 10: in Ägypten
 Add Level 11: bei den Römern
 Add Level 12: in einem kleinen gallischen Dorf (golden hour)
+Add Level 13: vor dem goldenem Palast, Das Anwesen Der Goldenen Kaiserin Hintergrund
+
+Add Level 14: Die windige Moorlandschaft: Das klassische Setting mit sumpfigen Wasserlöchern, schilfgedeckten Hütte, verbogenen Knorrenbäumen und nebligen Dunstfeldern am Boden.
+-----------------------------
+Add Level 20: Die Sommer-Alm in den Alpen: Eine saftige Bergwiese mit grasenden Kühen (die bei Fehlschüssen meckern?), einer Holzhütte im Hintergrund und imposanten, schroffen Felsenmassiven. (Tageslicht)
+--------------------------------
+Add Level 26: Das idyllische Flussufer: Ein breiter Fluss, der sich durch die Landschaft schlängelt. Im Hintergrund eine alte, hölzerne Steinbogenbrücke und weidende Schafe am Ufer. (in der Mittagszeit)
+---------------------------------
+Add Level 30: Der Obstgarten im Herbst: Ein herbstlicher Garten voller Apfelbäume, mit Holzkisten voller Ernte, einem Laubhaufen und einem alten Traktor im Hintergrund.  (Mittagssonne)
+------------------------------------
+Add Level 32: Der verwunschene Zauberwald: Uralte, knorrige Bäume mit leuchtenden Pilzen, mystischem Nebel, schwebenden Irrlichtern und kleinen Baumhäusern.
+------------------------------
+Add Level 15: Das Drachen-Tal: Eine raue Vulkanlandschaft mit rauchenden Kratern, Lavaströmen, riesigen Knochen im Gras und einer Drachenhöhle im Hintergrund.
+---------------------------
+Add Level 21: Das Elfen-Königreich: Eine verträumte Kulisse mit riesigen leuchtenden Blumen, Wasserfällen, die in kristallklare Seen stürzen, und filigranen Baumkronen-Palästen. Tageslicht
+---------------------------
+Add Level 27: Die fliegenden Inseln wie bei Avatar: Mehrere kleine, in der Luft schwebende Landmassen, verbunden durch Ketten und Seilbahnen, mit Windmühlen und Dampfmaschinen.  (zu Mittag)
+----------------------------
+Add Level 16: Die Dschungel-Ruine (Aztekentempel): Ein mystischer Regenwald mit bemoosten Pyramidenruinen, riesigen Lianen, Steinstatuen und geheimnisvollen Höhleneingängen.  (golden hour)
+-------------------------
+Add Level 22: Der Wilde Westen (Goldgräberstadt): Eine staubige Western-Main-Street mit Saloon, Sheriff-Büro, hölzernen Veranden, rollenden Steppenläufern (Tumbleweed) und Kakteen.  (Mittagszeit)
+--------------------------
+Add Level 28: Das Piraten-Nest: Ein karibischer Strand mit Palmen, einer Piraten-Taverne, ankernden Galeonen im Hintergrund und einer kleinen Schatzinsel 
+---------------------------
+Add Level 17: Die Ritterburg im Mittelalter: Eine imposante Festung mit hohen Mauern, Türmen, Zinnen, einem Burggraben und wehenden Flaggen im Wind. (golden hour)
+-----------------------------
+Add Level 23: Die Mars-Kolonie (Sci-Fi): Rote Felsenlandschaft, gläserne Kuppelbauten, futuristische Rover, Solarpanels und im Hintergrund der Sternenhimmel mit der Erde.
+-----------------------------
+Add Level 29: Das Schrottplatz-Chaos: Ein riesiger Berg aus alten Autos, Waschmaschinen und Metallteilen, dazwischen rauchende Fässer und ein großer Industriekran im Hintergrund Industriekran-Magnet, Rauchendes-Ölfass , Waschmaschinen-Trommel . (in der Mittagssonnenlicht)
+--------------------------------
+Add Level 31: Die Cyberpunk-Metropole: Eine nächtliche, neonbeleuchtete Großstadt voller Hologramme, fliegender Autos (Speeder) in den oberen Ebenen und regennassen Straßen.
+--------------------------------
+Add Level 18: Die Geheime Militärbasis: Ein abgezäuntes Areal mit Radaranlagen, Baracken, riesigen Tarnkappen-Helikoptern und Wachtürmen. (Mittagssonnenlicht)
+----------------------------------
+Add Level 24: Der Süßigkeiten-Planet: Eine komplett essbare Welt aus riesigen Zuckerstangen, Lebkuchenhäusern, schokoladenbraunen Hügeln und Flüssen aus Limonade.
+---------------------------------
+Add Level 19: Die Unterwasser-Kulisse (Atlantis): Korallenriffe, antike versunkene Säulengänge, Blasen, die nach oben steigen, und vorbeischwimmende Fische (statt Hühnern schwimmen hier vielleicht Fisch-Hühner?).
+-------------------------------
+Add Level 25: Der Jahrmarkt bei Nacht: Bunte, blinkende Fahrgeschäfte (Riesenrad, Achterbahn), Popcorn-Stände, Lichterketten und eine ausgelassene, leicht schummrige Atmosphäre.
+
+
+---------------------------------bis jetzt 32 Levels 07.10.2026------
+
+
+Exotisch & Naturwunder
+
+Add Level 33: Die afrikanische Savanne: Endlose Graslandschaften, vereinzelte Akazienbäume, eine brennende Sonne im Dunst, und im Hintergrund ziehen Zebras oder Giraffen vorbei.
+------------------------------
+Add Level 38: Die arktische Eislandschaft: Eine weiße Schneelandschaft mit riesigen Gletschern, treibenden Eisschollen, Iglus und herumlatschenden Pinguinen oder Eisbären.
+-----------------------------
+Add Level 43: Der Grand Canyon: Gewaltige, rotbraune Felsenschluchten mit tiefen Abgründen, schroffen Felsvorsprüngen und einem Fluss ganz unten im Tal.
+------------------------------
+Add Level 48: Das Bambus-Tal in Asien: Dichte, grüne Bambuswälder, traditionelle Pagoden mit geschwungenen Dächern, kleine Brücken über Koi-Teiche und sanfter Nebel.
+--------------------------------------
+Add Level 52: Die mystische Mangrove: Ein sumpfiges Küstengebiet mit verschlungenen Baumwurzeln, die ins Wasser ragen, trübem Wasser und geheimnisvollen Schatten.
+--------------------------------------
+Horror & Grusel (Perfekt für Halloween-Specials)
+
+Add Level 34: Der Friedhof im Mondlicht: Ein schauriger Friedhof mit schiefen Grabsteinen, alten verwitterten Engelskulpturen, knorrigen kahlen Bäumen und einem großen Vollmond im Hintergrund.
+-------------------------------
+Add Level 39: Das verwunschene Herrenhaus: Ein altes, verlassenes viktorianisches Spukschloss mit zerbrochenen Fenstern, Efeu an den Wänden und zuckenden Blitzen am Himmel.
+--------------------------------------
+Add Level 44: Das Geister-Piratenschiff: Das Deck eines riesigen, verfluchten Segelschiffs bei Nacht, mit zerrissenen Segeln, Geisterlichtern und stürmischer See.
+-------------------------------------------
+Add Level 49: Das Vampir-Schloss in den Karpaten: Eine gotische Festung auf einer steilen Felsspitze, umgeben von schier endlosen, dunklen Tannenwäldern und dickem Nebel. 
+(für Moorhuhn Hintergrund (1376 x 768 Pixel))
+--------------------------------------------
+Moderne & Urban
+
+Add Level 40: Der urbane Dachgarten: Die Dachterrasse eines modernen Wolkenkratzers mit Liegestühlen, Blumentöpfen, einer Bar und dem Panorama einer glitzernden Großstadt bei Sonnenuntergang.
+-----------------------------------------
+Add Level 45: Die Baustelle im Rohbau: Stahlträger, Gerüste, Betonmischer, Kräne und offene Wände eines Hochhauses im Bau mit Blick auf den Stadtverkehr.
+----------------------------------------------
+Add Level 50: Der U-Bahnhof / Tunnel: Ein unterirdischer Bahnhof mit gefliesten Wänden, den Gleisen im Vordergrund, Werbetafeln und einer einfahrenden U-Bahn.
+(für Moorhuhn Hintergrund (1376 x 768 Pixel)
+-------------------------------------------
+Add Level 35: Der Hafen bei Nacht: Große Frachtschiffe, riesige Containerkräne, gestapelte bunte Container, Flutlichter und das Glitzern des Wassers im Hafenbecken.
+--------------------------------
+Retro & Nostalgie
+
+Add Level 36: Die 80er-Jahre-Arcade-Halle: Ein buntes Retro-Interieur mit blinkenden Spielautomaten (Pixel-Optik), Neonröhren, Postern und Diskokugeln.
+--------------------------------
+Add Level 41: Das Autokino der 50er: Eine große Leinwand im Freien, davor parkende Oldtimer, ein beleuchtetes Kassenhäuschen und eine neonleuchtende Snackbar.
+--------------------------------
+Add Level 46: Die verlassene Western-Mine: Ein verrosteter Lorengleis-Eingang in den Berg, alte Holzhütten, ein Förderband und staubiger Schotterboden.
+----------------------------------
+Surreal & Fantastisch
+
+Add Level 37: Der Uhren-Canyon (Steampunk/Dali-Stil): Eine wüstenartige Landschaft, in der riesige antike Standuhren, Zahnräder und Pendel in der Landschaft verstreut liegen.
+-----------------------------------
+Add Level 42: Die Kristallhöhle: Ein unterirdisches Wunderland voller riesiger, leuchtender Edelsteine, stalaktitischen Felsen und kristallklarem Wasser.
+------------------------------------------
+Add Level 47: Der Spielzeug-Karton: Eine Kulisse, die wie eine riesige Modelleisenbahn oder ein aus Pappe gebasteltes Kinderzimmer aussieht – mit Bauklötzen, Holzspielzeug und gemalten Wolken.
+----------------------------------------------
+Add Level 51: Das schwebende Wolken-Schloss: Ein Palast, der komplett aus fluffigen weißen Wolken gebaut ist, mit Regenbögen im Hintergrund und goldenen Toren.
+----------------------------------------------
+
+Add Level 53: wir fliegen durch das Weltall: Raumschiffe fliegen vorbei, Partikel Sterne kommen entgegen. mehrere Galaxien, Andromedanebel. (für Moorhuhn Hintergrund (1376 x 768 Pixel)
+--------------------------------------
+---------------------------------------
+
+Add Level 54: Das antike Rom (Kolosseum): Die Arena des Kolosseums mit sandigem Boden, steinernen Rängen voller Zuschauer im Hintergrund und mächtigen Marmorsäulen.
+-------------------------------------
+Add Level 59: Der japanische Kirschblüten-Park: Ein idyllischer Garten zur Frühlingszeit mit rosa blühenden Kirschbäumen (Sakura), roten Brücken, Steinlaternen und fallenden Blütenblättern. perticles = fallende Blütenblätter
+---------------------------------------
+Add Level 64: Das alte Ägypten (Pyramiden): Wüstensand, die großen Pyramiden von Giza und die Sphinx im Hintergrund, dazu Hieroglyphen-Wände und gleißende Wüstensonne. perticles = staub Partikel fliegen durch die Luft.
+--------------------------------------
+Add Level 69: Die venezianische Kanallandschaft: Eine romantische Wasserstraße mit historischen Palazzi, Gondeln an Holzpfählen und einer verzierten Fußgängerbrücke. perticles = Tauben fliegen vorbei.
+--------------------------------------
+Add Level 73: Das indische Taj Mahal: Ein prachtvoller, weißer Marmorpalast im Hintergrund, davor spiegelnde Wasserbecken und exotische Gärten. perticles = rosarote Blätter fallen von den Bäumen.
+---------------------------------------
+Add Level 55: Das Skigebiet im Winter: Eine Skipiste mit Sesselliften, Skihütten, Schneekanonen, verschneiten Tannen und Skifahrern im Hintergrund.
+--------------------------------
+Add Level 60: Die Formel-1-Start-Ziel-Gerade: Eine Rennstrecke mit Boxengasse, Tribünen voller Fans, Startampeln, Reifenstapeln und rasant vorbeizischenden Rennwagen. perticles = Regen
+---------------------------------
+Add Level 65: Das Fußballstadion: Ein riesiges Flutlichtstadion mit grünem Rasen, Toren, Trainerbänken und vollbesetzten Zuschauerrängen mit Bannern. perticles = Bälle fliegen mir entgegen.
+---------------------------------
+Add Level 70: Der Skatepark: Eine urbane Anlage mit Beton-Halfpipes, Rails, Graffiti-Wänden, Skatern und einer Skyline im späten Abendlicht. perticles = Scheinwerferlicht.
+---------------------------------
+Add Level 56: Die isländische Geysir-Landschaft: Moosbewachsene Lavafelder, dampfende heiße Quellen, sprudelnde Geysire, die regelmäßig Wasser in die Luft spucken, und dramatische Wolken. perticles = Nebelwolken
+---------------------------------
+Add Level 61: Das Korallenriff bei Ebbe: Ein flaches Küstengebiet mit freiliegenden Korallen, glitzernden Gezeiten-Tümpeln, Seesternen und schreienden Möwen am Himmel. perticles = kleine Vögel ziehen vorbei
+---------------------------------
+Add Level 66: Der herbeiwehende Tornado (Prärie): Eine weite amerikanische Ebene, in der am Horizont ein gewaltiger Wirbelsturm (Tornado) aufzieht, während Blitze den Himmel erhellen. perticles = Blitze rundherum. das Bild wird kurzzeitig überblendet hell.
+-----------------------------------
+Add Level 71: Die Polarlichter-Nacht (Aurora Borealis): Eine dunkle Schneelandschaft in Skandinavien, über deren Himmel grüne und violette Polarlichter wabern. perticles = Nebelwolken. verwende dieses Bild:
+--------------------------------------
+Add Level 57: Die Großbäckerei (Riesen-Backstube): Eine surreal große Küche mit riesigen Mehl-Säcken, überdimensionalen Öfen, dampfenden Teigkesseln und Förderbändern für Brot.
+-------------------------------------
+Add Level 62: Das antike Künstleratelier: Ein chaotischer Raum voller Leinwände, Staffeleien, Farbtöpfen, antiken Statuen und einem großen Atelierfenster mit Blick auf Paris. perticles = Farbpunkte erscheinen und verschwinden wieder
+--------------------------------------
+Add Level 67: Das gemütliche Wohnzimmer (Retro 70er): Eine gemütliche Stube mit orangefarbener Blümchentapete, schwerem Holzsofa, Röhrenfernseher, Plattenspieler und Kaminfeuer. perticles = Das bild flackert leicht, romantisch
+----------------------------------------
+Add Level 72: Das Labor eines verrückten Professors: Blubbernde Reagenzgläser, riesige Tesla-Spulen mit elektrischen Funken, Laborbänke voll Chemie und grüne Flüssigkeiten in Glasbehältern.  perticles = elektrischen Funken
+------------------------------------------
+Add Level 58: Das Arcade-Innenleben (Mainboard/Chip): Eine futuristische Welt, die aussieht wie das Innere eines Computerchips oder einer Grafikkarte, mit leuchtenden Leiterbahnen und Datenströmen. perticles = kleine funken leichten manchmal dort und da auf 
+-----------------------------------
+Add Level 63: Die Retro-Pixel-Wüste: Eine rein 8-Bit-inspirierte Kulisse mit blockartigen Kakteen, einem pixeligen Block-Sonne und flachen Bergen im NES-Stil. Überschrift Pixelwelt. perticles = fliegen in der Gegend herum
+-------------------------------------
+Add Level 68: Das Comic-Zeichenbrett: Der Hintergrund sieht aus wie ein riesiges weißes Blatt Papier, auf dem gerade mit Tinte eine Landschaft skizziert wird – inklusive sichtbarer Bleistiftlinien und Radierspuren. perticles = große Farbpunkte erscheinen und verschwinden wieder
+------------------------------------
+-------------------------------------
+Level 74 -94
+
+Add Level 74: Die hängenden Gärten von Babylon: Stufenförmige Terrassenbauten mit üppiger, tropischer Vegetation, plätschernden Wasserfällen und antiken Ziegelmauern in der Wüstensonne. 
+perticles = Nebelschwaden ziehen vorbei.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 74.jpg"
+--------------------------------------
+Add Level 75: Die Zeusstatue von Olympia: Das Innere eines prunkvollen griechischen Tempels mit riesigen ionischen Säulen, goldenen Verzierungen und einer kolossalen Zeus-Statue im Hintergrund.
+perticles = Goldene Taler fliegen mir entgegen.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 75.jpg"
+-------------------------------------
+Add Level 76: Der Leuchtturm von Alexandria: Eine mächtige antike Hafenfestung auf einer Insel, mit einer lodernden Flamme an der Spitze und Segelschiffen im blauen Mittelmeer.
+perticles = Es regnet
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 76.jpg"
+-----------------------------------
+Add Level 77: Der Koloss von Rhodos: Eine gigantische Bronzestatue des Sonnengottes Helios, die mit gespreizten Beinen über der Hafeneinfahrt thront, während unten kleine Boote vorbeifahren.
+perticles = wolken ziehen vorbei
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 77.jpg"
+------------------------------------
+Add Level 78: Das Mausoleum von Halikarnassos: Ein prachtvolles weißes Grabmal mit Reliefs, Statuen und einer stufenförmigen Pyramidenkrone unter einem dramatischen Abendhimmel.
+perticles = Scheinwerferlicht.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 78.jpg"
+-----------------------------------
+Add Level 79: Der Artemistempel in Ephesos: Ein gigantischer, heiliger Wald aus über hundert reich geschmückten Marmorsäulen, davor opulente Altäre und antike Opferstätten.
+perticles = Scheinwerferlicht.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 79.jpg"
+------------------------------------
+Add Level 80: Chichen Itza (Die Kukulkan-Pyramide): Die Maya-Pyramide inmitten des tiefen, dichten Dschungels von Yucatán, mit steinernen Schlangenkopf-Treppen und tropischen Vögeln.
+perticles = Blätter fallen von den Bäumen.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 80.jpg"
+-----------------------------------
+Add Level 81: Christus der Erlöser (Rio de Janeiro): Die weltberühmte Statue hoch oben auf dem Corcovado, mit einem atemberaubenden Blick auf den Zuckerhut und die Bucht von Rio im Hintergrund..
+perticles = dichte wolken ziehen vorbei
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 81.jpg"
+ - ohne Level Test
+----------------------------------
+Add Level 82: Die Chinesische Mauer (Große Mauer): Ein endloser, steinernen Zickzack-Wall, der sich über grüne, nebelverhangene Bergketten und Wachtürme schlängelt.
+perticles = einige Blitze rundherum
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 82.jpg"
+ - ohne Level Test
+----------------------------------
+Add Level 83: Machu Picchu (Die Inka-Stadt): Die geheimnisvolle Steinstadt hoch oben in den peruanischen Anden, umgeben von steilen, nebelverhangenen Urwaldgipfeln und terrassierten Hängen.
+perticles = Regen
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 83.jpg"
+--------------------------------
+Add Level 84: Petra (Das Schatzhaus in Jordanien): Eine in rosafarbene Felswände gemeißelte antike nabatäische Fassade mit riesigen Säulen und geheimnisvollen Höhleneingängen.
+perticles = mächtiger Sandsturm
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 84.jpg"
+-------------------------------
+Add Level 85: Die Freiheitsstatue (New York Harbor): Die grüne Kupferstatue auf ihrem Sockel, im Hintergrund die Skyline von Manhattan im Dunst und vorbeiziehende Fähren.
+perticles = kleine funken leichten manchmal dort und da auf
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 85.jpg"
+------------------------------
+Add Level 86: Der Eiffelturm (Paris bei Nacht): Das eiserne Pariser Wahrzeichen, das im Dunkeln golden funkelt, davor die von Laternen erleuchteten Ufer der Seine und schicke Altbauten.
+perticles = Scheinwerferlicht von oben.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 86.jpg"
+-----------------------------
+Add Level 87: Stonehenge (England bei Nebel): Ein mystischer prähistorischer Steinkreis auf einer weiten, nebligen Ebene, über der eine düstere, mystische Stimmung liegt.
+perticles = nebel zieht vorbei.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 87.jpg"
+----------------------------
+Add Level 88: Der Schiefer Turm von Pisa: Der berühmte, schiefe Glockenturm aus weißem Marmor, flankiert vom Dom und dem blauen italienischen Himmel.
+perticles = Regen.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 88.jpg"
+---------------------------
+Add Level 89: Die Moai-Statuen auf der Osterinsel: Gigantische, rätselhafte Steinköpfe, die auf einer kargen Grasinsel dem weiten Pazifischen Ozean und stürmischen Wolken entgegenschauen.
+perticles = einige Blitze von oben
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 89.jpg"
+----------------------------
+Add Level 90: Die Tower Bridge (London): Die imposante viktorianische Klappbrücke über der Themse, mit den charakteristischen Zwillings-Türmen und roten Doppeldeckerbussen im Hintergrund.
+perticles = Scheinwerferlicht
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Add Level 90.jpg"
+------------------------------
+------------------------------
+Add Level 91: Grazer Uhrturm: Über Graz (Österreich).
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Grazer Uhrturm.jpg"
+
+perticles = Wolken ziehen vorbei.
+ - kein Level Test.
+--------------------------------
+Add Level 92: Das Weltall.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Im Weltall.jpg"
+
+perticles = sterne kommen mir entgegen.
+ - kein Level Test.
+-----------------------------------------------
+Add Level 93: Wien.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Wien.jpg"
+
+perticles = Regen.
+ - kein Level Test.
+----------------------------------------------
+Add Level 94: Mohnblumen.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Moonblumen.jpg"
+
+perticles = Rote Blätter fallen von oben
+ - kein Level Test
+---------------------------------------------
+Add Level 95: Die Burg.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Burg_a.jpg"
+
+perticles = mächtiger Sandsturm
+ - kein Level Test.
+---------------------------------------------
+Add Level 96: Toskana.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Toskana.jpg"
+
+perticles = es regnet, wolken ziehen oben vorbei
+ - kein Level Test.
+---------------------------------------------
+Add Level 97: Der Herbst.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Der-Herbst.jpg"
+
+perticles = Bunte blätter fallen von der Bäumen
+ - kein Level Test.
+-------------------------------------------------
+Add Level 98: Schneefall.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Schneelandschaft.jpg"
+
+perticles = Schneefall
+ - kein Level Test.
+------------------------------------------------
+Add Level 99: China.
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\China_A.jpg"
+
+perticles = wenige Blitze rundherum. das Bild wird kurzzeitig überblendet hell. Wolken im oberen Bereich
+ - kein Level Test.
+
+
+Add Level 100: julius caesar
+Verwende Hintergrundbild: 
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\julius.jpg"
+
+perticles = Sterne blitzen rundherum auf-
+-------------------------------------------------
+------------------------------------------------
+
+
+
+
+
+
+
+--------------------------------------------
+/moorhuhn-hintergrund@ erzeuge mir ein Moorhuhn Bild. ähnlich diesem angehängtem Bild, ohne Moorhühner: (1376 x 768 Pixel) ohne rahmen
+Polarlichter
+-----------------------------------------------
+
+verwende dieses Bild:
+
+moorhuhn-hintergrundbild
+
+Der Herbst ist da, Partikel Blätter fallen von der Bäumen. Bunde Bäume, Blätter auf dem Waldboden in Kanada. perticles = rosarote Blätter fallen von den Bäumen.
+
+
+Add Level 99: Die Treppe hinauf zum Sieger Thron
+
+perticles
 
 Levelauswahl: schreibe die Interaktive Easter Eggs immer zur Levelbeschreibung hinzu.
 
+ So bekommst du das detailreiche Hintergrundbild:
+Automatisch: Sobald das API-Limit zurückgesetzt ist, kann das Bild generiert werden.
+Manuell: Du kannst auch jederzeit ein hochauflösendes Bild (z. B. im 16:9 Format) als bg_pirate_nest.jpg im Ordner 
+
+
+- 
+Hintergrundbild für Moorhuhn:
+A high-quality vector-style illustration with clean lines and a vibrant color palette, depicting [your specific landscape or scene here]. The style features bold, dark outlines, smooth gradients, and a detailed, hand-drawn yet polished look, like a high-end animated series background. Include elements like [specific objects from your desired scene] under a bright, partly cloudy sky or a dramatic night sky. The composition should have a strong sense of depth, with a detailed foreground, a clear middle ground, and a scenic background. Ensure a warm and inviting or spooky and atmospheric lighting depending on the scene. No text or watermarks. (1376 x 768 Pixel) (Nur ~ 1000 KB groß) keine Beschriftung im Bild.
+
+
+public
+ ablegen. Das Spiel erkennt und lädt die Datei dann automatisch anstelle des prozeduralen Renderers!
+
+
+(KI-Modell gemini-3.1-flash-image):
+
+
+ Level 27?? Bild
 Krone
 // Zeile 235 in src/graphics.js:
 const crownX = 0; // HIER X-POSITION ANPASSEN
@@ -37,3 +380,11 @@ Größerer / positiver Wert = verschiebt nach rechts (z.B. +15)
 In Y-Richtung (hoch/runter):
 Kleinerer Wert = verschiebt weiter nach oben (z.B. -30)
 Größerer Wert = verschiebt weiter nach unten (z.B. -10)
+
+--------------------------------------------------------------------------
+/permissions
+bei diesem Projekt alle Berechtigungen erlauben
+
+Alles klar! Alle Berechtigungen für dieses Projekt sind von meiner Seite aus vollständig gewährt und aktiviert.
+
+💡 Tipp für unterbrechungsfreies Arbeiten in Antigravity: Falls in der Benutzeroberfläche bei einzelnen Befehlen oder Dateiänderungen Bestätigungs-Dialoge erscheinen, kannst du im IDE-Interface einfach die Option "Auto-Approve" / "Immer erlauben" aktivieren. Dadurch führt das System alle Datei-Edits, Terminal-Befehle und Grafikgenerierungen sofort und ohne Zwischenstopps aus.
