@@ -137,11 +137,32 @@ function updateUI() {
 }
 requestAnimationFrame(updateUI);
 
+function enterFullscreen() {
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+  }
+}
+
 function hideAllModals() {
   document.querySelectorAll('.screen-modal').forEach(m => m.classList.remove('active'));
 }
 
+// Automatically activate fullscreen when clicking or tapping ANY button in MAIN MENU MODAL
+document.querySelectorAll('#modal-main-menu button').forEach(btn => {
+  btn.addEventListener('click', enterFullscreen);
+  btn.addEventListener('touchstart', enterFullscreen, { passive: true });
+});
+
 document.getElementById('btn-start-campaign').addEventListener('click', () => {
+  enterFullscreen();
   hideAllModals();
   game.startLevel(0, 'campaign', 'normal');
 });
@@ -220,16 +241,8 @@ const btnFullscreen = document.getElementById('btn-fullscreen');
 const fullscreenIcon = document.getElementById('fullscreen-icon');
 
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    const el = document.documentElement;
-    if (el.requestFullscreen) {
-      el.requestFullscreen().catch(() => {});
-    } else if (el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen();
-    }
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('landscape').catch(() => {});
-    }
+  if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+    enterFullscreen();
   } else {
     if (document.exitFullscreen) {
       document.exitFullscreen().catch(() => {});
@@ -410,6 +423,7 @@ function buildLevelGrid() {
 
     if (isUnlocked) {
       card.addEventListener('click', () => {
+        enterFullscreen();
         hideAllModals();
         game.startLevel(idx, 'free', 'normal');
       });
