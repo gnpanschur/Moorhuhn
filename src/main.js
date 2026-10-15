@@ -101,6 +101,13 @@ function updateUI() {
       comboPill.style.display = 'none';
     }
 
+    const easterEggHudDisplay = document.getElementById('easteregg-hud-display');
+    if (easterEggHudDisplay && currentLvl) {
+      const totalEggs = currentLvl.easterEggs ? currentLvl.easterEggs.length : (game.easterEggs?.eggs?.length || 3);
+      easterEggHudDisplay.innerText = `${game.easterEggsDiscovered}/${totalEggs}`;
+      easterEggHudDisplay.style.color = game.easterEggsDiscovered >= totalEggs ? '#22c55e' : '#38bdf8';
+    }
+
     shellsList.innerHTML = '';
     for (let i = 0; i < game.maxAmmo; i++) {
       const shell = document.createElement('div');
@@ -127,7 +134,8 @@ function updateUI() {
     const pauseSubtitle = document.getElementById('pause-subtitle');
     const currentLvl = LEVEL_CONFIGS[game.currentLevelIndex];
     if (pauseSubtitle && currentLvl) {
-      pauseSubtitle.innerText = `Level ${currentLvl.id}: ${currentLvl.name} (Pausiert)`;
+      const totalEggs = currentLvl.easterEggs ? currentLvl.easterEggs.length : (game.easterEggs?.eggs?.length || 3);
+      pauseSubtitle.innerHTML = `Level ${currentLvl.id}: ${currentLvl.name} (Pausiert)<br><span style="color: #38bdf8; font-size: 0.95rem; margin-top: 6px; display: inline-block;">🥚 Easter Eggs: ${game.easterEggsDiscovered} / ${totalEggs}</span>`;
     }
   } else {
     modalPause.classList.remove('active');
@@ -402,8 +410,9 @@ function buildLevelGrid() {
     const card = document.createElement('div');
     card.className = `level-card ${isUnlocked ? '' : 'locked'} ${isCompleted ? 'completed' : ''}`;
 
-    const easterEggsText = lvl.easterEggs && lvl.easterEggs.length > 0
-      ? `<span style="color: #38bdf8; display: block; margin-top: 6px; font-size: 0.8rem; font-weight: 600; background: rgba(56, 189, 248, 0.12); padding: 5px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">🥚 <strong>Interaktive Easter Eggs:</strong> ${lvl.easterEggs.join(', ')}</span>`
+    const easterEggsCount = lvl.easterEggs ? lvl.easterEggs.length : 0;
+    const easterEggsText = easterEggsCount > 0
+      ? `<span style="color: #38bdf8; display: block; margin-top: 6px; font-size: 0.8rem; font-weight: 600; background: rgba(56, 189, 248, 0.12); padding: 5px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">🥚 <strong>Interaktive Easter Eggs (${easterEggsCount}):</strong> ${lvl.easterEggs.join(', ')}</span>`
       : '';
 
     card.innerHTML = `
@@ -471,7 +480,16 @@ function openVictoryModal() {
   const accuracy = game.shotsFired > 0 ? Math.round((game.hits / game.shotsFired) * 100) : 0;
   document.getElementById('stat-accuracy').innerText = `${accuracy}% (${game.hits}/${game.shotsFired})`;
   document.getElementById('stat-combo').innerText = `x${game.maxCombo}`;
-  document.getElementById('stat-eastereggs').innerText = game.easterEggsDiscovered;
+
+  const totalEggs = levelCfg.easterEggs ? levelCfg.easterEggs.length : (game.easterEggs?.eggs?.length || 3);
+  const easterEggsElement = document.getElementById('stat-eastereggs');
+  if (easterEggsElement) {
+    if (game.easterEggsDiscovered >= totalEggs) {
+      easterEggsElement.innerHTML = `<span style="color: #22c55e; font-weight: bold;">${game.easterEggsDiscovered} / ${totalEggs} ✓ Alle entdeckt!</span>`;
+    } else {
+      easterEggsElement.innerHTML = `<strong>${game.easterEggsDiscovered}</strong> / ${totalEggs}`;
+    }
+  }
 
   const nextBtn = document.getElementById('btn-next-level');
   if (game.currentLevelIndex + 1 < LEVEL_CONFIGS.length && isSuccess) {

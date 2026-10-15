@@ -1249,7 +1249,8 @@ export class Game {
         if (eggRes.triggered) {
           this.score += eggRes.reward;
           this.easterEggsDiscovered += 1;
-          this.particles.addScorePopup(eggRes.x, eggRes.y, eggRes.popupText, '#38bdf8', 32);
+          const totalEggs = this.currentLevelConfig?.easterEggs?.length || this.easterEggs?.eggs?.length || 3;
+          this.particles.addScorePopup(eggRes.x, eggRes.y, `${eggRes.popupText} (${this.easterEggsDiscovered}/${totalEggs})`, '#38bdf8', 32);
           this.particles.spawnFeathers(eggRes.x, eggRes.y, 'gold', 25);
         } else {
           this.particles.addScorePopup(eggRes.x, eggRes.y, 'TREFFER!', '#facc15', 22);
