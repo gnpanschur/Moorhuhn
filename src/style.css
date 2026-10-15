@@ -167,6 +167,46 @@ html, body {
   to { transform: translateY(-4px); }
 }
 
+/* TOAST BANNER */
+.level-success-toast {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--primary-gold);
+  border-radius: 16px;
+  padding: 14px 28px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(250, 204, 21, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1000;
+}
+
+.level-success-toast.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.level-success-toast .toast-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--primary-gold);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  margin-bottom: 4px;
+}
+
+.level-success-toast .toast-subtitle {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+}
+
 /* BOTTOM HUD */
 .hud-bottom {
   position: absolute;
