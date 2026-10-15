@@ -1,5 +1,5 @@
 // Moorhuhn Progressive Web App Service Worker
-const CACHE_NAME = 'moorhuhn-pwa-v1';
+const CACHE_NAME = 'moorhuhn-pwa-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -8,8 +8,9 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', (e) => {
+  self.skipWaiting();
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
   );
 });
 
@@ -25,11 +26,23 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+
+  // Network-first strategy for navigation / document requests to always receive latest updates
+  if (e.request.mode === 'navigate' || e.request.destination === 'document') {
+    e.respondWith(
+      fetch(e.request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Network-first for all other assets with cache fallback
   e.respondWith(
-    caches.match(e.request).then((cached) => {
-      return cached || fetch(e.request).then((response) => {
-        return response;
-      }).catch(() => cached);
-    })
+    fetch(e.request).catch(() => caches.match(e.request))
   );
 });
