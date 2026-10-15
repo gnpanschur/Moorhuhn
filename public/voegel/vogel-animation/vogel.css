@@ -1,0 +1,8 @@
+/* vogel-animation/vogel.css */
+.flying-bird {
+    position: fixed;
+    z-index: 9999; /* Legt den Vogel über alles andere */
+    pointer-events: none; /* Ganz wichtig: Klicks gehen durch den Vogel hindurch! */
+    width: 360px; /* Größe des Vogels anpassen (verdoppelt von 180px) */
+    height: auto;
+}

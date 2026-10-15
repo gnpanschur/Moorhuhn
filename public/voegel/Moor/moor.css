@@ -1,0 +1,8 @@
+/* Moor/moor.css */
+.flying-moor {
+    position: fixed;
+    z-index: 9997; /* Leicht unter dem Storch (9999) und Taube (9998) */
+    pointer-events: none; /* Klicks gehen durch das Moorhuhn hindurch */
+    width: 120px; /* Mittlere Größe */
+    height: auto;
+}

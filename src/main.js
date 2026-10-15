@@ -8,6 +8,9 @@ createIcons({ icons });
 
 const canvas = document.getElementById('game-canvas');
 const game = new Game(canvas);
+if (game.graphics && game.graphics.preloadBirdSprites) {
+  game.graphics.preloadBirdSprites();
+}
 game.run();
 
 const hudTop = document.getElementById('hud-top');

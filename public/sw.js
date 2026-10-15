@@ -1,10 +1,18 @@
 // Moorhuhn Progressive Web App Service Worker
-const CACHE_NAME = 'moorhuhn-pwa-v2';
+const CACHE_NAME = 'moorhuhn-pwa-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './cover.jpg'
+  './cover.jpg',
+  './voegel/Moor/Moor1.png',
+  './voegel/Moor/Moor2.png',
+  './voegel/Taube-animation/Taube1.png',
+  './voegel/Taube-animation/Taube2.png',
+  './voegel/Taube-animation/Taube3.png',
+  './voegel/vogel-animation/storch1.png',
+  './voegel/vogel-animation/storch2.png',
+  './voegel/vogel-animation/storch3.png'
 ];
 
 self.addEventListener('install', (e) => {

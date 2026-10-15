@@ -432,23 +432,50 @@ export class GraphicsRenderer {
   }
 
   _loadBirdSprites() {
-    ['/Vögel/Moor/Moor1.png', '/Vögel/Moor/Moor2.png'].forEach(src => {
-      const img = new Image();
-      img.src = assetUrl(src);
-      this.birdSprites.moor.push(img);
-    });
+    const loadList = (paths, fallbackPaths, targetArray) => {
+      paths.forEach((src, idx) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onerror = () => {
+          if (fallbackPaths && fallbackPaths[idx] && img.src !== assetUrl(fallbackPaths[idx])) {
+            img.src = assetUrl(fallbackPaths[idx]);
+          }
+        };
+        img.src = assetUrl(src);
+        targetArray.push(img);
+      });
+    };
 
-    ['/Vögel/Taube-animation/Taube1.png', '/Vögel/Taube-animation/Taube2.png', '/Vögel/Taube-animation/Taube3.png'].forEach(src => {
-      const img = new Image();
-      img.src = assetUrl(src);
-      this.birdSprites.taube.push(img);
-    });
+    loadList(
+      ['/voegel/Moor/Moor1.png', '/voegel/Moor/Moor2.png'],
+      ['/Vögel/Moor/Moor1.png', '/Vögel/Moor/Moor2.png'],
+      this.birdSprites.moor
+    );
 
-    ['/Vögel/vogel-animation/storch1.png', '/Vögel/vogel-animation/storch2.png', '/Vögel/vogel-animation/storch3.png'].forEach(src => {
-      const img = new Image();
-      img.src = assetUrl(src);
-      this.birdSprites.storch.push(img);
-    });
+    loadList(
+      ['/voegel/Taube-animation/Taube1.png', '/voegel/Taube-animation/Taube2.png', '/voegel/Taube-animation/Taube3.png'],
+      ['/Vögel/Taube-animation/Taube1.png', '/Vögel/Taube-animation/Taube2.png', '/Vögel/Taube-animation/Taube3.png'],
+      this.birdSprites.taube
+    );
+
+    loadList(
+      ['/voegel/vogel-animation/storch1.png', '/voegel/vogel-animation/storch2.png', '/voegel/vogel-animation/storch3.png'],
+      ['/Vögel/vogel-animation/storch1.png', '/Vögel/vogel-animation/storch2.png', '/Vögel/vogel-animation/storch3.png'],
+      this.birdSprites.storch
+    );
+  }
+
+  preloadBirdSprites() {
+    const promises = [];
+    const allImages = [...this.birdSprites.moor, ...this.birdSprites.taube, ...this.birdSprites.storch];
+    for (const img of allImages) {
+      if (img.complete && img.naturalWidth > 0) continue;
+      promises.push(new Promise((resolve) => {
+        img.addEventListener('load', resolve, { once: true });
+        img.addEventListener('error', resolve, { once: true });
+      }));
+    }
+    return Promise.all(promises);
   }
 
   addDecal(x, y) {
@@ -1605,10 +1632,127 @@ export class GraphicsRenderer {
   }
 
   _renderProceduralBird(ctx, chicken, animTime) {
-    ctx.fillStyle = '#b45309';
+    const isDead = chicken.state === 'shot' || chicken.state === 'falling';
+    const type = chicken.type;
+    const flap = Math.sin(animTime * 18 + (chicken.wingOffset || 0));
+
+    // Tail feathers
+    ctx.fillStyle = type === 'dove' ? '#94a3b8' : (type === 'owl' ? '#78350f' : '#78350f');
     ctx.beginPath();
-    ctx.arc(0, 0, 15, 0, Math.PI * 2);
+    ctx.moveTo(18, -4);
+    ctx.lineTo(38, -12);
+    ctx.lineTo(32, 2);
+    ctx.lineTo(40, 6);
+    ctx.lineTo(18, 10);
+    ctx.closePath();
     ctx.fill();
+
+    // Body (Round/Oval chicken body)
+    ctx.fillStyle = type === 'dove' ? '#e2e8f0' : (type === 'owl' ? '#a16207' : (type === 'golden' ? '#facc15' : '#b45309'));
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.ellipse(2, 4, 22, 16, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Chest plumage (lighter color)
+    ctx.fillStyle = type === 'dove' ? '#ffffff' : (type === 'owl' ? '#fde047' : (type === 'golden' ? '#fef08a' : '#f59e0b'));
+    ctx.beginPath();
+    ctx.ellipse(-8, 7, 12, 10, -0.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Legs / Feet at bottom
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(4, 18);
+    ctx.lineTo(14, 28);
+    ctx.moveTo(-4, 18);
+    ctx.lineTo(4, 28);
+    ctx.stroke();
+
+    // Chicken Head
+    ctx.fillStyle = type === 'dove' ? '#f1f5f9' : (type === 'owl' ? '#a16207' : (type === 'golden' ? '#fde047' : '#92400e'));
+    ctx.beginPath();
+    ctx.arc(-18, -14, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Red comb on top of head (for Moorhuhn)
+    if (type !== 'dove' && type !== 'owl') {
+      ctx.fillStyle = '#dc2626';
+      ctx.beginPath();
+      ctx.arc(-24, -26, 4.5, 0, Math.PI * 2);
+      ctx.arc(-19, -29, 5.5, 0, Math.PI * 2);
+      ctx.arc(-14, -26, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Red wattle under beak
+      ctx.beginPath();
+      ctx.ellipse(-26, -4, 4, 7, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Yellow Beak
+    ctx.fillStyle = type === 'dove' ? '#f472b6' : '#f59e0b';
+    ctx.beginPath();
+    ctx.moveTo(-28, -16);
+    ctx.lineTo(-44, -10);
+    ctx.lineTo(-28, -6);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // Big Googly Cartoon Eyes
+    const eyeR = 6.5;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(-22, -18, eyeR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(-13, -17, eyeR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    // Pupils
+    if (isDead) {
+      // Dead X eyes
+      ctx.strokeStyle = '#000000';
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.moveTo(-25, -21); ctx.lineTo(-19, -15);
+      ctx.moveTo(-19, -21); ctx.lineTo(-25, -15);
+      ctx.moveTo(-16, -20); ctx.lineTo(-10, -14);
+      ctx.moveTo(-10, -20); ctx.lineTo(-16, -14);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(-24, -18, 2.5, 0, Math.PI * 2);
+      ctx.arc(-15, -17, 2.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Eye shine
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(-25, -19, 1, 0, Math.PI * 2);
+      ctx.arc(-16, -18, 1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Flapping Wing
+    ctx.save();
+    ctx.translate(2, 2);
+    ctx.rotate(flap * 0.45);
+    ctx.fillStyle = type === 'dove' ? '#cbd5e1' : (type === 'owl' ? '#78350f' : (type === 'golden' ? '#eab308' : '#78350f'));
+    ctx.beginPath();
+    ctx.ellipse(0, -6, 18, 10, -0.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
   }
 
   // --- 5. BOLD HIGH-CONTRAST ARCADE CROSSHAIR RENDERER --- //
