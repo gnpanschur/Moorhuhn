@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moorhuhn Shooter Arcade - PC Edition</title>
+  <title>Moorhuhn Shooter Arcade</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
@@ -17,8 +17,9 @@
         <i data-lucide="arrow-left"></i>
         <span>Menü</span>
       </div>
-      <div class="hud-pill">
-        <span id="level-name-display">Sommer auf dem Bauernhof</span>
+      <div class="hud-pill" id="hud-level-pill">
+        <span class="level-badge" id="level-number-display">Level 1</span>
+        <span class="level-name-text" id="level-name-display">Sommer auf dem Bauernhof</span>
       </div>
       <div class="hud-pill">
         <span class="score-display" id="score-display">00000</span>
@@ -32,6 +33,14 @@
       </div>
       <div class="hud-pill clickable" id="btn-audio">
         <i data-lucide="volume-2" id="audio-icon"></i>
+      </div>
+    </div>
+
+    <!-- LEVEL SUCCESS TOAST BANNER -->
+    <div id="level-success-toast" class="level-success-toast">
+      <div class="toast-content">
+        <div class="toast-title" id="toast-title">LEVEL 1 ERFOLGREICH!</div>
+        <div class="toast-subtitle" id="toast-subtitle">Ziel von 1700 Punkten erreicht!</div>
       </div>
     </div>
 
@@ -56,7 +65,7 @@
     <div class="modal-card">
       <img src="/cover.jpg" alt="Moorhuhn Banner" class="modal-header-img" />
       <h1 class="game-title">MOORHUHN SHOOTER</h1>
-      <p class="subtitle">Der kultige Jagd-Klassiker für PC – Mit 99 Welten & Interaktiven Easter Eggs</p>
+      <p class="subtitle">Der kultige Jagd-Klassiker – Mit 100 Welten & Interaktiven Easter Eggs</p>
 
       <div class="menu-buttons">
         <button class="btn-primary" id="btn-start-campaign">
@@ -65,7 +74,7 @@
         </button>
         <button class="btn-secondary" id="btn-open-level-select">
           <i data-lucide="map-pin"></i>
-          <span>Levelauswahl (96 Levels)</span>
+          <span>Levelauswahl (100 Levels)</span>
         </button>
         <button class="btn-secondary" id="btn-open-highscores">
           <i data-lucide="award"></i>
@@ -73,7 +82,7 @@
         </button>
         <button class="btn-secondary" id="btn-open-instructions">
           <i data-lucide="gamepad-2"></i>
-          <span>Steuerung & PC-Anleitung</span>
+          <span>Steuerung & Anleitung</span>
         </button>
       </div>
     </div>
@@ -89,9 +98,15 @@
         <!-- Injected via JavaScript -->
       </div>
 
-      <button class="btn-secondary" id="btn-unlock-all-levels" style="margin-top: 12px; width: 100%; border-color: var(--primary-gold); color: var(--primary-gold);">
-        🔓 Alle Level Freischalten
-      </button>
+      <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;">
+        <button class="btn-secondary" id="btn-unlock-all-levels" style="flex: 1; min-width: 200px; border-color: var(--primary-gold); color: var(--primary-gold);">
+          🔓 Alle Level Freischalten
+        </button>
+        <button class="btn-danger" id="btn-reset-highscores-levelselect" style="flex: 1; min-width: 200px;">
+          <i data-lucide="trash-2"></i>
+          <span>Highscores zurücksetzen</span>
+        </button>
+      </div>
 
       <button class="btn-secondary" id="btn-close-level-select" style="margin-top: 10px; width: 100%;">
         Zurück zum Hauptmenü
@@ -102,8 +117,8 @@
   <!-- INSTRUCTIONS MODAL -->
   <div class="screen-modal" id="modal-instructions">
     <div class="modal-card" style="text-align: left;">
-      <h2 class="game-title" style="text-align: center;">STEUERUNG (PC)</h2>
-      <p class="subtitle" style="text-align: center;">Perfekt optimiert für Maus & Tastatur</p>
+      <h2 class="game-title" style="text-align: center;">STEUERUNG</h2>
+      <p class="subtitle" style="text-align: center;">Maus & Tastatur / Touch-Steuerung</p>
 
       <table class="stats-table">
         <tr>
@@ -134,6 +149,24 @@
         <li><strong>Easter Eggs:</strong> Schieße auf Windmühlenflügel, Vogelscheuche, Schneemann, Grabsteine, Piratenschiff & Neonreklame für Geheimboni!</li>
       </ul>
 
+      <h3 style="color: #f97316; margin-top: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+        🔥 <span>Combo-System & Multiplikatoren:</span>
+      </h3>
+      <div style="background: rgba(249, 115, 22, 0.08); border: 1px solid rgba(249, 115, 22, 0.3); border-radius: 12px; padding: 14px 18px; margin-bottom: 12px;">
+        <p style="color: #e2e8f0; margin: 0 0 8px 0; line-height: 1.5; font-size: 0.92rem;">
+          Triffst du innerhalb von <strong>2,0 Sekunden</strong> nach einem Treffer das nächste Huhn, wird eine <strong>Combo-Kette</strong> gestartet. Jeder Treffer in diesem Zeitfenster erhöht deinen Multiplikator:
+        </p>
+        <ul style="color: #cbd5e1; line-height: 1.6; padding-left: 20px; margin: 0; font-size: 0.88rem;">
+          <li><strong>Combo 1 – 2 Treffer:</strong> Normale Punkte (x1)</li>
+          <li><strong>Combo 3 – 4 Treffer:</strong> <span style="color: #facc15; font-weight: bold;">x2 Multiplikator</span> (Doppelte Punkte auf Treffer!)</li>
+          <li><strong>Combo 5 – 6 Treffer:</strong> <span style="color: #fb923c; font-weight: bold;">x3 Multiplikator</span> (Dreifache Punkte!)</li>
+          <li><strong>Combo 7+ Treffer:</strong> <span style="color: #ef4444; font-weight: bold;">x4 Multiplikator</span> (Vierfache Maximal-Punkte!)</li>
+        </ul>
+        <p style="color: #94a3b8; font-size: 0.82rem; margin: 8px 0 0 0; line-height: 1.4;">
+          ⏱️ <em>Tipp: Vergeht mehr als 2,0 Sekunden ohne weiteren Hühnertreffer, bricht die Combo-Kette ab und wird zurückgesetzt. Fehlschüsse beenden die Combo nicht, solange du rechtzeitig wieder triffst!</em>
+        </p>
+      </div>
+
       <button class="btn-primary" id="btn-close-instructions" style="margin-top: 24px; width: 100%;">
         Verstanden!
       </button>
@@ -150,9 +183,15 @@
         <!-- Injected via JavaScript -->
       </table>
 
-      <button class="btn-secondary" id="btn-close-highscores" style="margin-top: 20px; width: 100%;">
-        Zurück
-      </button>
+      <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
+        <button class="btn-danger" id="btn-reset-highscores" style="flex: 1; min-width: 220px;">
+          <i data-lucide="trash-2"></i>
+          <span>Highscores zurücksetzen</span>
+        </button>
+        <button class="btn-secondary" id="btn-close-highscores" style="flex: 1; min-width: 140px;">
+          <span>Zurück</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -202,7 +241,7 @@
   <div class="screen-modal" id="modal-pause">
     <div class="modal-card">
       <h2 class="game-title">PAUSE</h2>
-      <p class="subtitle">Spiel ist pausiert</p>
+      <p class="subtitle" id="pause-subtitle">Spiel ist pausiert</p>
 
       <div class="menu-buttons">
         <button class="btn-primary" id="btn-resume">

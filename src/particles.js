@@ -2407,15 +2407,15 @@ export class ParticleSystem {
         });
       }
     } else if (theme === 'china') {
-      // 1. Wolken im oberen Bereich
-      for (let i = 0; i < 22; i++) {
+      // 1. Wolken im oberen Bereich (zart, transparent über die Berggipfel ziehend)
+      for (let i = 0; i < 20; i++) {
         const baseRadius = 38 + Math.random() * 45;
         this.weatherParticles.push({
           x: Math.random() * (virtualWidth + 900) - 450,
           y: screenHeight * 0.02 + Math.random() * (screenHeight * 0.22),
           vx: 0.65 + Math.random() * 0.85,
           scale: 0.75 + Math.random() * 0.85,
-          opacity: 0.42 + Math.random() * 0.28,
+          opacity: 0.22 + Math.random() * 0.18,
           wobble: Math.random() * Math.PI * 2,
           wobbleSpeed: 0.008 + Math.random() * 0.015,
           lobes: [
@@ -2481,6 +2481,43 @@ export class ParticleSystem {
           width: 0.9 + Math.random() * 0.5,
           opacity: 0.30 + Math.random() * 0.25,
           type: 'rain'
+        });
+      }
+    } else if (theme === 'julius_caesar') {
+      // 1. Ganz oben ziehen sanfte, elegante Wolken
+      for (let i = 0; i < 18; i++) {
+        const baseRadius = 32 + Math.random() * 38;
+        this.weatherParticles.push({
+          x: Math.random() * (virtualWidth + 800) - 400,
+          y: screenHeight * 0.01 + Math.random() * (screenHeight * 0.11),
+          vx: 0.45 + Math.random() * 0.55,
+          scale: 0.70 + Math.random() * 0.75,
+          opacity: 0.20 + Math.random() * 0.16,
+          wobble: Math.random() * Math.PI * 2,
+          wobbleSpeed: 0.006 + Math.random() * 0.012,
+          lobes: [
+            { dx: 0, dy: 0, r: baseRadius },
+            { dx: -baseRadius * 0.7, dy: baseRadius * 0.12, r: baseRadius * 0.78 },
+            { dx: baseRadius * 0.7, dy: baseRadius * 0.12, r: baseRadius * 0.8 },
+            { dx: -baseRadius * 1.3, dy: baseRadius * 0.25, r: baseRadius * 0.6 },
+            { dx: baseRadius * 1.3, dy: baseRadius * 0.25, r: baseRadius * 0.62 },
+            { dx: -baseRadius * 0.35, dy: -baseRadius * 0.3, r: baseRadius * 0.7 },
+            { dx: baseRadius * 0.35, dy: -baseRadius * 0.3, r: baseRadius * 0.72 }
+          ],
+          type: 'caesarTopCloud'
+        });
+      }
+
+      // 2. Sterne blitzen rundherum auf
+      for (let i = 0; i < 65; i++) {
+        this.weatherParticles.push({
+          x: Math.random() * virtualWidth,
+          y: Math.random() * (screenHeight * 0.88),
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: 0.025 + Math.random() * 0.045,
+          size: 2.2 + Math.random() * 3.5,
+          color: ['#fef08a', '#ffffff', '#fde047', '#fef9c3', '#93c5fd'][Math.floor(Math.random() * 5)],
+          type: 'caesarFlashingStar'
         });
       }
     }
@@ -2630,6 +2667,23 @@ export class ParticleSystem {
             // Wenige Blitze: ca. 5 bis 10 Sekunden Pause bis zum nächsten Einschlag
             wp.timer = 280 + Math.floor(Math.random() * 320);
             wp.segments = [];
+          }
+        }
+      } else if (wp.type === 'caesarTopCloud') {
+        wp.wobble += wp.wobbleSpeed;
+        wp.x += wp.vx;
+        wp.y += Math.sin(wp.wobble) * 0.10;
+        if (wp.x > virtualWidth + 400) {
+          wp.x = -400;
+          wp.y = screenHeight * 0.01 + Math.random() * (screenHeight * 0.11);
+        }
+      } else if (wp.type === 'caesarFlashingStar') {
+        wp.pulse += wp.pulseSpeed;
+        if (wp.pulse > Math.PI * 2) {
+          wp.pulse -= Math.PI * 2;
+          if (Math.random() < 0.25) {
+            wp.x = Math.random() * virtualWidth;
+            wp.y = Math.random() * (screenHeight * 0.88);
           }
         }
       } else if (wp.type === 'butterfly') {
@@ -3706,21 +3760,27 @@ export class ParticleSystem {
         ctx.scale(wp.scale, wp.scale);
         ctx.globalAlpha = wp.opacity;
 
-        // Atmosphärische dramatische Gewitterwolke
-        ctx.fillStyle = '#475569';
-        ctx.shadowColor = 'rgba(15, 23, 42, 0.4)';
-        ctx.shadowBlur = 16;
+        // Atmosphärische, zart-transparente chinesische Gewitter- & Bergwolke
         for (let lobe of wp.lobes) {
+          const puffGrad = ctx.createRadialGradient(
+            lobe.dx - lobe.r * 0.18, lobe.dy - lobe.r * 0.22, lobe.r * 0.15,
+            lobe.dx, lobe.dy, lobe.r
+          );
+          puffGrad.addColorStop(0, 'rgba(148, 163, 184, 0.55)');   // Transparenter, weicher Wolkenkern
+          puffGrad.addColorStop(0.5, 'rgba(71, 85, 105, 0.35)');    // Sanfter, durchscheinender Gewitterwolkenkörper
+          puffGrad.addColorStop(0.82, 'rgba(51, 65, 85, 0.15)');   // Zarter, weicher Bergschatten
+          puffGrad.addColorStop(1.0, 'rgba(30, 41, 59, 0.0)');     // Vollkommen weich auslaufende Kante
+          ctx.fillStyle = puffGrad;
           ctx.beginPath();
           ctx.arc(lobe.dx, lobe.dy, lobe.r, 0, Math.PI * 2);
           ctx.fill();
         }
 
-        // Hellere Kantenbeleuchtung
-        ctx.fillStyle = 'rgba(226, 232, 240, 0.35)';
+        // Subtile, durchscheinende Kantenbeleuchtung
+        ctx.fillStyle = 'rgba(226, 232, 240, 0.15)';
         for (let lobe of wp.lobes) {
           ctx.beginPath();
-          ctx.arc(lobe.dx - 2, lobe.dy - lobe.r * 0.25, lobe.r * 0.75, 0, Math.PI * 2);
+          ctx.arc(lobe.dx - 2, lobe.dy - lobe.r * 0.25, lobe.r * 0.65, 0, Math.PI * 2);
           ctx.fill();
         }
         ctx.restore();
@@ -3745,6 +3805,68 @@ export class ParticleSystem {
               ctx.stroke();
             }
           }
+          ctx.restore();
+        }
+      } else if (wp.type === 'caesarTopCloud') {
+        ctx.save();
+        ctx.translate(wp.x, wp.y);
+        ctx.scale(wp.scale, wp.scale);
+        ctx.globalAlpha = wp.opacity;
+
+        for (let lobe of wp.lobes) {
+          const puffGrad = ctx.createRadialGradient(
+            lobe.dx - lobe.r * 0.2, lobe.dy - lobe.r * 0.25, lobe.r * 0.15,
+            lobe.dx, lobe.dy, lobe.r
+          );
+          puffGrad.addColorStop(0, 'rgba(255, 255, 255, 0.65)');
+          puffGrad.addColorStop(0.5, 'rgba(241, 245, 249, 0.40)');
+          puffGrad.addColorStop(0.82, 'rgba(203, 213, 225, 0.18)');
+          puffGrad.addColorStop(1.0, 'rgba(148, 163, 184, 0.0)');
+          ctx.fillStyle = puffGrad;
+          ctx.beginPath();
+          ctx.arc(lobe.dx, lobe.dy, lobe.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = 'rgba(254, 240, 138, 0.18)';
+        for (let lobe of wp.lobes) {
+          ctx.beginPath();
+          ctx.arc(lobe.dx - 2, lobe.dy - lobe.r * 0.25, lobe.r * 0.65, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      } else if (wp.type === 'caesarFlashingStar') {
+        const rawSine = Math.sin(wp.pulse);
+        if (rawSine > 0.08) {
+          const flash = Math.pow(rawSine, 3.2);
+          const currentSize = wp.size * (0.6 + flash * 0.9);
+          ctx.save();
+          ctx.translate(wp.x, wp.y);
+          ctx.globalAlpha = Math.min(1.0, flash * 1.15);
+          ctx.fillStyle = wp.color;
+          ctx.shadowColor = wp.color;
+          ctx.shadowBlur = 14 * flash;
+
+          ctx.beginPath();
+          ctx.arc(0, 0, currentSize * 0.6, 0, Math.PI * 2);
+          ctx.fill();
+
+          const rayLen = currentSize * (2.0 + flash * 3.5);
+          ctx.strokeStyle = wp.color;
+          ctx.lineWidth = Math.max(1.0, 1.6 * flash);
+          ctx.beginPath();
+          ctx.moveTo(-rayLen, 0); ctx.lineTo(rayLen, 0);
+          ctx.moveTo(0, -rayLen); ctx.lineTo(0, rayLen);
+          ctx.stroke();
+
+          if (flash > 0.55) {
+            const diagLen = rayLen * 0.55;
+            ctx.beginPath();
+            ctx.moveTo(-diagLen, -diagLen); ctx.lineTo(diagLen, diagLen);
+            ctx.moveTo(-diagLen, diagLen); ctx.lineTo(diagLen, -diagLen);
+            ctx.stroke();
+          }
+
           ctx.restore();
         }
       } else if (wp.type === 'butterfly') {

@@ -14,6 +14,7 @@ const hudTop = document.getElementById('hud-top');
 const hudBottom = document.getElementById('hud-bottom');
 const scoreDisplay = document.getElementById('score-display');
 const timerDisplay = document.getElementById('timer-display');
+const levelNumberDisplay = document.getElementById('level-number-display');
 const levelNameDisplay = document.getElementById('level-name-display');
 const comboPill = document.getElementById('combo-pill');
 const comboBadge = document.getElementById('combo-badge');
@@ -36,6 +37,23 @@ if (btnOpenLevelSelect) {
   }
 }
 
+let levelSuccessToastShown = false;
+let lastToastLevel = -1;
+
+function showLevelSuccessToast(title, subtitle) {
+  const toast = document.getElementById('level-success-toast');
+  const tTitle = document.getElementById('toast-title');
+  const tSubtitle = document.getElementById('toast-subtitle');
+  if (toast && tTitle && tSubtitle) {
+    tTitle.innerText = `🏆 ${title} 🏆`;
+    tSubtitle.innerText = subtitle;
+    toast.classList.add('active');
+    setTimeout(() => {
+      toast.classList.remove('active');
+    }, 3500);
+  }
+}
+
 function updateUI() {
   if (game.state === 'PLAYING' || game.state === 'PAUSED') {
     hudTop.style.display = 'flex';
@@ -50,7 +68,30 @@ function updateUI() {
       timerDisplay.classList.remove('warning');
     }
 
-    levelNameDisplay.innerText = LEVEL_CONFIGS[game.currentLevelIndex].name;
+    const currentLvl = LEVEL_CONFIGS[game.currentLevelIndex];
+    if (currentLvl) {
+      if (lastToastLevel !== game.currentLevelIndex) {
+        lastToastLevel = game.currentLevelIndex;
+        levelSuccessToastShown = false;
+      }
+
+      const isTargetReached = game.score >= currentLvl.targetScore;
+      if (levelNumberDisplay) {
+        if (isTargetReached) {
+          levelNumberDisplay.innerText = `Level ${currentLvl.id} ✓ Erfolgreich`;
+          levelNumberDisplay.classList.add('success');
+        } else {
+          levelNumberDisplay.innerText = `Level ${currentLvl.id}`;
+          levelNumberDisplay.classList.remove('success');
+        }
+      }
+      levelNameDisplay.innerText = currentLvl.name;
+
+      if ((game.targetScoreReached || isTargetReached) && !levelSuccessToastShown) {
+        levelSuccessToastShown = true;
+        showLevelSuccessToast(`LEVEL ${currentLvl.id} ERFOLGREICH!`, `Ziel von ${currentLvl.targetScore} Punkten erreicht!`);
+      }
+    }
 
     if (game.combo > 1) {
       comboPill.style.display = 'flex';
@@ -83,6 +124,11 @@ function updateUI() {
 
   if (game.state === 'PAUSED') {
     modalPause.classList.add('active');
+    const pauseSubtitle = document.getElementById('pause-subtitle');
+    const currentLvl = LEVEL_CONFIGS[game.currentLevelIndex];
+    if (pauseSubtitle && currentLvl) {
+      pauseSubtitle.innerText = `Level ${currentLvl.id}: ${currentLvl.name} (Pausiert)`;
+    }
   } else {
     modalPause.classList.remove('active');
   }
@@ -137,6 +183,21 @@ document.getElementById('btn-close-highscores').addEventListener('click', () => 
   hideAllModals();
   modalMainMenu.classList.add('active');
 });
+
+function handleResetHighscores() {
+  const confirmed = window.confirm(
+    'Möchtest du wirklich alle Highscores zurücksetzen?\n\nAlle bisher erzielten Rekorde und Abschuss-Statistiken werden auf 0 gesetzt.'
+  );
+  if (!confirmed) return;
+
+  game.resetHighscores();
+  buildHighscoresTable();
+  buildLevelGrid();
+  showLevelSuccessToast('HIGHSCORES GELÖSCHT', 'Alle Highscores wurden erfolgreich auf 0 gesetzt!');
+}
+
+document.getElementById('btn-reset-highscores')?.addEventListener('click', handleResetHighscores);
+document.getElementById('btn-reset-highscores-levelselect')?.addEventListener('click', handleResetHighscores);
 
 document.getElementById('btn-reload').addEventListener('click', () => {
   game.reload();
@@ -195,23 +256,27 @@ function buildLevelGrid() {
   LEVEL_CONFIGS.forEach((lvl, idx) => {
     const isUnlocked = idx + 1 <= game.progress.unlockedLevel;
     const highscore = game.progress.highScores[lvl.id] || 0;
+    const isCompleted = highscore >= lvl.targetScore;
 
     const card = document.createElement('div');
-    card.className = `level-card ${isUnlocked ? '' : 'locked'}`;
+    card.className = `level-card ${isUnlocked ? '' : 'locked'} ${isCompleted ? 'completed' : ''}`;
 
     const easterEggsText = lvl.easterEggs && lvl.easterEggs.length > 0
       ? `<span style="color: #38bdf8; display: block; margin-top: 6px; font-size: 0.8rem; font-weight: 600; background: rgba(56, 189, 248, 0.12); padding: 5px 8px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.25);">🥚 <strong>Interaktive Easter Eggs:</strong> ${lvl.easterEggs.join(', ')}</span>`
       : '';
 
     card.innerHTML = `
-      <div class="level-num">LEVEL ${lvl.id}</div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="level-num">LEVEL ${lvl.id}</div>
+        ${isCompleted ? `<span class="level-success-badge">✓ Erfolgreich</span>` : ''}
+      </div>
       <h3 style="color: #fff; margin: 6px 0;">${lvl.name}</h3>
       <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 6px; line-height: 1.4;">
         ${lvl.desc}
         ${easterEggsText}
       </p>
-      <div style="margin-top: 8px; font-size: 0.9rem; color: var(--primary-gold);">
-        ${isUnlocked ? `🏆 Highscore: ${highscore}` : '🔒 Gesperrt'}
+      <div style="margin-top: 8px; font-size: 0.9rem; color: ${isCompleted ? '#22c55e' : 'var(--primary-gold)'}; font-weight: ${isCompleted ? '700' : '500'};">
+        ${isUnlocked ? (isCompleted ? `✅ Level ${lvl.id} Erfolgreich! 🏆 Highscore: ${highscore} (Ziel: ${lvl.targetScore})` : `🏆 Highscore: ${highscore} / Ziel: ${lvl.targetScore}`) : '🔒 Gesperrt'}
       </div>
     `;
 
@@ -234,7 +299,7 @@ function buildHighscoresTable() {
     const score = game.progress.highScores[lvl.id] || 0;
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${lvl.name}</td>
+      <td><strong style="color: var(--primary-gold);">Level ${lvl.id}:</strong> ${lvl.name}</td>
       <td>${score} Punkte</td>
     `;
     table.appendChild(tr);
@@ -252,10 +317,12 @@ function openVictoryModal() {
   const levelCfg = LEVEL_CONFIGS[game.currentLevelIndex];
   const isSuccess = game.score >= levelCfg.targetScore;
 
-  document.getElementById('victory-title').innerText = isSuccess ? 'LEVEL ERFOLGREICH!' : 'ZEIT ABGELAUFEN';
+  document.getElementById('victory-title').innerText = isSuccess 
+    ? `LEVEL ${levelCfg.id} ERFOLGREICH!` 
+    : `LEVEL ${levelCfg.id}: ZEIT ABGELAUFEN`;
   document.getElementById('victory-subtitle').innerText = isSuccess 
-    ? `Ziel von ${levelCfg.targetScore} Punkten erreicht!` 
-    : `Ziel von ${levelCfg.targetScore} Punkten verfehlt. Try again!`;
+    ? `${levelCfg.name} – Ziel von ${levelCfg.targetScore} Punkten erreicht!` 
+    : `${levelCfg.name} – Ziel von ${levelCfg.targetScore} Punkten verfehlt. Try again!`;
 
   document.getElementById('stat-score').innerText = game.score;
 

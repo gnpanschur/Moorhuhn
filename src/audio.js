@@ -452,6 +452,8 @@ class SoundEngine {
         this._startSchneefallSynth();
       } else if (theme === 'china') {
         this._startChinaSynth();
+      } else if (theme === 'julius_caesar') {
+        this._startJuliusCaesarSynth();
       }
     } catch(e) {
       console.warn("Ambient synth error", e);
@@ -4812,6 +4814,104 @@ class SoundEngine {
         thunderNoise, thunderFilter, thunderGain, thunderLFO, thunderLFOGain,
         rainNoise, rainFilter, rainGain,
         { stop: () => { clearInterval(guzhengInterval); clearInterval(gongInterval); }, disconnect: () => {} }
+      );
+    } catch(e) {}
+  }
+
+  _startJuliusCaesarSynth() {
+    if (!this.ctx) return;
+    try {
+      // 1. Sanfte mediterrane Brise
+      const breezeBufferSize = this.ctx.sampleRate * 2;
+      const breezeBuffer = this.ctx.createBuffer(1, breezeBufferSize, this.ctx.sampleRate);
+      const bOutput = breezeBuffer.getChannelData(0);
+      for (let i = 0; i < breezeBufferSize; i++) {
+        bOutput[i] = (Math.random() * 2 - 1) * 0.25;
+      }
+      const breezeNoise = this.ctx.createBufferSource();
+      breezeNoise.buffer = breezeBuffer;
+      breezeNoise.loop = true;
+
+      const breezeFilter = this.ctx.createBiquadFilter();
+      breezeFilter.type = 'lowpass';
+      breezeFilter.frequency.setValueAtTime(320, this.ctx.currentTime);
+
+      const breezeLFO = this.ctx.createOscillator();
+      breezeLFO.type = 'sine';
+      breezeLFO.frequency.setValueAtTime(0.12, this.ctx.currentTime);
+      const breezeLFOGain = this.ctx.createGain();
+      breezeLFOGain.gain.setValueAtTime(140, this.ctx.currentTime);
+      breezeLFO.connect(breezeLFOGain);
+      breezeLFOGain.connect(breezeFilter.frequency);
+      breezeLFO.start();
+
+      const breezeGain = this.ctx.createGain();
+      breezeGain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+
+      breezeNoise.connect(breezeFilter);
+      breezeFilter.connect(breezeGain);
+      breezeGain.connect(this.ambientGain);
+      breezeNoise.start();
+
+      // 2. Erhabener, warmer imperialer Grundton (Römisches Majestäts-Pad: D-Moll/Dur Quinte)
+      const droneOsc1 = this.ctx.createOscillator();
+      const droneOsc2 = this.ctx.createOscillator();
+      droneOsc1.type = 'sawtooth';
+      droneOsc2.type = 'triangle';
+      droneOsc1.frequency.setValueAtTime(73.42, this.ctx.currentTime);  // D2
+      droneOsc2.frequency.setValueAtTime(110.00, this.ctx.currentTime); // A2
+
+      const droneFilter = this.ctx.createBiquadFilter();
+      droneFilter.type = 'lowpass';
+      droneFilter.frequency.setValueAtTime(260, this.ctx.currentTime);
+
+      const droneGain = this.ctx.createGain();
+      droneGain.gain.setValueAtTime(0.035, this.ctx.currentTime);
+
+      droneOsc1.connect(droneFilter);
+      droneOsc2.connect(droneFilter);
+      droneFilter.connect(droneGain);
+      droneGain.connect(this.ambientGain);
+
+      droneOsc1.start();
+      droneOsc2.start();
+
+      // 3. Edle antike römische Trompeten- / Cornu-Fanfaren & Lyra-Töne in Abständen
+      const romanTones = [146.83, 220.00, 293.66, 369.99, 440.00, 587.33]; // D-Dur / antikes Diatonon
+      const fanfareInterval = setInterval(() => {
+        try {
+          if (!this.ctx || this.ambientNodes.length === 0) return;
+          const now = this.ctx.currentTime;
+          const freq = romanTones[Math.floor(Math.random() * romanTones.length)];
+
+          const brassOsc = this.ctx.createOscillator();
+          const brassGain = this.ctx.createGain();
+          const brassFilter = this.ctx.createBiquadFilter();
+
+          brassOsc.type = 'sawtooth';
+          brassOsc.frequency.setValueAtTime(freq, now);
+
+          brassFilter.type = 'bandpass';
+          brassFilter.frequency.setValueAtTime(freq * 1.5, now);
+          brassFilter.Q.setValueAtTime(3.0, now);
+
+          brassGain.gain.setValueAtTime(0.0001, now);
+          brassGain.gain.linearRampToValueAtTime(0.028, now + 0.35);
+          brassGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+
+          brassOsc.connect(brassFilter);
+          brassFilter.connect(brassGain);
+          brassGain.connect(this.ambientGain);
+
+          brassOsc.start(now);
+          brassOsc.stop(now + 2.5);
+        } catch(e) {}
+      }, 4500);
+
+      this.ambientNodes.push(
+        breezeNoise, breezeFilter, breezeGain, breezeLFO, breezeLFOGain,
+        droneOsc1, droneOsc2, droneFilter, droneGain,
+        { stop: () => { clearInterval(fanfareInterval); }, disconnect: () => {} }
       );
     } catch(e) {}
   }

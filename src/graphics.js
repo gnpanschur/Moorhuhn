@@ -13,7 +13,7 @@ export class GraphicsRenderer {
   }
 
   _loadBackgroundImages() {
-    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome', 'gaul', 'palace', 'moorland', 'dragon_valley', 'jungle_ruins', 'medieval_fortress', 'military_base', 'atlantis', 'alpine_meadow', 'elven_kingdom', 'wild_west', 'mars_colony', 'candy_planet', 'night_fair', 'riverbank', 'floating_islands', 'pirate_nest', 'junkyard', 'autumn_orchard', 'cyberpunk', 'enchanted_forest', 'savannah', 'graveyard', 'harbor', 'arcade', 'clock_canyon', 'arctic', 'haunted_manor', 'rooftop_garden', 'drive_in_cinema', 'crystal_cave', 'grand_canyon', 'ghost_ship', 'construction_site', 'western_mine', 'toy_box', 'bamboo_valley', 'vampire_castle', 'subway_station', 'cloud_castle', 'mystic_mangrove', 'outer_space', 'colosseum_arena', 'ski_resort', 'iceland_geysir', 'giant_bakery', 'arcade_chip', 'sakura_park', 'formula1_track', 'coral_reef_lowtide', 'artist_studio', 'pixel_desert', 'giza_pyramids', 'soccer_stadium', 'prairie_tornado', 'retro_living_room', 'comic_drawing_board', 'venice_canals', 'skatepark', 'aurora_borealis', 'mad_scientist_lab', 'taj_mahal', 'hanging_gardens_babylon', 'zeus_statue_olympia', 'lighthouse_alexandria', 'colossus_rhodes', 'mausoleum_halicarnassus', 'artemis_temple_ephesus', 'chichen_itza', 'christ_redeemer_rio', 'great_wall_china', 'machu_picchu', 'petra_jordan', 'statue_of_liberty', 'eiffel_tower_paris', 'stonehenge', 'leaning_tower_pisa', 'easter_island_moai', 'tower_bridge_london', 'grazer_uhrturm', 'im_weltall', 'wien', 'mohnblumen', 'die_burg', 'toskana', 'herbst', 'schneefall', 'china'];
+    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome', 'gaul', 'palace', 'moorland', 'dragon_valley', 'jungle_ruins', 'medieval_fortress', 'military_base', 'atlantis', 'alpine_meadow', 'elven_kingdom', 'wild_west', 'mars_colony', 'candy_planet', 'night_fair', 'riverbank', 'floating_islands', 'pirate_nest', 'junkyard', 'autumn_orchard', 'cyberpunk', 'enchanted_forest', 'savannah', 'graveyard', 'harbor', 'arcade', 'clock_canyon', 'arctic', 'haunted_manor', 'rooftop_garden', 'drive_in_cinema', 'crystal_cave', 'grand_canyon', 'ghost_ship', 'construction_site', 'western_mine', 'toy_box', 'bamboo_valley', 'vampire_castle', 'subway_station', 'cloud_castle', 'mystic_mangrove', 'outer_space', 'colosseum_arena', 'ski_resort', 'iceland_geysir', 'giant_bakery', 'arcade_chip', 'sakura_park', 'formula1_track', 'coral_reef_lowtide', 'artist_studio', 'pixel_desert', 'giza_pyramids', 'soccer_stadium', 'prairie_tornado', 'retro_living_room', 'comic_drawing_board', 'venice_canals', 'skatepark', 'aurora_borealis', 'mad_scientist_lab', 'taj_mahal', 'hanging_gardens_babylon', 'zeus_statue_olympia', 'lighthouse_alexandria', 'colossus_rhodes', 'mausoleum_halicarnassus', 'artemis_temple_ephesus', 'chichen_itza', 'christ_redeemer_rio', 'great_wall_china', 'machu_picchu', 'petra_jordan', 'statue_of_liberty', 'eiffel_tower_paris', 'stonehenge', 'leaning_tower_pisa', 'easter_island_moai', 'tower_bridge_london', 'grazer_uhrturm', 'im_weltall', 'wien', 'mohnblumen', 'die_burg', 'toskana', 'herbst', 'schneefall', 'china', 'julius_caesar'];
     themes.forEach(theme => {
       const img = new Image();
       if (theme === 'pirate_nest') {
@@ -82,6 +82,10 @@ export class GraphicsRenderer {
         img.src = '/Schneelandschaft.jpg';
       } else if (theme === 'china') {
         img.src = '/China_A.jpg';
+      } else if (theme === 'julius_caesar') {
+        img.src = '/Der Kaiser.jpg';
+      } else if (theme === 'city') {
+        img.src = '/China-Stadt.jpg';
       } else {
         img.src = `/bg_${theme}.jpg`;
       }
@@ -400,6 +404,24 @@ export class GraphicsRenderer {
           fallbackImg.onerror = () => {
             this.bgImages[theme] = null;
           };
+        } else if (theme === 'city' && img.src.includes('China-Stadt.jpg')) {
+          const fallbackImg = new Image();
+          fallbackImg.src = '/bg_city.jpg';
+          fallbackImg.onload = () => {
+            this.bgImages[theme] = fallbackImg;
+          };
+          fallbackImg.onerror = () => {
+            this.bgImages[theme] = null;
+          };
+        } else if (theme === 'julius_caesar' && img.src.includes('Der Kaiser.jpg')) {
+          const fallbackImg = new Image();
+          fallbackImg.src = '/bg_julius_caesar.jpg';
+          fallbackImg.onload = () => {
+            this.bgImages[theme] = fallbackImg;
+          };
+          fallbackImg.onerror = () => {
+            this.bgImages[theme] = null;
+          };
         } else {
           this.bgImages[theme] = null;
         }
@@ -641,6 +663,8 @@ export class GraphicsRenderer {
         this._renderSchneefall(ctx, virtualWidth, screenHeight, animTime);
       } else if (theme === 'china') {
         this._renderChina(ctx, virtualWidth, screenHeight, animTime);
+      } else if (theme === 'julius_caesar') {
+        this._renderJuliusCaesar(ctx, virtualWidth, screenHeight, animTime);
       }
     }
 
@@ -23290,6 +23314,157 @@ export class GraphicsRenderer {
     ctx.shadowBlur = 14;
     ctx.beginPath();
     ctx.arc(rockX, rockY, 105, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.restore();
+  }
+
+  _renderJuliusCaesar(ctx, width, height, t) {
+    ctx.save();
+
+    // 1. Erhabener mediterraner Abendhimmel (Goldene & Purpurne Töne)
+    const sky = ctx.createLinearGradient(0, 0, 0, height * 0.75);
+    sky.addColorStop(0, '#31103f');    // Tiefes römisches Kaiserpurpur
+    sky.addColorStop(0.35, '#581c87'); // Edles Violett
+    sky.addColorStop(0.65, '#991b1b'); // Römisches Legionärs-Rot
+    sky.addColorStop(0.85, '#d97706'); // Warmes Abendgold
+    sky.addColorStop(1.0, '#fde047');  // Strahlendes Mittelmeerlicht
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, width, height);
+
+    // 2. Ferne mediterrane Hügelkette & Zypressen
+    const hillGrad = ctx.createLinearGradient(0, height * 0.45, 0, height * 0.70);
+    hillGrad.addColorStop(0, '#14532d');
+    hillGrad.addColorStop(0.6, '#064e3b');
+    hillGrad.addColorStop(1.0, '#022c22');
+    ctx.fillStyle = hillGrad;
+    ctx.beginPath();
+    ctx.moveTo(0, height * 0.65);
+    for (let x = 0; x <= width; x += 40) {
+      const hy = height * 0.56 + Math.sin(x * 0.002 + 0.5) * 40 + Math.cos(x * 0.006) * 15;
+      ctx.lineTo(x, hy);
+    }
+    ctx.lineTo(width, height);
+    ctx.lineTo(0, height);
+    ctx.closePath();
+    ctx.fill();
+
+    // Zypressen-Silhouetten in der Ferne
+    ctx.fillStyle = '#064e3b';
+    for (let cx = 120; cx < width; cx += 220) {
+      const cy = height * 0.54 + Math.sin(cx * 0.002 + 0.5) * 35;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy - 25, 12, 38, 0, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 3. Antiker römischer Marmorboden / Forum-Terrasse
+    const floorGrad = ctx.createLinearGradient(0, height * 0.68, 0, height);
+    floorGrad.addColorStop(0, '#cbd5e1'); // Heller Marmor
+    floorGrad.addColorStop(0.5, '#94a3b8');
+    floorGrad.addColorStop(1.0, '#64748b');
+    ctx.fillStyle = floorGrad;
+    ctx.beginPath();
+    ctx.moveTo(0, height * 0.68);
+    ctx.lineTo(width, height * 0.68);
+    ctx.lineTo(width, height);
+    ctx.lineTo(0, height);
+    ctx.closePath();
+    ctx.fill();
+
+    // Marmorplatten-Fugen
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.lineWidth = 1.5;
+    for (let lx = 0; lx <= width; lx += 140) {
+      ctx.beginPath();
+      ctx.moveTo(lx, height * 0.68);
+      ctx.lineTo(lx - 80, height);
+      ctx.stroke();
+    }
+
+    // 4. Zentrales Marmorpodest / Herrschersockel (x: 1200)
+    const podX = width * 0.5;
+    const podY = height * 0.64;
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(podX - 220, podY - 50, 440, 50);
+    ctx.fillStyle = '#e2e8f0';
+    ctx.fillRect(podX - 250, podY, 500, 35);
+    ctx.strokeStyle = '#facc15';
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(podX - 220, podY - 50, 440, 50);
+
+    // Römischer Adler & Lorbeergirlande am Sockel
+    ctx.fillStyle = '#d97706';
+    ctx.font = 'bold 22px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('S • P • Q • R', podX, podY - 18);
+
+    // Römische Marmorsäulen links und rechts
+    const columns = [podX - 340, podX - 480, podX + 340, podX + 480];
+    for (let colX of columns) {
+      // Säulenschaft
+      const colGrad = ctx.createLinearGradient(colX - 25, 0, colX + 25, 0);
+      colGrad.addColorStop(0, '#e2e8f0');
+      colGrad.addColorStop(0.4, '#ffffff');
+      colGrad.addColorStop(1, '#94a3b8');
+      ctx.fillStyle = colGrad;
+      ctx.fillRect(colX - 22, height * 0.22, 44, height * 0.46);
+
+      // Säulenkapitell (Korinthisch / Ionisch) & Basis
+      ctx.fillStyle = '#f8fafc';
+      ctx.fillRect(colX - 30, height * 0.20, 60, 20);
+      ctx.fillRect(colX - 28, height * 0.66, 56, 18);
+    }
+
+    // Purpurner Baldachin / Kaiserlicher Vorhang
+    ctx.fillStyle = '#7e22ce';
+    ctx.beginPath();
+    ctx.moveTo(podX - 280, height * 0.16);
+    ctx.quadraticCurveTo(podX, height * 0.24, podX + 280, height * 0.16);
+    ctx.lineTo(podX + 290, height * 0.38);
+    ctx.quadraticCurveTo(podX + 260, height * 0.32, podX + 230, height * 0.40);
+    ctx.lineTo(podX - 230, height * 0.40);
+    ctx.quadraticCurveTo(podX - 260, height * 0.32, podX - 290, height * 0.38);
+    ctx.closePath();
+    ctx.fill();
+
+    // ==========================================
+    // EASTER EGGS HINT CIRCLES / SYMBOLS
+    // ==========================================
+    // 1. Lorbeerkrone des Cäsar (x: 1200, y: height * 0.38)
+    const egg1Pulse = (Math.sin(t * 3.4) + 1) * 0.5;
+    ctx.save();
+    ctx.strokeStyle = `rgba(250, 204, 21, ${0.45 + egg1Pulse * 0.55})`;
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = '#facc15';
+    ctx.shadowBlur = 18;
+    ctx.beginPath();
+    ctx.arc(podX, height * 0.38, 105, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // 2. Kaiserliches Zepter der Macht (x: 1380, y: height * 0.46)
+    const egg2Pulse = (Math.sin(t * 3.1 + 1.2) + 1) * 0.5;
+    ctx.save();
+    ctx.strokeStyle = `rgba(249, 115, 22, ${0.45 + egg2Pulse * 0.55})`;
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = '#f97316';
+    ctx.shadowBlur = 16;
+    ctx.beginPath();
+    ctx.arc(podX + 180, height * 0.46, 95, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // 3. Antike Senats-Schriftrolle (x: 1020, y: height * 0.48)
+    const egg3Pulse = (Math.sin(t * 3.0 + 2.4) + 1) * 0.5;
+    ctx.save();
+    ctx.strokeStyle = `rgba(56, 189, 248, ${0.45 + egg3Pulse * 0.55})`;
+    ctx.lineWidth = 2.5;
+    ctx.shadowColor = '#38bdf8';
+    ctx.shadowBlur = 16;
+    ctx.beginPath();
+    ctx.arc(podX - 180, height * 0.48, 95, 0, Math.PI * 2);
     ctx.stroke();
     ctx.restore();
 

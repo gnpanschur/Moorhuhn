@@ -3283,6 +3283,40 @@ export class EasterEggManager {
         reward: 7000,
         popupText: "MYSTISCHE KARSTBERGE VON GUILIN! +7000",
       });
+    } else if (theme === "julius_caesar") {
+      // 1. Goldene Lorbeerkrone des Cäsar (2 Treffer)
+      this.eggs.push({
+        id: "caesar_lorbeerkrone",
+        x: 1200,
+        y: screenHeight * 0.38,
+        radius: 105,
+        hits: 0,
+        maxHits: 2,
+        reward: 8000,
+        popupText: "GOLDENE LORBEERKRONE DES CÄSAR! +8000",
+      });
+      // 2. Kaiserliches Zepter der Macht (1 Treffer)
+      this.eggs.push({
+        id: "caesar_zepter",
+        x: 1380,
+        y: screenHeight * 0.46,
+        radius: 95,
+        hits: 0,
+        maxHits: 1,
+        reward: 7500,
+        popupText: "KAISERLICHES ZEPTER DER MACHT! +7500",
+      });
+      // 3. Antike Senats-Schriftrolle (1 Treffer)
+      this.eggs.push({
+        id: "caesar_schriftrolle",
+        x: 1020,
+        y: screenHeight * 0.48,
+        radius: 95,
+        hits: 0,
+        maxHits: 1,
+        reward: 7100,
+        popupText: "ANTIKE SENATS-SCHRIFTROLLE! +7100",
+      });
     }
   }
 

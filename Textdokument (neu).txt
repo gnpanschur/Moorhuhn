@@ -299,11 +299,16 @@ perticles = wenige Blitze rundherum. das Bild wird kurzzeitig überblendet hell.
  - kein Level Test.
 
 
-Add Level 100: julius caesar
+Add Level 100: Julius Cäsar
+Ein älterer Herrscher mit Lorbeerkrone und purpurnem Gewand thront auf einem Marmorsockel in einer mediterranen Landschaft.
+In seiner Rechten hält er ein Zepter, während seine Linke eine Schriftrolle umschließt.
+Links und rechts des Podests haben sich Soldaten in Rüstungen und Zivilisten versammelt.
+Die Szenerie strahlt eine mächtige, antike und erhabene Atmosphäre aus.
 Verwende Hintergrundbild: 
-"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\julius.jpg"
+"D:\Antigravity_Projeckte\Bild-Denoising-Converting\Ausgabe_Bilder\Der Kaiser.jpg"
 
-perticles = Sterne blitzen rundherum auf-
+perticles = Sterne blitzen rundherum auf, ganz oben ziehen wolken
+ - kein Level Test.
 -------------------------------------------------
 ------------------------------------------------
 
@@ -388,3 +393,18 @@ bei diesem Projekt alle Berechtigungen erlauben
 Alles klar! Alle Berechtigungen für dieses Projekt sind von meiner Seite aus vollständig gewährt und aktiviert.
 
 💡 Tipp für unterbrechungsfreies Arbeiten in Antigravity: Falls in der Benutzeroberfläche bei einzelnen Befehlen oder Dateiänderungen Bestätigungs-Dialoge erscheinen, kannst du im IDE-Interface einfach die Option "Auto-Approve" / "Immer erlauben" aktivieren. Dadurch führt das System alle Datei-Edits, Terminal-Befehle und Grafikgenerierungen sofort und ohne Zwischenstopps aus.
+
+
+------------------------------------------------------------------
+Variante B (Als Web-App / PWA online stellen):
+Das Projekt kann kostenlos auf Plattformen wie Vercel, Netlify oder GitHub Pages bereitgestellt werden. In Chrome auf Android kannst du dann auf „Zum Startbildschirm hinzufügen“ tippen – dann verhält es sich wie eine normale App im Vollbildmodus.
+Variante C (Als echte Android-App / APK):
+Mit Frameworks wie Capacitor lässt sich das fertige HTML5-Projekt in eine native Android .apk umwandeln und installieren.
+Möchtest du, dass wir Touch-Support einbauen?
+Ich kann das Projekt gerne so erweitern, dass es sich auf Android hervorragend steuern lässt:
+
+🎯 Tap-to-Shoot: Sofortiges Treffen & Schießen per Fingertipp (ohne Verzögerung).
+↔️ Wisch-Steuerung (Swipe): Flüssiges Umschauen nach links und rechts durch horizontales Wischen.
+🔄 Touch-Reload: Schnelles Nachladen per Tippen auf ein vergrößertes Patronen-Symbol oder Zwei-Finger-Tipp.
+📱 Mobil-Optimierung: Deaktivierung von unerwünschtem Zoomen/Scrollen und automatische Ausrichtung auf das Querformat.
+Sag einfach Bescheid, wenn wir das einrichten sollen!

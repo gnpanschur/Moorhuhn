@@ -51,7 +51,7 @@ export class Chicken {
       this.points = 50;
       this.health = 2;
     } else if (this.type === 'dove' || this.type === 'owl') {
-      this.scale = 0.75;
+      this.scale = 1.5; // Verdoppelt (vorher 0.75) für Taube-animation & vogel-animation
       this.points = -25;
     }
 
