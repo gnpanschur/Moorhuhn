@@ -710,3 +710,14 @@ html, body {
   }
 }
 
+#btn-hud-exit:hover {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.25) !important;
+}
+
+@media (max-width: 900px) {
+  #btn-hud-exit span {
+    display: none;
+  }
+}
+

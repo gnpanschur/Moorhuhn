@@ -31,6 +31,7 @@ const modalInstructions = document.getElementById('modal-instructions');
 const modalHighscores = document.getElementById('modal-highscores');
 const modalVictory = document.getElementById('modal-victory');
 const modalPause = document.getElementById('modal-pause');
+const modalExit = document.getElementById('modal-exit');
 
 const btnOpenLevelSelect = document.getElementById('btn-open-level-select');
 if (btnOpenLevelSelect) {
@@ -166,8 +167,8 @@ function hideAllModals() {
   document.querySelectorAll('.screen-modal').forEach(m => m.classList.remove('active'));
 }
 
-// Automatically activate fullscreen when clicking or tapping ANY button in MAIN MENU MODAL
-document.querySelectorAll('#modal-main-menu button').forEach(btn => {
+// Automatically activate fullscreen when clicking or tapping ANY button in MAIN MENU MODAL (except exit)
+document.querySelectorAll('#modal-main-menu button:not(#btn-exit-game)').forEach(btn => {
   btn.addEventListener('click', enterFullscreen);
   btn.addEventListener('touchstart', enterFullscreen, { passive: true });
 });
@@ -375,6 +376,71 @@ document.getElementById('btn-pause-restart').addEventListener('click', () => {
 });
 
 document.getElementById('btn-pause-menu').addEventListener('click', () => {
+  hideAllModals();
+  modalMainMenu.classList.add('active');
+  game.state = 'MENU';
+});
+
+let exitReturnTarget = 'MENU';
+
+function openExitModal(source = 'MENU') {
+  exitReturnTarget = source;
+  if (source === 'PAUSE' || game.state === 'PLAYING') {
+    game.pauseGame();
+  }
+  hideAllModals();
+  const exitButtonsGroup = document.getElementById('exit-buttons-group');
+  const exitGoodbyeView = document.getElementById('exit-goodbye-view');
+  if (exitButtonsGroup) exitButtonsGroup.style.display = 'flex';
+  if (exitGoodbyeView) exitGoodbyeView.style.display = 'none';
+  modalExit.classList.add('active');
+  createIcons({ icons });
+}
+
+document.getElementById('btn-exit-game')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  openExitModal('MENU');
+});
+
+document.getElementById('btn-pause-exit')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  openExitModal('PAUSE');
+});
+
+document.getElementById('btn-hud-exit')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  openExitModal('PAUSE');
+});
+
+document.getElementById('btn-cancel-exit')?.addEventListener('click', () => {
+  hideAllModals();
+  if (exitReturnTarget === 'PAUSE') {
+    modalPause.classList.add('active');
+  } else {
+    modalMainMenu.classList.add('active');
+  }
+});
+
+document.getElementById('btn-confirm-exit')?.addEventListener('click', () => {
+  soundEngine.stopThemeAmbient();
+  game.state = 'MENU';
+
+  if (document.fullscreenElement || document.webkitFullscreenElement) {
+    if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+  }
+
+  try {
+    window.close();
+  } catch (err) {}
+
+  const exitButtonsGroup = document.getElementById('exit-buttons-group');
+  const exitGoodbyeView = document.getElementById('exit-goodbye-view');
+  if (exitButtonsGroup) exitButtonsGroup.style.display = 'none';
+  if (exitGoodbyeView) exitGoodbyeView.style.display = 'block';
+});
+
+document.getElementById('btn-reopen-game')?.addEventListener('click', () => {
   hideAllModals();
   modalMainMenu.classList.add('active');
   game.state = 'MENU';

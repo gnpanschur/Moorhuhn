@@ -51,6 +51,10 @@
       <div class="hud-pill clickable" id="btn-fullscreen" title="Vollbild umschalten">
         <i data-lucide="maximize" id="fullscreen-icon"></i>
       </div>
+      <div class="hud-pill clickable" id="btn-hud-exit" title="Spiel Beenden / Exit" style="border-color: rgba(239, 68, 68, 0.45); color: #fca5a5;">
+        <i data-lucide="log-out" style="color: #ef4444;"></i>
+        <span style="font-weight: 700; color: #fca5a5;">Exit</span>
+      </div>
     </div>
 
     <!-- LEVEL SUCCESS TOAST BANNER -->
@@ -111,6 +115,10 @@
         <button class="btn-secondary" id="btn-open-instructions">
           <i data-lucide="gamepad-2"></i>
           <span>Steuerung & Anleitung</span>
+        </button>
+        <button class="btn-danger" id="btn-exit-game">
+          <i data-lucide="log-out"></i>
+          <span>Spiel Beenden (EXIT)</span>
         </button>
       </div>
     </div>
@@ -291,6 +299,43 @@
         <button class="btn-secondary" id="btn-pause-menu">
           <i data-lucide="home"></i>
           <span>Hauptmenü</span>
+        </button>
+        <button class="btn-danger" id="btn-pause-exit">
+          <i data-lucide="log-out"></i>
+          <span>Spiel Beenden (EXIT)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXIT CONFIRMATION MODAL -->
+  <div class="screen-modal" id="modal-exit">
+    <div class="modal-card" style="max-width: 520px;">
+      <div style="font-size: 3.2rem; margin-bottom: 8px;">🐔 👋</div>
+      <h2 class="game-title" style="font-size: 2.2rem;">SPIEL BEENDEN</h2>
+      <p class="subtitle" style="margin-bottom: 24px;">
+        Möchtest du das Moorhuhn-Spiel wirklich beenden?
+      </p>
+
+      <div class="menu-buttons" id="exit-buttons-group">
+        <button class="btn-danger" id="btn-confirm-exit">
+          <i data-lucide="log-out"></i>
+          <span>Ja, Spiel Beenden</span>
+        </button>
+        <button class="btn-primary" id="btn-cancel-exit">
+          <i data-lucide="arrow-left"></i>
+          <span>Weiterspielen</span>
+        </button>
+      </div>
+
+      <div id="exit-goodbye-view" style="display: none; margin-top: 18px; padding: 20px; background: rgba(15, 23, 42, 0.9); border-radius: 18px; border: 1px solid var(--primary-gold);">
+        <h3 style="color: var(--primary-gold); font-size: 1.35rem; margin-bottom: 8px;">Vielen Dank fürs Spielen!</h3>
+        <p style="color: #e2e8f0; font-size: 0.95rem; line-height: 1.5; margin-bottom: 16px;">
+          Das Spiel wurde beendet. Du kannst dieses Browserfenster oder den Tab jetzt schließen.
+        </p>
+        <button class="btn-secondary" id="btn-reopen-game" style="width: 100%;">
+          <i data-lucide="rotate-ccw"></i>
+          <span>Zurück zum Hauptmenü</span>
         </button>
       </div>
     </div>
