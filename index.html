@@ -2,8 +2,16 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Moorhuhn Shooter Arcade</title>
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Moorhuhn" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/jpeg" href="./cover.jpg" />
+  <link rel="apple-touch-icon" href="./cover.jpg" />
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
@@ -31,8 +39,11 @@
       <div class="hud-pill" id="combo-pill" style="display: none;">
         <span class="combo-badge" id="combo-badge">x2 COMBO</span>
       </div>
-      <div class="hud-pill clickable" id="btn-audio">
+      <div class="hud-pill clickable" id="btn-audio" title="Ton an/aus">
         <i data-lucide="volume-2" id="audio-icon"></i>
+      </div>
+      <div class="hud-pill clickable" id="btn-fullscreen" title="Vollbild umschalten">
+        <i data-lucide="maximize" id="fullscreen-icon"></i>
       </div>
     </div>
 
@@ -44,16 +55,27 @@
       </div>
     </div>
 
+    <!-- MOBILE PAN CONTROLS (TOUCH ARROWS) -->
+    <button class="mobile-pan-btn pan-left" id="mobile-pan-left" aria-label="Kamera links schwenken">
+      <i data-lucide="chevron-left"></i>
+    </button>
+    <button class="mobile-pan-btn pan-right" id="mobile-pan-right" aria-label="Kamera rechts schwenken">
+      <i data-lucide="chevron-right"></i>
+    </button>
+
     <!-- BOTTOM HUD -->
     <div class="hud-bottom" id="hud-bottom" style="display: none;">
-      <div class="ammo-container">
-        <div id="shells-list" style="display: flex; gap: 4px;"></div>
-        <button class="reload-btn" id="btn-reload">Nachladen [R / Rechtsklick]</button>
+      <div class="ammo-container clickable" id="ammo-touch-zone" title="Tippen zum Nachladen [Zwei-Finger-Tipp]">
+        <div id="shells-list" style="display: flex; gap: 6px;"></div>
+        <button class="reload-btn" id="btn-reload">
+          <i data-lucide="rotate-ccw"></i>
+          <span id="reload-btn-text">Nachladen</span>
+        </button>
       </div>
 
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
-        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Kamera-Panorama (Maus an Rand bewegen)</span>
-        <div class="minimap-bar">
+        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Kamera-Panorama (Wischen / ◀ ▶ Tasten)</span>
+        <div class="minimap-bar" id="minimap-bar">
           <div class="minimap-viewport" id="minimap-viewport"></div>
         </div>
       </div>
@@ -63,7 +85,7 @@
   <!-- MAIN MENU MODAL -->
   <div class="screen-modal active" id="modal-main-menu">
     <div class="modal-card">
-      <img src="/cover.jpg" alt="Moorhuhn Banner" class="modal-header-img" />
+      <img src="./cover.jpg" alt="Moorhuhn Banner" class="modal-header-img" />
       <h1 class="game-title">MOORHUHN SHOOTER</h1>
       <p class="subtitle">Der kultige Jagd-Klassiker – Mit 100 Welten & Interaktiven Easter Eggs</p>
 
@@ -122,20 +144,28 @@
 
       <table class="stats-table">
         <tr>
-          <td><i data-lucide="mouse"></i> <strong>Zielen & Schießen</strong></td>
+          <td><i data-lucide="target"></i> <strong>🎯 Tap-to-Shoot (Touch)</strong></td>
+          <td style="color: #fff;">Huhn <strong>direkt antippen</strong> für Sofortschuss (0ms Verzögerung)</td>
+        </tr>
+        <tr>
+          <td><i data-lucide="mouse"></i> <strong>PC-Maus</strong></td>
           <td style="color: #fff;">Maus bewegen & <strong>Links-Klick</strong></td>
         </tr>
         <tr>
-          <td><i data-lucide="rotate-ccw"></i> <strong>Nachladen</strong></td>
+          <td><i data-lucide="move"></i> <strong>↔️ Wisch-Steuerung (Swipe)</strong></td>
+          <td style="color: #fff;">Mit dem Finger horizontal über das Display <strong>wischen</strong> oder <strong>◀ / ▶ Tasten</strong> halten</td>
+        </tr>
+        <tr>
+          <td><i data-lucide="rotate-ccw"></i> <strong>🔄 Touch-Reload</strong></td>
+          <td style="color: #fff;">Auf das <strong>Patronen-Symbol</strong> tippen ODER mit <strong>2 Fingern gleichzeitig</strong> auf den Screen tippen</td>
+        </tr>
+        <tr>
+          <td><i data-lucide="rotate-ccw"></i> <strong>PC-Reload</strong></td>
           <td style="color: #fff;"><strong>Rechts-Klick</strong>, <strong>R-Taste</strong> oder <strong>Leertaste</strong></td>
         </tr>
         <tr>
-          <td><i data-lucide="move"></i> <strong>Panorama-Kamera (Panning)</strong></td>
-          <td style="color: #fff;">Maus an den <strong>linken / rechten Bildschirmrand</strong> bewegen oder <strong>A / D / Pfeiltasten</strong> drücken</td>
-        </tr>
-        <tr>
-          <td><i data-lucide="pause"></i> <strong>Pause</strong></td>
-          <td style="color: #fff;"><strong>ESC-Taste</strong></td>
+          <td><i data-lucide="pause"></i> <strong>Pause & Menü</strong></td>
+          <td style="color: #fff;">Menü-Button oben links oder <strong>ESC-Taste</strong></td>
         </tr>
       </table>
 
@@ -257,6 +287,19 @@
           <span>Hauptmenü</span>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ORIENTATION PROMPT OVERLAY (PORTRAIT TO LANDSCAPE) -->
+  <div id="orientation-overlay" class="orientation-overlay" style="display: none;">
+    <div class="orientation-box">
+      <div class="orientation-icon">📱 ➔ 🔄</div>
+      <h2>Bitte Querformat verwenden</h2>
+      <p>Moorhuhn Shooter Arcade ist für das Breitbild-Panorama optimiert. Bitte drehe dein Smartphone oder Tablet ins Querformat!</p>
+      <button class="btn-primary" id="btn-force-landscape" style="margin-top: 16px;">
+        <i data-lucide="maximize"></i>
+        <span>Vollbild & Querformat aktivieren</span>
+      </button>
     </div>
   </div>
 

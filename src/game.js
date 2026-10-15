@@ -945,6 +945,15 @@ export class Game {
     this.mouseX = 0;
     this.mouseY = 0;
 
+    this.touchStartX = 0;
+    this.touchStartY = 0;
+    this.touchStartCameraX = 0;
+    this.isTouchDragging = false;
+    this.touchMoved = false;
+    this.lastTouchTime = 0;
+    this.panLeftActive = false;
+    this.panRightActive = false;
+
     this.chickens = [];
     this.maxChickens = 14;
 
@@ -1007,12 +1016,84 @@ export class Game {
 
     window.addEventListener('mousedown', (e) => {
       if (this.state !== 'PLAYING') return;
+      if (Date.now() - this.lastTouchTime < 600) return; // Prevent ghost click after touch
       if (e.button === 0) {
         this.shoot();
       } else if (e.button === 2) {
         this.reload();
       }
     });
+
+    const isInteractiveUI = (target) => {
+      return target && target.closest && target.closest('.hud-pill, .screen-modal, .reload-btn, #ammo-touch-zone, .mobile-pan-btn, .minimap-bar');
+    };
+
+    // Touch Support for Mobile / Android / Tablet
+    window.addEventListener('touchstart', (e) => {
+      this.lastTouchTime = Date.now();
+      if (this.state !== 'PLAYING') return;
+      if (isInteractiveUI(e.target)) return;
+
+      // Two-Finger Tap: Instant Reload!
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        this.reload();
+        if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+        this.isTouchDragging = false;
+        this.touchMoved = false;
+        return;
+      }
+
+      if (e.touches.length === 1) {
+        const t = e.touches[0];
+        this.touchStartX = t.clientX;
+        this.touchStartY = t.clientY;
+        this.touchStartCameraX = this.targetCameraX;
+        this.isTouchDragging = false;
+        this.touchMoved = false;
+        this.mouseX = t.clientX;
+        this.mouseY = t.clientY;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (e) => {
+      if (this.state !== 'PLAYING') return;
+      if (isInteractiveUI(e.target)) return;
+      if (e.touches.length !== 1) return;
+
+      const t = e.touches[0];
+      const dx = t.clientX - this.touchStartX;
+      const dy = t.clientY - this.touchStartY;
+
+      // If finger moved more than 10px, treat as panorama swipe/drag
+      if (!this.touchMoved && Math.hypot(dx, dy) > 10) {
+        this.touchMoved = true;
+        this.isTouchDragging = true;
+      }
+
+      if (this.isTouchDragging) {
+        e.preventDefault();
+        const swipeFactor = 1.6;
+        this.targetCameraX = Math.max(0, Math.min(this.virtualWidth - this.screenWidth, this.touchStartCameraX - dx * swipeFactor));
+        this.mouseX = t.clientX;
+        this.mouseY = t.clientY;
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', (e) => {
+      if (this.state !== 'PLAYING') return;
+      if (isInteractiveUI(e.target)) return;
+
+      // Tap-To-Shoot: If it was a quick touch without dragging -> Instant Shot!
+      if (!this.isTouchDragging && !this.touchMoved) {
+        e.preventDefault();
+        this.shoot(this.touchStartX, this.touchStartY);
+        if (navigator.vibrate) navigator.vibrate(25);
+      }
+
+      this.isTouchDragging = false;
+      this.touchMoved = false;
+    }, { passive: false });
 
     window.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -1092,12 +1173,17 @@ export class Game {
     if (this.state === 'PAUSED') this.state = 'PLAYING';
   }
 
-  shoot() {
+  shoot(customX = null, customY = null) {
     if (this.isReloading) return;
 
     if (this.ammo <= 0) {
       soundEngine.playEmptyClick();
       return;
+    }
+
+    if (customX !== null && customY !== null) {
+      this.mouseX = customX;
+      this.mouseY = customY;
     }
 
     this.ammo -= 1;
@@ -1286,6 +1372,13 @@ export class Game {
     const dt = (timestamp - this.lastFrameTime) / 1000;
     this.lastFrameTime = timestamp;
     this.animTime += dt;
+
+    if (this.panLeftActive) {
+      this.targetCameraX = Math.max(0, this.targetCameraX - 25);
+    }
+    if (this.panRightActive) {
+      this.targetCameraX = Math.min(this.virtualWidth - this.screenWidth, this.targetCameraX + 25);
+    }
 
     this.cameraX += (this.targetCameraX - this.cameraX) * 0.12;
 

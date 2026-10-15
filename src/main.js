@@ -199,9 +199,137 @@ function handleResetHighscores() {
 document.getElementById('btn-reset-highscores')?.addEventListener('click', handleResetHighscores);
 document.getElementById('btn-reset-highscores-levelselect')?.addEventListener('click', handleResetHighscores);
 
-document.getElementById('btn-reload').addEventListener('click', () => {
+// Touch Reload Zone
+const ammoTouchZone = document.getElementById('ammo-touch-zone');
+if (ammoTouchZone) {
+  ammoTouchZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    game.reload();
+    if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+  }, { passive: false });
+}
+
+document.getElementById('btn-reload').addEventListener('click', (e) => {
+  e.stopPropagation();
   game.reload();
 });
+
+// Fullscreen & Orientation API
+const btnFullscreen = document.getElementById('btn-fullscreen');
+const fullscreenIcon = document.getElementById('fullscreen-icon');
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    const el = document.documentElement;
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {});
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    }
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen().catch(() => {});
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+}
+
+btnFullscreen?.addEventListener('click', toggleFullscreen);
+
+document.addEventListener('fullscreenchange', () => {
+  const isFs = !!document.fullscreenElement;
+  if (fullscreenIcon) {
+    fullscreenIcon.setAttribute('data-lucide', isFs ? 'minimize' : 'maximize');
+    createIcons({ icons });
+  }
+});
+
+// Mobile Edge Pan Controls (Left & Right Touch Arrows)
+const panLeftBtn = document.getElementById('mobile-pan-left');
+const panRightBtn = document.getElementById('mobile-pan-right');
+
+if (panLeftBtn) {
+  const startPanLeft = (e) => { e.preventDefault(); game.panLeftActive = true; };
+  const stopPanLeft = (e) => { e.preventDefault(); game.panLeftActive = false; };
+  panLeftBtn.addEventListener('touchstart', startPanLeft, { passive: false });
+  panLeftBtn.addEventListener('touchend', stopPanLeft);
+  panLeftBtn.addEventListener('touchcancel', stopPanLeft);
+  panLeftBtn.addEventListener('mousedown', startPanLeft);
+  panLeftBtn.addEventListener('mouseup', stopPanLeft);
+  panLeftBtn.addEventListener('mouseleave', stopPanLeft);
+}
+
+if (panRightBtn) {
+  const startPanRight = (e) => { e.preventDefault(); game.panRightActive = true; };
+  const stopPanRight = (e) => { e.preventDefault(); game.panRightActive = false; };
+  panRightBtn.addEventListener('touchstart', startPanRight, { passive: false });
+  panRightBtn.addEventListener('touchend', stopPanRight);
+  panRightBtn.addEventListener('touchcancel', stopPanRight);
+  panRightBtn.addEventListener('mousedown', startPanRight);
+  panRightBtn.addEventListener('mouseup', stopPanRight);
+  panRightBtn.addEventListener('mouseleave', stopPanRight);
+}
+
+// Minimap Seeking via Touch or Click
+const minimapBar = document.getElementById('minimap-bar');
+if (minimapBar) {
+  const handleMinimapSeek = (clientX) => {
+    const rect = minimapBar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    game.targetCameraX = pct * (game.virtualWidth - game.screenWidth);
+  };
+
+  minimapBar.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (e.touches.length > 0) handleMinimapSeek(e.touches[0].clientX);
+  }, { passive: false });
+
+  minimapBar.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (e.touches.length > 0) handleMinimapSeek(e.touches[0].clientX);
+  }, { passive: false });
+
+  minimapBar.addEventListener('mousedown', (e) => {
+    handleMinimapSeek(e.clientX);
+  });
+}
+
+// Orientation Overlay for Portrait mode on Mobile
+const orientationOverlay = document.getElementById('orientation-overlay');
+const btnForceLandscape = document.getElementById('btn-force-landscape');
+
+function checkOrientation() {
+  const isPortrait = window.innerHeight > window.innerWidth;
+  const isMobile = ('ontouchstart' in window) || navigator.maxTouchPoints > 0 || window.innerWidth < 850;
+  if (isPortrait && isMobile) {
+    if (orientationOverlay) orientationOverlay.style.display = 'flex';
+  } else {
+    if (orientationOverlay) orientationOverlay.style.display = 'none';
+  }
+}
+
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
+checkOrientation();
+
+btnForceLandscape?.addEventListener('click', () => {
+  toggleFullscreen();
+  checkOrientation();
+});
+
+// PWA Service Worker Registration
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch((err) => {
+      console.warn('PWA registration failed:', err);
+    });
+  });
+}
 
 document.getElementById('btn-audio').addEventListener('click', () => {
   const isMuted = soundEngine.toggleMute();

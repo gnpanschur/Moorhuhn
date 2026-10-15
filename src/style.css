@@ -18,13 +18,20 @@
   -webkit-user-select: none;
 }
 
-body {
+html, body {
   width: 100vw;
   height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background-color: #000;
   font-family: 'Outfit', sans-serif;
   color: #fff;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior: none;
 }
 
 #game-canvas {
@@ -33,8 +40,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  cursor: none;
+  cursor: crosshair;
   z-index: 1;
+  touch-action: none;
 }
 
 /* UI OVERLAYS CONTAINER */
@@ -487,3 +495,178 @@ body {
   text-transform: uppercase;
   box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
 }
+
+/* MOBILE PAN BUTTONS (ON-SCREEN ARROWS) */
+.mobile-pan-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 84px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 25;
+  pointer-events: auto;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.mobile-pan-btn:active {
+  background: rgba(250, 204, 21, 0.45);
+  color: #000;
+  transform: translateY(-50%) scale(0.96);
+}
+
+.mobile-pan-btn.pan-left {
+  left: 0;
+  border-radius: 0 16px 16px 0;
+  border-left: none;
+}
+
+.mobile-pan-btn.pan-right {
+  right: 0;
+  border-radius: 16px 0 0 16px;
+  border-right: none;
+}
+
+/* Touch-optimized Ammo Container */
+.ammo-container.clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.ammo-container.clickable:active {
+  transform: scale(0.96);
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.4);
+}
+
+.reload-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  touch-action: manipulation;
+}
+
+.minimap-bar {
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+/* ORIENTATION PROMPT OVERLAY (PORTRAIT TO LANDSCAPE) */
+.orientation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.96);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.orientation-box {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 32px 24px;
+  max-width: 440px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.orientation-icon {
+  font-size: 3.5rem;
+  animation: rotatePhone 2.5s infinite ease-in-out;
+}
+
+@keyframes rotatePhone {
+  0%, 20% { transform: rotate(0deg); }
+  50%, 70% { transform: rotate(90deg); }
+  90%, 100% { transform: rotate(0deg); }
+}
+
+.orientation-box h2 {
+  font-size: 1.5rem;
+  color: var(--primary-gold);
+  margin: 0;
+}
+
+.orientation-box p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* RESPONSIVE STYLING FOR MOBILE / LANDSCAPE */
+@media (max-height: 540px) {
+  .hud-top {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+  .hud-pill {
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.82rem;
+  }
+  .hud-bottom {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+  }
+  .ammo-container {
+    padding: 8px 14px;
+  }
+  .shell-icon {
+    width: 11px;
+    height: 30px;
+  }
+  .reload-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  .modal-card {
+    padding: 20px;
+    max-height: 94vh;
+  }
+  .game-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .hud-pill {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+  .level-name-text {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+

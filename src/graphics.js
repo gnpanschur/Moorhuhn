@@ -1,3 +1,5 @@
+const assetUrl = (p) => (import.meta.env.BASE_URL || './') + String(p).replace(/^\//, '');
+
 // Dynamic Procedural & Image Canvas Graphics Renderer for Moorhuhn
 export class GraphicsRenderer {
   constructor() {
@@ -17,77 +19,77 @@ export class GraphicsRenderer {
     themes.forEach(theme => {
       const img = new Image();
       if (theme === 'pirate_nest') {
-        img.src = '/Pirateninsel.jpg';
+        img.src = assetUrl('Pirateninsel.jpg');
       } else if (theme === 'junkyard') {
-        img.src = '/Schrottplatz-Chaos.jpg';
+        img.src = assetUrl('Schrottplatz-Chaos.jpg');
       } else if (theme === 'autumn_orchard') {
-        img.src = '/Der Obstgarten.jpg';
+        img.src = assetUrl('Der Obstgarten.jpg');
       } else if (theme === 'cyberpunk') {
-        img.src = '/Cyberpunk-Metropole.jpg';
+        img.src = assetUrl('Cyberpunk-Metropole.jpg');
       } else if (theme === 'enchanted_forest') {
-        img.src = '/Zauberwald.jpg';
+        img.src = assetUrl('Zauberwald.jpg');
       } else if (theme === 'mad_scientist_lab') {
-        img.src = '/Labor.jpg';
+        img.src = assetUrl('Labor.jpg');
       } else if (theme === 'taj_mahal') {
-        img.src = '/Taj-Mahal.jpg';
+        img.src = assetUrl('Taj-Mahal.jpg');
       } else if (theme === 'hanging_gardens_babylon') {
-        img.src = '/Haengende-Gaerten-Babylon.jpg';
+        img.src = assetUrl('Haengende-Gaerten-Babylon.jpg');
       } else if (theme === 'zeus_statue_olympia') {
-        img.src = '/Zeusstatue-Olympia.jpg';
+        img.src = assetUrl('Zeusstatue-Olympia.jpg');
       } else if (theme === 'lighthouse_alexandria') {
-        img.src = '/Leuchtturm-Alexandria.jpg';
+        img.src = assetUrl('Leuchtturm-Alexandria.jpg');
       } else if (theme === 'colossus_rhodes') {
-        img.src = '/Koloss-von-Rhodos.jpg';
+        img.src = assetUrl('Koloss-von-Rhodos.jpg');
       } else if (theme === 'mausoleum_halicarnassus') {
-        img.src = '/Mausoleum-Halikarnassos.jpg';
+        img.src = assetUrl('Mausoleum-Halikarnassos.jpg');
       } else if (theme === 'artemis_temple_ephesus') {
-        img.src = '/Artemistempel-Ephesos.jpg';
+        img.src = assetUrl('Artemistempel-Ephesos.jpg');
       } else if (theme === 'chichen_itza') {
-        img.src = '/Chichen-Itza.jpg';
+        img.src = assetUrl('Chichen-Itza.jpg');
       } else if (theme === 'christ_redeemer_rio') {
-        img.src = '/Christus-der-Erloeser.jpg';
+        img.src = assetUrl('Christus-der-Erloeser.jpg');
       } else if (theme === 'great_wall_china') {
-        img.src = '/Chinesische-Mauer.jpg';
+        img.src = assetUrl('Chinesische-Mauer.jpg');
       } else if (theme === 'machu_picchu') {
-        img.src = '/Machu-Picchu.jpg';
+        img.src = assetUrl('Machu-Picchu.jpg');
       } else if (theme === 'petra_jordan') {
-        img.src = '/Petra-Schatzhaus.jpg';
+        img.src = assetUrl('Petra-Schatzhaus.jpg');
       } else if (theme === 'statue_of_liberty') {
-        img.src = '/Freiheitsstatue-NewYork.jpg';
+        img.src = assetUrl('Freiheitsstatue-NewYork.jpg');
       } else if (theme === 'eiffel_tower_paris') {
-        img.src = '/Eiffelturm-Paris.jpg';
+        img.src = assetUrl('Eiffelturm-Paris.jpg');
       } else if (theme === 'stonehenge') {
-        img.src = '/Stonehenge-England.jpg';
+        img.src = assetUrl('Stonehenge-England.jpg');
       } else if (theme === 'leaning_tower_pisa') {
-        img.src = '/Schiefer-Turm-Pisa.jpg';
+        img.src = assetUrl('Schiefer-Turm-Pisa.jpg');
       } else if (theme === 'easter_island_moai') {
-        img.src = '/Osterinsel-Moai.jpg';
+        img.src = assetUrl('Osterinsel-Moai.jpg');
       } else if (theme === 'tower_bridge_london') {
-        img.src = '/Tower-Bridge-London.jpg';
+        img.src = assetUrl('Tower-Bridge-London.jpg');
       } else if (theme === 'grazer_uhrturm') {
-        img.src = '/Grazer-Uhrturm.jpg';
+        img.src = assetUrl('Grazer-Uhrturm.jpg');
       } else if (theme === 'im_weltall') {
-        img.src = '/Im-Weltall.jpg';
+        img.src = assetUrl('Im-Weltall.jpg');
       } else if (theme === 'wien') {
-        img.src = '/Wien.jpg';
+        img.src = assetUrl('Wien.jpg');
       } else if (theme === 'mohnblumen') {
-        img.src = '/Moonblumen.jpg';
+        img.src = assetUrl('Moonblumen.jpg');
       } else if (theme === 'die_burg') {
-        img.src = '/Burg_a.jpg';
+        img.src = assetUrl('Burg_a.jpg');
       } else if (theme === 'toskana') {
-        img.src = '/Toskana.jpg';
+        img.src = assetUrl('Toskana.jpg');
       } else if (theme === 'herbst') {
-        img.src = '/Der-Herbst.jpg';
+        img.src = assetUrl('Der-Herbst.jpg');
       } else if (theme === 'schneefall') {
-        img.src = '/Schneelandschaft.jpg';
+        img.src = assetUrl('Schneelandschaft.jpg');
       } else if (theme === 'china') {
-        img.src = '/China_A.jpg';
+        img.src = assetUrl('China_A.jpg');
       } else if (theme === 'julius_caesar') {
-        img.src = '/Der Kaiser.jpg';
+        img.src = assetUrl('Der Kaiser.jpg');
       } else if (theme === 'city') {
-        img.src = '/China-Stadt.jpg';
+        img.src = assetUrl('China-Stadt.jpg');
       } else {
-        img.src = `/bg_${theme}.jpg`;
+        img.src = assetUrl(`bg_${theme}.jpg`);
       }
       img.onload = () => {
         this.bgImages[theme] = img;
@@ -95,7 +97,7 @@ export class GraphicsRenderer {
       img.onerror = () => {
         if (theme === 'pirate_nest' && img.src.includes('Pirateninsel.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_pirate_nest.jpg';
+          fallbackImg.src = assetUrl('bg_pirate_nest.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -104,7 +106,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'junkyard' && img.src.includes('Schrottplatz-Chaos.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_junkyard.jpg';
+          fallbackImg.src = assetUrl('bg_junkyard.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -113,7 +115,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'autumn_orchard' && img.src.includes('Der Obstgarten.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_autumn_orchard.jpg';
+          fallbackImg.src = assetUrl('bg_autumn_orchard.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -122,7 +124,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'cyberpunk' && img.src.includes('Cyberpunk-Metropole.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_cyberpunk.jpg';
+          fallbackImg.src = assetUrl('bg_cyberpunk.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -131,7 +133,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'enchanted_forest' && img.src.includes('Zauberwald.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_enchanted_forest.jpg';
+          fallbackImg.src = assetUrl('bg_enchanted_forest.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -140,7 +142,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'mad_scientist_lab' && img.src.includes('Labor.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_mad_scientist_lab.jpg';
+          fallbackImg.src = assetUrl('bg_mad_scientist_lab.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -149,7 +151,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'taj_mahal' && img.src.includes('Taj-Mahal.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_taj_mahal.jpg';
+          fallbackImg.src = assetUrl('bg_taj_mahal.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -158,7 +160,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'hanging_gardens_babylon' && img.src.includes('Haengende-Gaerten-Babylon.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_hanging_gardens_babylon.jpg';
+          fallbackImg.src = assetUrl('bg_hanging_gardens_babylon.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -167,7 +169,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'zeus_statue_olympia' && img.src.includes('Zeusstatue-Olympia.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_zeus_statue_olympia.jpg';
+          fallbackImg.src = assetUrl('bg_zeus_statue_olympia.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -176,7 +178,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'lighthouse_alexandria' && img.src.includes('Leuchtturm-Alexandria.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_lighthouse_alexandria.jpg';
+          fallbackImg.src = assetUrl('bg_lighthouse_alexandria.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -185,7 +187,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'colossus_rhodes' && img.src.includes('Koloss-von-Rhodos.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_colossus_rhodes.jpg';
+          fallbackImg.src = assetUrl('bg_colossus_rhodes.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -194,7 +196,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'mausoleum_halicarnassus' && img.src.includes('Mausoleum-Halikarnassos.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_mausoleum_halicarnassus.jpg';
+          fallbackImg.src = assetUrl('bg_mausoleum_halicarnassus.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -203,7 +205,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'artemis_temple_ephesus' && img.src.includes('Artemistempel-Ephesos.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_artemis_temple_ephesus.jpg';
+          fallbackImg.src = assetUrl('bg_artemis_temple_ephesus.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -212,7 +214,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'chichen_itza' && img.src.includes('Chichen-Itza.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_chichen_itza.jpg';
+          fallbackImg.src = assetUrl('bg_chichen_itza.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -221,7 +223,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'christ_redeemer_rio' && img.src.includes('Christus-der-Erloeser.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_christ_redeemer_rio.jpg';
+          fallbackImg.src = assetUrl('bg_christ_redeemer_rio.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -230,7 +232,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'great_wall_china' && img.src.includes('Chinesische-Mauer.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_great_wall_china.jpg';
+          fallbackImg.src = assetUrl('bg_great_wall_china.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -239,7 +241,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'machu_picchu' && img.src.includes('Machu-Picchu.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_machu_picchu.jpg';
+          fallbackImg.src = assetUrl('bg_machu_picchu.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -248,7 +250,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'petra_jordan' && img.src.includes('Petra-Schatzhaus.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_petra_jordan.jpg';
+          fallbackImg.src = assetUrl('bg_petra_jordan.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -257,7 +259,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'statue_of_liberty' && img.src.includes('Freiheitsstatue-NewYork.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_statue_of_liberty.jpg';
+          fallbackImg.src = assetUrl('bg_statue_of_liberty.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -266,7 +268,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'eiffel_tower_paris' && img.src.includes('Eiffelturm-Paris.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_eiffel_tower_paris.jpg';
+          fallbackImg.src = assetUrl('bg_eiffel_tower_paris.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -275,7 +277,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'stonehenge' && img.src.includes('Stonehenge-England.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_stonehenge.jpg';
+          fallbackImg.src = assetUrl('bg_stonehenge.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -284,7 +286,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'leaning_tower_pisa' && img.src.includes('Schiefer-Turm-Pisa.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_leaning_tower_pisa.jpg';
+          fallbackImg.src = assetUrl('bg_leaning_tower_pisa.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -293,7 +295,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'easter_island_moai' && img.src.includes('Osterinsel-Moai.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_easter_island_moai.jpg';
+          fallbackImg.src = assetUrl('bg_easter_island_moai.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -302,7 +304,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'tower_bridge_london' && img.src.includes('Tower-Bridge-London.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_tower_bridge_london.jpg';
+          fallbackImg.src = assetUrl('bg_tower_bridge_london.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -311,7 +313,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'grazer_uhrturm' && img.src.includes('Grazer-Uhrturm.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_grazer_uhrturm.jpg';
+          fallbackImg.src = assetUrl('bg_grazer_uhrturm.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -320,7 +322,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'im_weltall' && img.src.includes('Im-Weltall.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_im_weltall.jpg';
+          fallbackImg.src = assetUrl('bg_im_weltall.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -329,7 +331,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'wien' && img.src.includes('Wien.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_wien.jpg';
+          fallbackImg.src = assetUrl('bg_wien.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -338,13 +340,13 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'mohnblumen' && img.src.includes('Moonblumen.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/Mohnblumen.jpg';
+          fallbackImg.src = assetUrl('Mohnblumen.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
           fallbackImg.onerror = () => {
             const fallbackImg2 = new Image();
-            fallbackImg2.src = '/bg_mohnblumen.jpg';
+            fallbackImg2.src = assetUrl('bg_mohnblumen.jpg');
             fallbackImg2.onload = () => {
               this.bgImages[theme] = fallbackImg2;
             };
@@ -354,13 +356,13 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'die_burg' && img.src.includes('Burg_a.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/Die-Burg.jpg';
+          fallbackImg.src = assetUrl('Die-Burg.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
           fallbackImg.onerror = () => {
             const fallbackImg2 = new Image();
-            fallbackImg2.src = '/bg_die_burg.jpg';
+            fallbackImg2.src = assetUrl('bg_die_burg.jpg');
             fallbackImg2.onload = () => {
               this.bgImages[theme] = fallbackImg2;
             };
@@ -370,7 +372,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'toskana' && img.src.includes('Toskana.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_toskana.jpg';
+          fallbackImg.src = assetUrl('bg_toskana.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -379,7 +381,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'herbst' && img.src.includes('Der-Herbst.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_herbst.jpg';
+          fallbackImg.src = assetUrl('bg_herbst.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -388,7 +390,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'schneefall' && img.src.includes('Schneelandschaft.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_schneefall.jpg';
+          fallbackImg.src = assetUrl('bg_schneefall.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -397,7 +399,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'china' && img.src.includes('China_A.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_china.jpg';
+          fallbackImg.src = assetUrl('bg_china.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -406,7 +408,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'city' && img.src.includes('China-Stadt.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_city.jpg';
+          fallbackImg.src = assetUrl('bg_city.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -415,7 +417,7 @@ export class GraphicsRenderer {
           };
         } else if (theme === 'julius_caesar' && img.src.includes('Der Kaiser.jpg')) {
           const fallbackImg = new Image();
-          fallbackImg.src = '/bg_julius_caesar.jpg';
+          fallbackImg.src = assetUrl('bg_julius_caesar.jpg');
           fallbackImg.onload = () => {
             this.bgImages[theme] = fallbackImg;
           };
@@ -432,19 +434,19 @@ export class GraphicsRenderer {
   _loadBirdSprites() {
     ['/Vögel/Moor/Moor1.png', '/Vögel/Moor/Moor2.png'].forEach(src => {
       const img = new Image();
-      img.src = src;
+      img.src = assetUrl(src);
       this.birdSprites.moor.push(img);
     });
 
     ['/Vögel/Taube-animation/Taube1.png', '/Vögel/Taube-animation/Taube2.png', '/Vögel/Taube-animation/Taube3.png'].forEach(src => {
       const img = new Image();
-      img.src = src;
+      img.src = assetUrl(src);
       this.birdSprites.taube.push(img);
     });
 
     ['/Vögel/vogel-animation/storch1.png', '/Vögel/vogel-animation/storch2.png', '/Vögel/vogel-animation/storch3.png'].forEach(src => {
       const img = new Image();
-      img.src = src;
+      img.src = assetUrl(src);
       this.birdSprites.storch.push(img);
     });
   }

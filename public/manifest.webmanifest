@@ -1,0 +1,19 @@
+{
+  "name": "Moorhuhn Shooter Arcade",
+  "short_name": "Moorhuhn",
+  "description": "Der kultige Jagd-Klassiker – Mit 100 Welten & Interaktiven Easter Eggs",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "./cover.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
