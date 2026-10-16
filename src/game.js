@@ -995,28 +995,31 @@ export class Game {
     this.canvas.height = this.screenHeight;
   }
 
+  panLeft(step = 160) {
+    this.targetCameraX = Math.max(0, this.targetCameraX - step);
+  }
+
+  panRight(step = 160) {
+    this.targetCameraX = Math.min(this.virtualWidth - this.screenWidth, this.targetCameraX + step);
+  }
+
   _bindEvents() {
+    const isInteractiveUI = (target) => {
+      return target && target.closest && target.closest('.hud-pill, .screen-modal, .reload-btn, #ammo-touch-zone, .mobile-pan-btn, .minimap-bar, button, a');
+    };
+
     window.addEventListener('resize', () => this._resizeCanvas());
 
+    // Mouse movement only controls crosshair aiming, NO edge dragging/scrolling
     window.addEventListener('mousemove', (e) => {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
-
-      const edgeThreshold = 0.15 * this.screenWidth;
-      if (this.mouseX < edgeThreshold) {
-        const factor = 1 - (this.mouseX / edgeThreshold);
-        this.targetCameraX -= factor * 22;
-      } else if (this.mouseX > this.screenWidth - edgeThreshold) {
-        const factor = (this.mouseX - (this.screenWidth - edgeThreshold)) / edgeThreshold;
-        this.targetCameraX += factor * 22;
-      }
-
-      this.targetCameraX = Math.max(0, Math.min(this.virtualWidth - this.screenWidth, this.targetCameraX));
     });
 
     window.addEventListener('mousedown', (e) => {
       if (this.state !== 'PLAYING') return;
       if (Date.now() - this.lastTouchTime < 600) return; // Prevent ghost click after touch
+      if (isInteractiveUI(e.target)) return; // Never shoot when clicking UI or arrow buttons
       if (e.button === 0) {
         this.shoot();
       } else if (e.button === 2) {
@@ -1024,11 +1027,7 @@ export class Game {
       }
     });
 
-    const isInteractiveUI = (target) => {
-      return target && target.closest && target.closest('.hud-pill, .screen-modal, .reload-btn, #ammo-touch-zone, .mobile-pan-btn, .minimap-bar');
-    };
-
-    // Touch Support for Mobile / Android / Tablet
+    // Touch Support: Tap-to-shoot directly without screen dragging/swiping
     window.addEventListener('touchstart', (e) => {
       this.lastTouchTime = Date.now();
       if (this.state !== 'PLAYING') return;
@@ -1039,61 +1038,33 @@ export class Game {
         e.preventDefault();
         this.reload();
         if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
-        this.isTouchDragging = false;
-        this.touchMoved = false;
         return;
       }
 
       if (e.touches.length === 1) {
         const t = e.touches[0];
-        this.touchStartX = t.clientX;
-        this.touchStartY = t.clientY;
-        this.touchStartCameraX = this.targetCameraX;
-        this.isTouchDragging = false;
-        this.touchMoved = false;
         this.mouseX = t.clientX;
         this.mouseY = t.clientY;
+        e.preventDefault();
+        this.shoot(t.clientX, t.clientY);
+        if (navigator.vibrate) navigator.vibrate(25);
       }
     }, { passive: false });
 
+    // Touch move updates aim position only - NEVER scrolls or drags panorama
     window.addEventListener('touchmove', (e) => {
       if (this.state !== 'PLAYING') return;
       if (isInteractiveUI(e.target)) return;
       if (e.touches.length !== 1) return;
 
       const t = e.touches[0];
-      const dx = t.clientX - this.touchStartX;
-      const dy = t.clientY - this.touchStartY;
-
-      // If finger moved more than 10px, treat as panorama swipe/drag
-      if (!this.touchMoved && Math.hypot(dx, dy) > 10) {
-        this.touchMoved = true;
-        this.isTouchDragging = true;
-      }
-
-      if (this.isTouchDragging) {
-        e.preventDefault();
-        const swipeFactor = 1.6;
-        this.targetCameraX = Math.max(0, Math.min(this.virtualWidth - this.screenWidth, this.touchStartCameraX - dx * swipeFactor));
-        this.mouseX = t.clientX;
-        this.mouseY = t.clientY;
-      }
-    }, { passive: false });
+      this.mouseX = t.clientX;
+      this.mouseY = t.clientY;
+    }, { passive: true });
 
     window.addEventListener('touchend', (e) => {
-      if (this.state !== 'PLAYING') return;
-      if (isInteractiveUI(e.target)) return;
-
-      // Tap-To-Shoot: If it was a quick touch without dragging -> Instant Shot!
-      if (!this.isTouchDragging && !this.touchMoved) {
-        e.preventDefault();
-        this.shoot(this.touchStartX, this.touchStartY);
-        if (navigator.vibrate) navigator.vibrate(25);
-      }
-
-      this.isTouchDragging = false;
-      this.touchMoved = false;
-    }, { passive: false });
+      // No drag cleanup required
+    }, { passive: true });
 
     window.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -1104,9 +1075,9 @@ export class Game {
         if (this.state === 'PLAYING') this.pauseGame();
         else if (this.state === 'PAUSED') this.resumeGame();
       } else if (e.code === 'ArrowLeft' || e.code === 'KeyA') {
-        this.targetCameraX = Math.max(0, this.targetCameraX - 150);
+        this.panLeft(160);
       } else if (e.code === 'ArrowRight' || e.code === 'KeyD') {
-        this.targetCameraX = Math.min(this.virtualWidth - this.screenWidth, this.targetCameraX + 150);
+        this.panRight(160);
       }
     });
   }

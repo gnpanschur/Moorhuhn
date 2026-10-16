@@ -124,9 +124,15 @@ function updateUI() {
     minimapViewport.style.width = `${viewWidthPct}%`;
     minimapViewport.style.left = `${viewLeftPct}%`;
 
+    hudTop.style.display = 'flex';
+    hudBottom.style.display = 'flex';
+    if (panLeftBtn) panLeftBtn.style.display = 'flex';
+    if (panRightBtn) panRightBtn.style.display = 'flex';
   } else {
     hudTop.style.display = 'none';
     hudBottom.style.display = 'none';
+    if (panLeftBtn) panLeftBtn.style.display = 'none';
+    if (panRightBtn) panRightBtn.style.display = 'none';
   }
 
   if (game.state === 'LEVEL_COMPLETE' && !modalVictory.classList.contains('active')) {
@@ -274,55 +280,51 @@ document.addEventListener('fullscreenchange', () => {
   }
 });
 
-// Mobile Edge Pan Controls (Left & Right Touch Arrows)
+// Camera Pan Controls (Left & Right Arrow Buttons)
 const panLeftBtn = document.getElementById('mobile-pan-left');
 const panRightBtn = document.getElementById('mobile-pan-right');
 
 if (panLeftBtn) {
-  const startPanLeft = (e) => { e.preventDefault(); game.panLeftActive = true; };
-  const stopPanLeft = (e) => { e.preventDefault(); game.panLeftActive = false; };
-  panLeftBtn.addEventListener('touchstart', startPanLeft, { passive: false });
-  panLeftBtn.addEventListener('touchend', stopPanLeft);
-  panLeftBtn.addEventListener('touchcancel', stopPanLeft);
-  panLeftBtn.addEventListener('mousedown', startPanLeft);
-  panLeftBtn.addEventListener('mouseup', stopPanLeft);
-  panLeftBtn.addEventListener('mouseleave', stopPanLeft);
+  const onPanLeftStart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    game.panLeft(140);
+    game.panLeftActive = true;
+  };
+  const onPanLeftEnd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    game.panLeftActive = false;
+  };
+  panLeftBtn.addEventListener('mousedown', onPanLeftStart);
+  panLeftBtn.addEventListener('mouseup', onPanLeftEnd);
+  panLeftBtn.addEventListener('mouseleave', onPanLeftEnd);
+  panLeftBtn.addEventListener('touchstart', onPanLeftStart, { passive: false });
+  panLeftBtn.addEventListener('touchend', onPanLeftEnd, { passive: false });
+  panLeftBtn.addEventListener('touchcancel', onPanLeftEnd, { passive: false });
 }
 
 if (panRightBtn) {
-  const startPanRight = (e) => { e.preventDefault(); game.panRightActive = true; };
-  const stopPanRight = (e) => { e.preventDefault(); game.panRightActive = false; };
-  panRightBtn.addEventListener('touchstart', startPanRight, { passive: false });
-  panRightBtn.addEventListener('touchend', stopPanRight);
-  panRightBtn.addEventListener('touchcancel', stopPanRight);
-  panRightBtn.addEventListener('mousedown', startPanRight);
-  panRightBtn.addEventListener('mouseup', stopPanRight);
-  panRightBtn.addEventListener('mouseleave', stopPanRight);
-}
-
-// Minimap Seeking via Touch or Click
-const minimapBar = document.getElementById('minimap-bar');
-if (minimapBar) {
-  const handleMinimapSeek = (clientX) => {
-    const rect = minimapBar.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    game.targetCameraX = pct * (game.virtualWidth - game.screenWidth);
+  const onPanRightStart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    game.panRight(140);
+    game.panRightActive = true;
   };
-
-  minimapBar.addEventListener('touchstart', (e) => {
+  const onPanRightEnd = (e) => {
     e.preventDefault();
-    if (e.touches.length > 0) handleMinimapSeek(e.touches[0].clientX);
-  }, { passive: false });
-
-  minimapBar.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    if (e.touches.length > 0) handleMinimapSeek(e.touches[0].clientX);
-  }, { passive: false });
-
-  minimapBar.addEventListener('mousedown', (e) => {
-    handleMinimapSeek(e.clientX);
-  });
+    e.stopPropagation();
+    game.panRightActive = false;
+  };
+  panRightBtn.addEventListener('mousedown', onPanRightStart);
+  panRightBtn.addEventListener('mouseup', onPanRightEnd);
+  panRightBtn.addEventListener('mouseleave', onPanRightEnd);
+  panRightBtn.addEventListener('touchstart', onPanRightStart, { passive: false });
+  panRightBtn.addEventListener('touchend', onPanRightEnd, { passive: false });
+  panRightBtn.addEventListener('touchcancel', onPanRightEnd, { passive: false });
 }
+
+// Minimap is a pure position radar indicator (no dragging - panning only via arrow buttons)
 
 // Orientation Overlay for Portrait mode on Mobile
 const orientationOverlay = document.getElementById('orientation-overlay');

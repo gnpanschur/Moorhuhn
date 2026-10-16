@@ -65,11 +65,11 @@
       </div>
     </div>
 
-    <!-- MOBILE PAN CONTROLS (TOUCH ARROWS) -->
-    <button class="mobile-pan-btn pan-left" id="mobile-pan-left" aria-label="Kamera links schwenken">
+    <!-- CAMERA PAN CONTROLS (ON-SCREEN ARROWS) -->
+    <button class="mobile-pan-btn pan-left" id="mobile-pan-left" aria-label="Kamera links schwenken" style="display: none;">
       <i data-lucide="chevron-left"></i>
     </button>
-    <button class="mobile-pan-btn pan-right" id="mobile-pan-right" aria-label="Kamera rechts schwenken">
+    <button class="mobile-pan-btn pan-right" id="mobile-pan-right" aria-label="Kamera rechts schwenken" style="display: none;">
       <i data-lucide="chevron-right"></i>
     </button>
 
@@ -84,7 +84,7 @@
       </div>
 
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px;">
-        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Kamera-Panorama (Wischen / ◀ ▶ Tasten)</span>
+        <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Kamera-Position (◀ ▶ Pfeil-Buttons)</span>
         <div class="minimap-bar" id="minimap-bar">
           <div class="minimap-viewport" id="minimap-viewport"></div>
         </div>
@@ -166,8 +166,8 @@
           <td style="color: #fff;">Maus bewegen & <strong>Links-Klick</strong></td>
         </tr>
         <tr>
-          <td><i data-lucide="move"></i> <strong>↔️ Wisch-Steuerung (Swipe)</strong></td>
-          <td style="color: #fff;">Mit dem Finger horizontal über das Display <strong>wischen</strong> oder <strong>◀ / ▶ Tasten</strong> halten</td>
+          <td><i data-lucide="arrow-left-right"></i> <strong>↔️ Kamera bewegen</strong></td>
+          <td style="color: #fff;">Links & Rechts mit den <strong>Pfeil-Buttons</strong> am Bildschirmrand oder <strong>◀ / ▶ Tasten</strong> (A / D)</td>
         </tr>
         <tr>
           <td><i data-lucide="rotate-ccw"></i> <strong>🔄 Touch-Reload</strong></td>
