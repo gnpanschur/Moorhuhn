@@ -1,8 +1,0 @@
-/* Taube-animation/taube.css */
-.flying-taube {
-    position: fixed;
-    z-index: 9998; /* Leicht unter dem Storch (9999), aber über allem anderen */
-    pointer-events: none; /* Klicks gehen durch die Taube hindurch */
-    width: 170px; /* Tauben sind kleiner als der Storch (verdoppelt von 85px) */
-    height: auto;
-}

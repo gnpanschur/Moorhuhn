@@ -1,3 +1,5 @@
+https://github.com/gnpanschur/Moorhuhn
+
 Add Level 8: Auf einer alten Farm
 Add Level 9: eine Ritterburg im Hintergrund (golden hour)
 Add Level 10: in Ägypten
@@ -408,3 +410,30 @@ Ich kann das Projekt gerne so erweitern, dass es sich auf Android hervorragend s
 🔄 Touch-Reload: Schnelles Nachladen per Tippen auf ein vergrößertes Patronen-Symbol oder Zwei-Finger-Tipp.
 📱 Mobil-Optimierung: Deaktivierung von unerwünschtem Zoomen/Scrollen und automatische Ausrichtung auf das Querformat.
 Sag einfach Bescheid, wenn wir das einrichten sollen!
+---------------------------------
+-----------------------------------
+Ich möchte, dass wir Touch-Support einbauen. (für Handy oder Tablet) das Projekt so erweitern, dass es sich auf Android hervorragend steuern lässt:
+🎯 Tap-to-Shoot: Sofortiges Treffen & Schießen per Fingertipp (ohne Verzögerung).
+↔️ Wisch-Steuerung (Swipe): Flüssiges Umschauen nach links und rechts durch horizontales Wischen.
+🔄 Touch-Reload: Schnelles Nachladen per Tippen auf ein vergrößertes Patronen-Symbol oder Zwei-Finger-Tipp.
+📱 Mobil-Optimierung: Deaktivierung von unerwünschtem Zoomen/Scrollen und automatische Ausrichtung auf das Querformat.
+Alles soll für Pc, oder Handy optimiert sein.
+Gib mir den Link für dieses Spiel, wenn du mit dem Umbau fertig bist.
+----------------------------------------
+----------------------------------------
+
+ (Als Web-App / PWA online stellen):
+Das Projekt kann kostenlos auf Plattform GitHub Pages bereitgestellt werden. Es verhält es sich wie eine normale WebApp im Vollbildmodus.
+--------------------------------------------
+--------------------------------------------
+🌐 1. Weltweit online im Internet (für Smartphone, Tablet & PC)
+👉 https://gnpanschur.github.io/Moorhuhn/
+
+(Diesen Link kannst du auf deinem Android-Handy oder Tablet im Browser öffnen und dort über das Browser-Menü auch direkt auf den Startbildschirm als App installieren).
+
+Hinweis zur ersten Aktivierung auf GitHub (falls noch nicht geschehen):
+
+Öffne dein Repository: https://github.com/gnpanschur/Moorhuhn
+Gehe oben auf Settings ➔ links auf Pages.
+Wähle bei Source: „GitHub Actions“ aus.
+Nach ca. 1–2 Minuten ist die Seite online erreichbar.
