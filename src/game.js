@@ -933,7 +933,7 @@ export class Game {
     this.combo = 0;
     this.maxCombo = 0;
     this.lastHitTime = 0;
-    this.comboTimeout = 3000; // 3,0 Sekunden Zeitfenster für Combo-Ketten
+    this.comboTimeout = 2500; // 2,5 Sekunden Zeitfenster für Combo-Ketten
     this.easterEggsDiscovered = 0;
 
     this.ammo = 8;
