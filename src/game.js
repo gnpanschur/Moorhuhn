@@ -964,8 +964,34 @@ export class Game {
 
     this.progress = this._loadProgress();
 
+    // Eco-/Performance-Modus initialisieren (Standard: EIN für maximale 60 FPS auf Laptops)
+    let savedEco = null;
+    try {
+      savedEco = localStorage.getItem('moorhuhn_eco_mode');
+    } catch(e) {}
+    this.ecoMode = savedEco !== null ? savedEco === 'true' : true;
+    this.setEcoMode(this.ecoMode);
+
     this._bindEvents();
     this._resizeCanvas();
+  }
+
+  setEcoMode(enabled) {
+    this.ecoMode = Boolean(enabled);
+    try {
+      localStorage.setItem('moorhuhn_eco_mode', String(this.ecoMode));
+    } catch(e) {}
+    if (typeof document !== 'undefined' && document.body) {
+      document.body.classList.toggle('eco-mode', this.ecoMode);
+    }
+    if (this.particles) {
+      this.particles.ecoMode = this.ecoMode;
+    }
+  }
+
+  toggleEcoMode() {
+    this.setEcoMode(!this.ecoMode);
+    return this.ecoMode;
   }
 
   _loadProgress() {
@@ -1089,6 +1115,10 @@ export class Game {
     this.difficulty = difficulty;
 
     const levelCfg = LEVEL_CONFIGS[this.currentLevelIndex];
+    this.graphics.loadThemeBackground(levelCfg.theme);
+    const nextLvl = LEVEL_CONFIGS[this.currentLevelIndex + 1];
+    if (nextLvl) this.graphics.loadThemeBackground(nextLvl.theme);
+
     this.timeLeft = levelCfg.timeLimit;
     if (difficulty === 'easy') this.timeLeft = 130;
     if (difficulty === 'crazy') this.timeLeft = 75;
@@ -1389,6 +1419,20 @@ export class Game {
   render() {
     this.ctx.clearRect(0, 0, this.screenWidth, this.screenHeight);
 
+    if (this.ecoMode) {
+      this.ctx.shadowBlur = 0;
+      Object.defineProperty(this.ctx, 'shadowBlur', {
+        get: () => 0,
+        set: () => {},
+        configurable: true
+      });
+      Object.defineProperty(this.ctx, 'shadowColor', {
+        get: () => 'transparent',
+        set: () => {},
+        configurable: true
+      });
+    }
+
     const levelCfg = LEVEL_CONFIGS[this.currentLevelIndex];
 
     this.ctx.save();
@@ -1406,6 +1450,14 @@ export class Game {
     this.particles.render(this.ctx, 0);
 
     this.ctx.restore();
+
+    if (this.ecoMode) {
+      try {
+        delete this.ctx.shadowBlur;
+        delete this.ctx.shadowColor;
+        this.ctx.shadowBlur = 0;
+      } catch(e) {}
+    }
 
     if (this.state === 'PLAYING') {
       this.graphics.renderCrosshair(this.ctx, this.mouseX, this.mouseY, this.recoilY > 2, this.ammo);

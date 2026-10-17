@@ -1,5 +1,43 @@
 const assetUrl = (p) => (import.meta.env.BASE_URL || './') + String(p).replace(/^\//, '');
 
+const THEME_CUSTOM_FILES = {
+  pirate_nest: { main: 'Pirateninsel.webp', fallback: 'bg_pirate_nest.webp' },
+  junkyard: { main: 'Schrottplatz-Chaos.webp', fallback: 'bg_junkyard.webp' },
+  autumn_orchard: { main: 'Der Obstgarten.webp', fallback: 'bg_autumn_orchard.webp' },
+  cyberpunk: { main: 'Cyberpunk-Metropole.webp', fallback: 'bg_cyberpunk.webp' },
+  enchanted_forest: { main: 'Zauberwald.webp', fallback: 'bg_enchanted_forest.webp' },
+  mad_scientist_lab: { main: 'Labor.webp', fallback: 'bg_mad_scientist_lab.webp' },
+  taj_mahal: { main: 'Taj-Mahal.webp', fallback: 'bg_taj_mahal.webp' },
+  hanging_gardens_babylon: { main: 'Haengende-Gaerten-Babylon.webp', fallback: 'bg_hanging_gardens_babylon.webp' },
+  zeus_statue_olympia: { main: 'Zeusstatue-Olympia.webp', fallback: 'bg_zeus_statue_olympia.webp' },
+  lighthouse_alexandria: { main: 'Leuchtturm-Alexandria.webp', fallback: 'bg_lighthouse_alexandria.webp' },
+  colossus_rhodes: { main: 'Koloss-von-Rhodos.webp', fallback: 'bg_colossus_rhodes.webp' },
+  mausoleum_halicarnassus: { main: 'Mausoleum-Halikarnassos.webp', fallback: 'bg_mausoleum_halicarnassus.webp' },
+  artemis_temple_ephesus: { main: 'Artemistempel-Ephesos.webp', fallback: 'bg_artemis_temple_ephesus.webp' },
+  chichen_itza: { main: 'Chichen-Itza.webp', fallback: 'bg_chichen_itza.webp' },
+  christ_redeemer_rio: { main: 'Christus-der-Erloeser.webp', fallback: 'bg_christ_redeemer_rio.webp' },
+  great_wall_china: { main: 'Chinesische-Mauer.webp', fallback: 'bg_great_wall_china.webp' },
+  machu_picchu: { main: 'Machu-Picchu.webp', fallback: 'bg_machu_picchu.webp' },
+  petra_jordan: { main: 'Petra-Schatzhaus.webp', fallback: 'bg_petra_jordan.webp' },
+  statue_of_liberty: { main: 'Freiheitsstatue-NewYork.webp', fallback: 'bg_statue_of_liberty.webp' },
+  eiffel_tower_paris: { main: 'Eiffelturm-Paris.webp', fallback: 'bg_eiffel_tower_paris.webp' },
+  stonehenge: { main: 'Stonehenge-England.webp', fallback: 'bg_stonehenge.webp' },
+  leaning_tower_pisa: { main: 'Schiefer-Turm-Pisa.webp', fallback: 'bg_leaning_tower_pisa.webp' },
+  easter_island_moai: { main: 'Osterinsel-Moai.webp', fallback: 'bg_easter_island_moai.webp' },
+  tower_bridge_london: { main: 'Tower-Bridge-London.webp', fallback: 'bg_tower_bridge_london.webp' },
+  grazer_uhrturm: { main: 'Grazer-Uhrturm.webp', fallback: 'bg_grazer_uhrturm.webp' },
+  im_weltall: { main: 'Im-Weltall.webp', fallback: 'bg_im_weltall.webp' },
+  wien: { main: 'Wien.webp', fallback: 'bg_wien.webp' },
+  mohnblumen: { main: 'Moonblumen.webp', fallback: 'bg_mohnblumen.webp' },
+  die_burg: { main: 'Burg_a.webp', fallback: 'bg_die_burg.webp' },
+  toskana: { main: 'Toskana.webp', fallback: 'bg_toskana.webp' },
+  herbst: { main: 'Der-Herbst.webp', fallback: 'bg_herbst.webp' },
+  schneefall: { main: 'Schneelandschaft.webp', fallback: 'bg_schneefall.webp' },
+  china: { main: 'China_A.webp', fallback: 'bg_china.webp' },
+  julius_caesar: { main: 'Der Kaiser.webp', fallback: 'bg_julius_caesar.webp' },
+  city: { main: 'China-Stadt.webp', fallback: 'bg_city.webp' }
+};
+
 // Dynamic Procedural & Image Canvas Graphics Renderer for Moorhuhn
 export class GraphicsRenderer {
   constructor() {
@@ -10,425 +48,44 @@ export class GraphicsRenderer {
       taube: [],
       storch: []
     };
-    this._loadBackgroundImages();
+    this.loadThemeBackground('summer'); // Startlevel-Hintergrund vorladen
     this._loadBirdSprites();
   }
 
-  _loadBackgroundImages() {
-    const themes = ['summer', 'winter', 'beach', 'forest', 'spooky', 'aquarium', 'city', 'farm', 'castle', 'egypt', 'rome', 'gaul', 'palace', 'moorland', 'dragon_valley', 'jungle_ruins', 'medieval_fortress', 'military_base', 'atlantis', 'alpine_meadow', 'elven_kingdom', 'wild_west', 'mars_colony', 'candy_planet', 'night_fair', 'riverbank', 'floating_islands', 'pirate_nest', 'junkyard', 'autumn_orchard', 'cyberpunk', 'enchanted_forest', 'savannah', 'graveyard', 'harbor', 'arcade', 'clock_canyon', 'arctic', 'haunted_manor', 'rooftop_garden', 'drive_in_cinema', 'crystal_cave', 'grand_canyon', 'ghost_ship', 'construction_site', 'western_mine', 'toy_box', 'bamboo_valley', 'vampire_castle', 'subway_station', 'cloud_castle', 'mystic_mangrove', 'outer_space', 'colosseum_arena', 'ski_resort', 'iceland_geysir', 'giant_bakery', 'arcade_chip', 'sakura_park', 'formula1_track', 'coral_reef_lowtide', 'artist_studio', 'pixel_desert', 'giza_pyramids', 'soccer_stadium', 'prairie_tornado', 'retro_living_room', 'comic_drawing_board', 'venice_canals', 'skatepark', 'aurora_borealis', 'mad_scientist_lab', 'taj_mahal', 'hanging_gardens_babylon', 'zeus_statue_olympia', 'lighthouse_alexandria', 'colossus_rhodes', 'mausoleum_halicarnassus', 'artemis_temple_ephesus', 'chichen_itza', 'christ_redeemer_rio', 'great_wall_china', 'machu_picchu', 'petra_jordan', 'statue_of_liberty', 'eiffel_tower_paris', 'stonehenge', 'leaning_tower_pisa', 'easter_island_moai', 'tower_bridge_london', 'grazer_uhrturm', 'im_weltall', 'wien', 'mohnblumen', 'die_burg', 'toskana', 'herbst', 'schneefall', 'china', 'julius_caesar'];
-    themes.forEach(theme => {
-      const img = new Image();
-      if (theme === 'pirate_nest') {
-        img.src = assetUrl('Pirateninsel.webp');
-      } else if (theme === 'junkyard') {
-        img.src = assetUrl('Schrottplatz-Chaos.webp');
-      } else if (theme === 'autumn_orchard') {
-        img.src = assetUrl('Der Obstgarten.webp');
-      } else if (theme === 'cyberpunk') {
-        img.src = assetUrl('Cyberpunk-Metropole.webp');
-      } else if (theme === 'enchanted_forest') {
-        img.src = assetUrl('Zauberwald.webp');
-      } else if (theme === 'mad_scientist_lab') {
-        img.src = assetUrl('Labor.webp');
-      } else if (theme === 'taj_mahal') {
-        img.src = assetUrl('Taj-Mahal.webp');
-      } else if (theme === 'hanging_gardens_babylon') {
-        img.src = assetUrl('Haengende-Gaerten-Babylon.webp');
-      } else if (theme === 'zeus_statue_olympia') {
-        img.src = assetUrl('Zeusstatue-Olympia.webp');
-      } else if (theme === 'lighthouse_alexandria') {
-        img.src = assetUrl('Leuchtturm-Alexandria.webp');
-      } else if (theme === 'colossus_rhodes') {
-        img.src = assetUrl('Koloss-von-Rhodos.webp');
-      } else if (theme === 'mausoleum_halicarnassus') {
-        img.src = assetUrl('Mausoleum-Halikarnassos.webp');
-      } else if (theme === 'artemis_temple_ephesus') {
-        img.src = assetUrl('Artemistempel-Ephesos.webp');
-      } else if (theme === 'chichen_itza') {
-        img.src = assetUrl('Chichen-Itza.webp');
-      } else if (theme === 'christ_redeemer_rio') {
-        img.src = assetUrl('Christus-der-Erloeser.webp');
-      } else if (theme === 'great_wall_china') {
-        img.src = assetUrl('Chinesische-Mauer.webp');
-      } else if (theme === 'machu_picchu') {
-        img.src = assetUrl('Machu-Picchu.webp');
-      } else if (theme === 'petra_jordan') {
-        img.src = assetUrl('Petra-Schatzhaus.webp');
-      } else if (theme === 'statue_of_liberty') {
-        img.src = assetUrl('Freiheitsstatue-NewYork.webp');
-      } else if (theme === 'eiffel_tower_paris') {
-        img.src = assetUrl('Eiffelturm-Paris.webp');
-      } else if (theme === 'stonehenge') {
-        img.src = assetUrl('Stonehenge-England.webp');
-      } else if (theme === 'leaning_tower_pisa') {
-        img.src = assetUrl('Schiefer-Turm-Pisa.webp');
-      } else if (theme === 'easter_island_moai') {
-        img.src = assetUrl('Osterinsel-Moai.webp');
-      } else if (theme === 'tower_bridge_london') {
-        img.src = assetUrl('Tower-Bridge-London.webp');
-      } else if (theme === 'grazer_uhrturm') {
-        img.src = assetUrl('Grazer-Uhrturm.webp');
-      } else if (theme === 'im_weltall') {
-        img.src = assetUrl('Im-Weltall.webp');
-      } else if (theme === 'wien') {
-        img.src = assetUrl('Wien.webp');
-      } else if (theme === 'mohnblumen') {
-        img.src = assetUrl('Moonblumen.webp');
-      } else if (theme === 'die_burg') {
-        img.src = assetUrl('Burg_a.webp');
-      } else if (theme === 'toskana') {
-        img.src = assetUrl('Toskana.webp');
-      } else if (theme === 'herbst') {
-        img.src = assetUrl('Der-Herbst.webp');
-      } else if (theme === 'schneefall') {
-        img.src = assetUrl('Schneelandschaft.webp');
-      } else if (theme === 'china') {
-        img.src = assetUrl('China_A.webp');
-      } else if (theme === 'julius_caesar') {
-        img.src = assetUrl('Der Kaiser.webp');
-      } else if (theme === 'city') {
-        img.src = assetUrl('China-Stadt.webp');
-      } else {
-        img.src = assetUrl(`bg_${theme}.webp`);
-      }
-      img.onload = () => {
-        this.bgImages[theme] = img;
-      };
-      img.onerror = () => {
-        if (theme === 'pirate_nest' && img.src.includes('Pirateninsel.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_pirate_nest.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'junkyard' && img.src.includes('Schrottplatz-Chaos.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_junkyard.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'autumn_orchard' && img.src.includes('Der Obstgarten.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_autumn_orchard.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'cyberpunk' && img.src.includes('Cyberpunk-Metropole.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_cyberpunk.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'enchanted_forest' && img.src.includes('Zauberwald.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_enchanted_forest.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'mad_scientist_lab' && img.src.includes('Labor.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_mad_scientist_lab.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'taj_mahal' && img.src.includes('Taj-Mahal.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_taj_mahal.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'hanging_gardens_babylon' && img.src.includes('Haengende-Gaerten-Babylon.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_hanging_gardens_babylon.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'zeus_statue_olympia' && img.src.includes('Zeusstatue-Olympia.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_zeus_statue_olympia.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'lighthouse_alexandria' && img.src.includes('Leuchtturm-Alexandria.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_lighthouse_alexandria.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'colossus_rhodes' && img.src.includes('Koloss-von-Rhodos.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_colossus_rhodes.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'mausoleum_halicarnassus' && img.src.includes('Mausoleum-Halikarnassos.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_mausoleum_halicarnassus.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'artemis_temple_ephesus' && img.src.includes('Artemistempel-Ephesos.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_artemis_temple_ephesus.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'chichen_itza' && img.src.includes('Chichen-Itza.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_chichen_itza.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'christ_redeemer_rio' && img.src.includes('Christus-der-Erloeser.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_christ_redeemer_rio.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'great_wall_china' && img.src.includes('Chinesische-Mauer.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_great_wall_china.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'machu_picchu' && img.src.includes('Machu-Picchu.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_machu_picchu.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'petra_jordan' && img.src.includes('Petra-Schatzhaus.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_petra_jordan.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'statue_of_liberty' && img.src.includes('Freiheitsstatue-NewYork.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_statue_of_liberty.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'eiffel_tower_paris' && img.src.includes('Eiffelturm-Paris.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_eiffel_tower_paris.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'stonehenge' && img.src.includes('Stonehenge-England.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_stonehenge.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'leaning_tower_pisa' && img.src.includes('Schiefer-Turm-Pisa.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_leaning_tower_pisa.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'easter_island_moai' && img.src.includes('Osterinsel-Moai.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_easter_island_moai.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'tower_bridge_london' && img.src.includes('Tower-Bridge-London.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_tower_bridge_london.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'grazer_uhrturm' && img.src.includes('Grazer-Uhrturm.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_grazer_uhrturm.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'im_weltall' && img.src.includes('Im-Weltall.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_im_weltall.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'wien' && img.src.includes('Wien.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_wien.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'mohnblumen' && img.src.includes('Moonblumen.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('Mohnblumen.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            const fallbackImg2 = new Image();
-            fallbackImg2.src = assetUrl('bg_mohnblumen.webp');
-            fallbackImg2.onload = () => {
-              this.bgImages[theme] = fallbackImg2;
-            };
-            fallbackImg2.onerror = () => {
-              this.bgImages[theme] = null;
-            };
-          };
-        } else if (theme === 'die_burg' && img.src.includes('Burg_a.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('Die-Burg.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            const fallbackImg2 = new Image();
-            fallbackImg2.src = assetUrl('bg_die_burg.webp');
-            fallbackImg2.onload = () => {
-              this.bgImages[theme] = fallbackImg2;
-            };
-            fallbackImg2.onerror = () => {
-              this.bgImages[theme] = null;
-            };
-          };
-        } else if (theme === 'toskana' && img.src.includes('Toskana.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_toskana.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'herbst' && img.src.includes('Der-Herbst.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_herbst.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'schneefall' && img.src.includes('Schneelandschaft.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_schneefall.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'china' && img.src.includes('China_A.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_china.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'city' && img.src.includes('China-Stadt.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_city.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else if (theme === 'julius_caesar' && img.src.includes('Der Kaiser.webp')) {
-          const fallbackImg = new Image();
-          fallbackImg.src = assetUrl('bg_julius_caesar.webp');
-          fallbackImg.onload = () => {
-            this.bgImages[theme] = fallbackImg;
-          };
-          fallbackImg.onerror = () => {
-            this.bgImages[theme] = null;
-          };
-        } else {
+  loadThemeBackground(theme) {
+    if (!theme) return null;
+    if (this.bgImages[theme] !== undefined) return this.bgImages[theme];
+
+    const img = new Image();
+    this.bgImages[theme] = null; // Als ladend markieren
+
+    const custom = THEME_CUSTOM_FILES[theme];
+    const mainFile = custom ? custom.main : `bg_${theme}.webp`;
+    const fallbackFile = custom ? custom.fallback : null;
+
+    img.src = assetUrl(mainFile);
+    img.onload = () => {
+      this.bgImages[theme] = img;
+    };
+    img.onerror = () => {
+      if (fallbackFile && img.src !== assetUrl(fallbackFile)) {
+        const fallbackImg = new Image();
+        fallbackImg.src = assetUrl(fallbackFile);
+        fallbackImg.onload = () => {
+          this.bgImages[theme] = fallbackImg;
+        };
+        fallbackImg.onerror = () => {
           this.bgImages[theme] = null;
-        }
-      };
-    });
+        };
+      } else {
+        this.bgImages[theme] = null;
+      }
+    };
+    return img;
+  }
+
+  _loadBackgroundImages() {
+    // Hintergruende werden nun on-demand ueber loadThemeBackground() geladen
   }
 
   _loadBirdSprites() {
@@ -489,7 +146,10 @@ export class GraphicsRenderer {
   // --- 1. THEME BACKGROUND RENDERERS --- //
 
   renderBackground(ctx, theme, virtualWidth, screenHeight, animTime) {
-    const img = this.bgImages[theme];
+    let img = this.bgImages[theme];
+    if (img === undefined) {
+      img = this.loadThemeBackground(theme);
+    }
 
     if (img && img.complete && img.naturalWidth > 0) {
       ctx.drawImage(img, 0, 0, virtualWidth, screenHeight);

@@ -59,18 +59,59 @@ function showLevelSuccessToast(title, subtitle) {
   }
 }
 
+// Munitionspatronen einmalig vorab initialisieren (Null DOM-Neuerstellung im Render-Loop)
+function initShellIcons() {
+  shellsList.innerHTML = '';
+  for (let i = 0; i < game.maxAmmo; i++) {
+    const shell = document.createElement('div');
+    shell.className = 'shell-icon';
+    shellsList.appendChild(shell);
+  }
+}
+initShellIcons();
+
+const easterEggHudDisplay = document.getElementById('easteregg-hud-display');
+const panLeftBtn = document.getElementById('mobile-pan-left');
+const panRightBtn = document.getElementById('mobile-pan-right');
+
+// Dirty-State Tracking für konstante 60 FPS ohne Reflow-Spikes
+let lastScore = -1;
+let lastTimeLeft = -1;
+let lastAmmo = -1;
+let lastCombo = -1;
+let lastEasterEggs = -1;
+let lastCameraX = -1;
+let lastScreenWidth = -1;
+let lastLevelId = -1;
+let lastTargetReached = null;
+let lastHudVisible = null;
+
 function updateUI() {
-  if (game.state === 'PLAYING' || game.state === 'PAUSED') {
-    hudTop.style.display = 'flex';
-    hudBottom.style.display = 'flex';
+  const isPlayingOrPaused = game.state === 'PLAYING' || game.state === 'PAUSED';
 
-    scoreDisplay.innerText = String(Math.max(0, game.score)).padStart(5, '0');
+  if (lastHudVisible !== isPlayingOrPaused) {
+    lastHudVisible = isPlayingOrPaused;
+    const disp = isPlayingOrPaused ? 'flex' : 'none';
+    hudTop.style.display = disp;
+    hudBottom.style.display = disp;
+    if (panLeftBtn) panLeftBtn.style.display = disp;
+    if (panRightBtn) panRightBtn.style.display = disp;
+  }
 
-    timerDisplay.innerText = String(game.timeLeft);
-    if (game.timeLeft <= 10) {
-      timerDisplay.classList.add('warning');
-    } else {
-      timerDisplay.classList.remove('warning');
+  if (isPlayingOrPaused) {
+    if (lastScore !== game.score) {
+      lastScore = game.score;
+      scoreDisplay.innerText = String(Math.max(0, game.score)).padStart(5, '0');
+    }
+
+    if (lastTimeLeft !== game.timeLeft) {
+      lastTimeLeft = game.timeLeft;
+      timerDisplay.innerText = String(game.timeLeft);
+      if (game.timeLeft <= 10) {
+        timerDisplay.classList.add('warning');
+      } else {
+        timerDisplay.classList.remove('warning');
+      }
     }
 
     const currentLvl = LEVEL_CONFIGS[game.currentLevelIndex];
@@ -81,16 +122,20 @@ function updateUI() {
       }
 
       const isTargetReached = game.score >= currentLvl.targetScore;
-      if (levelNumberDisplay) {
-        if (isTargetReached) {
-          levelNumberDisplay.innerText = `Level ${currentLvl.id} ✓ Erfolgreich`;
-          levelNumberDisplay.classList.add('success');
-        } else {
-          levelNumberDisplay.innerText = `Level ${currentLvl.id}`;
-          levelNumberDisplay.classList.remove('success');
+      if (lastLevelId !== currentLvl.id || lastTargetReached !== isTargetReached) {
+        lastLevelId = currentLvl.id;
+        lastTargetReached = isTargetReached;
+        if (levelNumberDisplay) {
+          if (isTargetReached) {
+            levelNumberDisplay.innerText = `Level ${currentLvl.id} ✓ Erfolgreich`;
+            levelNumberDisplay.classList.add('success');
+          } else {
+            levelNumberDisplay.innerText = `Level ${currentLvl.id}`;
+            levelNumberDisplay.classList.remove('success');
+          }
         }
+        levelNameDisplay.innerText = currentLvl.name;
       }
-      levelNameDisplay.innerText = currentLvl.name;
 
       if ((game.targetScoreReached || isTargetReached) && !levelSuccessToastShown) {
         levelSuccessToastShown = true;
@@ -98,42 +143,40 @@ function updateUI() {
       }
     }
 
-    if (game.combo > 1) {
-      comboPill.style.display = 'flex';
-      const mult = Math.min(4, Math.floor((game.combo - 1) / 2) + 1);
-      comboBadge.innerText = `x${mult} COMBO (${game.combo})`;
-    } else {
-      comboPill.style.display = 'none';
+    if (lastCombo !== game.combo) {
+      lastCombo = game.combo;
+      if (game.combo > 1) {
+        comboPill.style.display = 'flex';
+        const mult = Math.min(4, Math.floor((game.combo - 1) / 2) + 1);
+        comboBadge.innerText = `x${mult} COMBO (${game.combo})`;
+      } else {
+        comboPill.style.display = 'none';
+      }
     }
 
-    const easterEggHudDisplay = document.getElementById('easteregg-hud-display');
-    if (easterEggHudDisplay && currentLvl) {
+    if (easterEggHudDisplay && currentLvl && lastEasterEggs !== game.easterEggsDiscovered) {
+      lastEasterEggs = game.easterEggsDiscovered;
       const totalEggs = currentLvl.easterEggs ? currentLvl.easterEggs.length : (game.easterEggs?.eggs?.length || 3);
       easterEggHudDisplay.innerText = `${game.easterEggsDiscovered}/${totalEggs}`;
       easterEggHudDisplay.style.color = game.easterEggsDiscovered >= totalEggs ? '#22c55e' : '#38bdf8';
     }
 
-    shellsList.innerHTML = '';
-    for (let i = 0; i < game.maxAmmo; i++) {
-      const shell = document.createElement('div');
-      shell.className = 'shell-icon' + (i >= game.ammo ? ' empty' : '');
-      shellsList.appendChild(shell);
+    if (lastAmmo !== game.ammo) {
+      lastAmmo = game.ammo;
+      const shells = shellsList.children;
+      for (let i = 0; i < shells.length; i++) {
+        shells[i].classList.toggle('empty', i >= game.ammo);
+      }
     }
 
-    const viewWidthPct = (game.screenWidth / game.virtualWidth) * 100;
-    const viewLeftPct = (game.cameraX / game.virtualWidth) * 100;
-    minimapViewport.style.width = `${viewWidthPct}%`;
-    minimapViewport.style.left = `${viewLeftPct}%`;
-
-    hudTop.style.display = 'flex';
-    hudBottom.style.display = 'flex';
-    if (panLeftBtn) panLeftBtn.style.display = 'flex';
-    if (panRightBtn) panRightBtn.style.display = 'flex';
-  } else {
-    hudTop.style.display = 'none';
-    hudBottom.style.display = 'none';
-    if (panLeftBtn) panLeftBtn.style.display = 'none';
-    if (panRightBtn) panRightBtn.style.display = 'none';
+    if (Math.abs(lastCameraX - game.cameraX) > 0.5 || lastScreenWidth !== game.screenWidth) {
+      lastCameraX = game.cameraX;
+      lastScreenWidth = game.screenWidth;
+      const viewWidthPct = (game.screenWidth / game.virtualWidth) * 100;
+      const viewLeftPct = (game.cameraX / game.virtualWidth) * 100;
+      minimapViewport.style.width = `${viewWidthPct}%`;
+      minimapViewport.style.left = `${viewLeftPct}%`;
+    }
   }
 
   if (game.state === 'LEVEL_COMPLETE' && !modalVictory.classList.contains('active')) {
@@ -282,9 +325,6 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 // Camera Pan Controls (Left & Right Arrow Buttons)
-const panLeftBtn = document.getElementById('mobile-pan-left');
-const panRightBtn = document.getElementById('mobile-pan-right');
-
 if (panLeftBtn) {
   const onPanLeftStart = (e) => {
     e.preventDefault();
@@ -403,6 +443,39 @@ syncMusicVolumeUI(initialVol);
     slider.addEventListener('change', handleMusicVolumeInput);
   }
 });
+
+// Eco- / Performance-Modus Schalter (HUD, Hauptmenü & Pause)
+const btnEcoToggle = document.getElementById('btn-eco-toggle');
+const ecoLabel = document.getElementById('eco-label');
+const btnPauseEcoToggle = document.getElementById('btn-pause-eco-toggle');
+const btnMenuEcoToggle = document.getElementById('btn-menu-eco-toggle');
+
+function updateEcoModeUI(isEco) {
+  if (btnEcoToggle) {
+    btnEcoToggle.classList.toggle('active', isEco);
+    if (ecoLabel) ecoLabel.innerText = isEco ? 'Eco AN' : 'Eco AUS';
+  }
+  if (btnPauseEcoToggle) {
+    btnPauseEcoToggle.innerText = isEco ? 'EIN (60 FPS)' : 'AUS';
+    btnPauseEcoToggle.style.borderColor = isEco ? '#22c55e' : 'rgba(255,255,255,0.2)';
+    btnPauseEcoToggle.style.color = isEco ? '#4ade80' : '#cbd5e1';
+  }
+  if (btnMenuEcoToggle) {
+    btnMenuEcoToggle.innerText = isEco ? 'EIN (60 FPS)' : 'AUS';
+    btnMenuEcoToggle.style.borderColor = isEco ? '#22c55e' : 'rgba(255,255,255,0.2)';
+    btnMenuEcoToggle.style.color = isEco ? '#4ade80' : '#cbd5e1';
+  }
+}
+
+function handleToggleEco() {
+  const isEco = game.toggleEcoMode();
+  updateEcoModeUI(isEco);
+}
+
+updateEcoModeUI(game.ecoMode);
+if (btnEcoToggle) btnEcoToggle.addEventListener('click', handleToggleEco);
+if (btnPauseEcoToggle) btnPauseEcoToggle.addEventListener('click', handleToggleEco);
+if (btnMenuEcoToggle) btnMenuEcoToggle.addEventListener('click', handleToggleEco);
 
 document.getElementById('btn-menu').addEventListener('click', () => {
   game.pauseGame();

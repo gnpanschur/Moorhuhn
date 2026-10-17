@@ -5,6 +5,7 @@ export class ParticleSystem {
     this.scorePopups = [];
     this.weatherParticles = [];
     this.screenFlashAlpha = 0;
+    this.ecoMode = false;
   }
 
   reset() {
@@ -22,7 +23,8 @@ export class ParticleSystem {
       colors.push('#00FFCC', '#7FFFD4', '#E0FFFF');
     }
 
-    for (let i = 0; i < count; i++) {
+    const finalCount = this.ecoMode ? Math.max(4, Math.floor(count * 0.5)) : count;
+    for (let i = 0; i < finalCount; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 2 + Math.random() * 6;
       this.particles.push({
@@ -42,7 +44,8 @@ export class ParticleSystem {
   }
 
   spawnSmoke(x, y) {
-    for (let i = 0; i < 6; i++) {
+    const finalCount = this.ecoMode ? 2 : 6;
+    for (let i = 0; i < finalCount; i++) {
       this.particles.push({
         x: x + (Math.random() - 0.5) * 15,
         y: y + (Math.random() - 0.5) * 15,
@@ -58,7 +61,8 @@ export class ParticleSystem {
   }
 
   spawnMuzzleSpark(x, y) {
-    for (let i = 0; i < 8; i++) {
+    const finalCount = this.ecoMode ? 4 : 8;
+    for (let i = 0; i < finalCount; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 4 + Math.random() * 8;
       this.particles.push({
@@ -77,7 +81,8 @@ export class ParticleSystem {
 
   spawnFireworks(x, y) {
     const fireworkColors = ['#f59e0b', '#ef4444', '#3b82f6', '#10b981', '#ec4899', '#8b5cf6', '#fef08a'];
-    for (let i = 0; i < 45; i++) {
+    const finalCount = this.ecoMode ? 16 : 45;
+    for (let i = 0; i < finalCount; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = 3 + Math.random() * 9;
       this.particles.push({
@@ -110,6 +115,7 @@ export class ParticleSystem {
 
   initWeather(theme, virtualWidth, screenHeight) {
     this.weatherParticles = [];
+    const countScale = this.ecoMode ? 0.45 : 1.0;
     if (theme === 'winter') {
       for (let i = 0; i < 120; i++) {
         this.weatherParticles.push({

@@ -53,6 +53,10 @@
         <input type="range" id="hud-music-volume" class="volume-slider" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
         <span id="hud-music-volume-label" class="volume-label">35%</span>
       </div>
+      <div class="hud-pill clickable" id="btn-eco-toggle" title="Eco-/Performance-Modus umschalten (flüssige 60 FPS)">
+        <i data-lucide="zap" id="eco-icon" style="color: #22c55e;"></i>
+        <span id="eco-label" style="font-size: 0.82rem; font-weight: 700;">Eco</span>
+      </div>
       <div class="hud-pill clickable" id="btn-fullscreen" title="Vollbild umschalten">
         <i data-lucide="maximize" id="fullscreen-icon"></i>
       </div>
@@ -137,6 +141,17 @@
           <input type="range" id="menu-music-volume" class="volume-slider" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
           <span id="menu-music-volume-label" class="volume-label">35%</span>
         </div>
+      </div>
+
+      <!-- Eco-/Performance-Modus Schalter im Hauptmenü -->
+      <div class="menu-volume-box" style="margin-top: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="zap" style="color: #22c55e; width: 18px; height: 18px;"></i>
+          <span style="font-size: 0.88rem; font-weight: 600; color: #cbd5e1;">Eco-Modus (60 FPS):</span>
+        </div>
+        <button id="btn-menu-eco-toggle" class="btn-secondary" style="padding: 4px 14px; font-size: 0.8rem; font-weight: 700; border-radius: 50px; border-color: #22c55e; color: #4ade80;">
+          EIN
+        </button>
       </div>
     </div>
   </div>
@@ -314,6 +329,17 @@
           <input type="range" id="pause-music-volume" class="volume-slider" style="width: 140px;" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
           <span id="pause-music-volume-label" class="volume-label">35%</span>
         </div>
+      </div>
+
+      <!-- Eco-/Performance-Modus Schalter im Pause-Menü -->
+      <div class="pause-volume-box" style="margin-top: -8px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i data-lucide="zap" style="color: #22c55e; width: 20px; height: 20px;"></i>
+          <span style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0;">Eco-Modus (60 FPS):</span>
+        </div>
+        <button id="btn-pause-eco-toggle" class="btn-secondary" style="padding: 6px 16px; font-size: 0.85rem; font-weight: 700; border-radius: 50px; border-color: #22c55e; color: #4ade80;">
+          EIN
+        </button>
       </div>
 
       <div class="menu-buttons">

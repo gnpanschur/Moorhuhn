@@ -978,4 +978,34 @@ html, body {
   }
 }
 
+/* ECO- / PERFORMANCE-MODUS (60 FPS BOOST AUF ÄLTEREN LAPTOPS) */
+body.eco-mode .hud-pill,
+body.eco-mode .screen-modal,
+body.eco-mode .modal-card,
+body.eco-mode .pause-volume-box,
+body.eco-mode .menu-volume-box,
+body.eco-mode .minimap-bar {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.eco-mode .hud-pill {
+  background: rgba(15, 23, 42, 0.94) !important;
+}
+
+body.eco-mode .modal-card {
+  background: rgba(15, 23, 42, 0.97) !important;
+}
+
+#btn-eco-toggle.active {
+  background: rgba(34, 197, 94, 0.22) !important;
+  border-color: #22c55e !important;
+  color: #4ade80 !important;
+}
+
+#btn-eco-toggle.active #eco-icon {
+  color: #22c55e !important;
+}
+
 
