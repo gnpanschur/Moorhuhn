@@ -1140,13 +1140,12 @@ export class Game {
     this.easterEggs.initLevel(levelCfg.theme, this.virtualWidth, this.screenHeight);
     this.particles.initWeather(levelCfg.theme, this.virtualWidth, this.screenHeight);
 
-    for (let i = 0; i < 12; i++) {
-      this._spawnRandomChicken(true); // Direkt im Sichtfeld verteilen für sofortige Action ab Sekunde 0
+    for (let i = 0; i < 10; i++) {
+      this._spawnRandomChicken();
     }
 
-    const balloonX = Math.max(120, Math.min(this.virtualWidth - 120, this.cameraX + this.screenWidth * 0.45));
     this.chickens.push(new Chicken({
-      x: balloonX,
+      x: 300,
       y: 120,
       type: 'balloon',
       depth: 1,
@@ -1296,7 +1295,7 @@ export class Game {
     }, 600);
   }
 
-  _spawnRandomChicken(initialScatter = false) {
+  _spawnRandomChicken() {
     const theme = LEVEL_CONFIGS[this.currentLevelIndex].theme;
     const depth = Math.floor(Math.random() * 3) + 1;
     let type = 'medium';
@@ -1312,19 +1311,7 @@ export class Game {
     else if (rand < 0.35 || (theme === 'city' && rand < 0.5) || (theme === 'moorland' && rand < 0.45) || (theme === 'jungle_ruins' && rand < 0.45)) type = Math.random() > 0.5 ? 'dove' : 'owl';
 
     const yPos = 80 + Math.random() * (this.screenHeight * 0.55);
-
-    let startX;
-    let direction;
-    if (initialScatter) {
-      // Beim Levelstart direkt im sichtbaren Bereich und nahen Umfeld platzieren für sofortige Action
-      const minX = Math.max(60, this.cameraX - 80);
-      const maxX = Math.min(this.virtualWidth - 60, this.cameraX + this.screenWidth + 80);
-      startX = minX + Math.random() * (maxX - minX);
-      direction = Math.random() > 0.5 ? 1 : -1;
-    } else {
-      startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
-      direction = startX < 0 ? 1 : -1;
-    }
+    const startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
 
     let outfit = (type === 'helmet' ? 'helmet' : 'none');
     if ((theme === 'aquarium' || theme === 'atlantis') && Math.random() < 0.6) outfit = 'scuba';
@@ -1336,7 +1323,7 @@ export class Game {
       type: type,
       depth: depth,
       outfit: outfit,
-      direction: direction
+      direction: startX < 0 ? 1 : -1
     });
 
     this.chickens.push(chicken);
