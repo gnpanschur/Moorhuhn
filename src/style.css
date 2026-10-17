@@ -879,3 +879,103 @@ html, body {
   }
 }
 
+/* VOLUME SLIDER & CONTROLS */
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  vertical-align: middle;
+}
+
+.volume-slider:hover {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--primary-gold);
+  border: 2px solid #0f172a;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.85);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 1);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--primary-gold);
+  border: 2px solid #0f172a;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.85);
+  cursor: pointer;
+}
+
+.volume-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #facc15;
+  min-width: 36px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hud-music-pill {
+  padding: 8px 14px;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.menu-volume-box {
+  margin-top: 18px;
+  padding: 10px 18px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  max-width: 380px;
+  box-sizing: border-box;
+}
+
+.pause-volume-box {
+  margin: 14px 0 20px 0;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  border-radius: 16px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 850px) {
+  #hud-music-pill .volume-slider {
+    width: 55px;
+  }
+  #hud-music-pill .volume-label {
+    display: none;
+  }
+}
+
+

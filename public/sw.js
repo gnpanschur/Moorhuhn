@@ -1,10 +1,13 @@
 // Moorhuhn Progressive Web App Service Worker
-const CACHE_NAME = 'moorhuhn-pwa-v4';
+const CACHE_NAME = 'moorhuhn-pwa-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.webmanifest',
   './cover.webp',
+  './audio/GewehrSchuss.mp3',
+  './audio/GewehrRepetier.mp3',
+  './audio/MoorhuhnSong.mp3',
   './voegel/Moor/Moor1.webp',
   './voegel/Moor/Moor2.webp',
   './voegel/Taube-animation/Taube1.webp',

@@ -45,8 +45,13 @@
         <span style="font-size: 1.05rem; line-height: 1;">🥚</span>
         <span id="easteregg-hud-display" style="font-weight: 700; color: #38bdf8;">0/3</span>
       </div>
-      <div class="hud-pill clickable" id="btn-audio" title="Ton an/aus">
+      <div class="hud-pill clickable" id="btn-audio" title="Ton stummschalten / aktivieren">
         <i data-lucide="volume-2" id="audio-icon"></i>
+      </div>
+      <div class="hud-pill" id="hud-music-pill" title="Hintergrundmusik-Lautstärke">
+        <i data-lucide="music" style="color: var(--primary-gold); width: 17px; height: 17px; flex-shrink: 0;"></i>
+        <input type="range" id="hud-music-volume" class="volume-slider" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
+        <span id="hud-music-volume-label" class="volume-label">35%</span>
       </div>
       <div class="hud-pill clickable" id="btn-fullscreen" title="Vollbild umschalten">
         <i data-lucide="maximize" id="fullscreen-icon"></i>
@@ -120,6 +125,18 @@
           <i data-lucide="log-out"></i>
           <span>Spiel Beenden (EXIT)</span>
         </button>
+      </div>
+
+      <!-- Hintergrundmusik Lautstärkeregler im Hauptmenü -->
+      <div class="menu-volume-box">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="music" style="color: var(--primary-gold); width: 18px; height: 18px;"></i>
+          <span style="font-size: 0.88rem; font-weight: 600; color: #cbd5e1;">Musik-Lautstärke:</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <input type="range" id="menu-music-volume" class="volume-slider" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
+          <span id="menu-music-volume-label" class="volume-label">35%</span>
+        </div>
       </div>
     </div>
   </div>
@@ -286,6 +303,18 @@
     <div class="modal-card">
       <h2 class="game-title">PAUSE</h2>
       <p class="subtitle" id="pause-subtitle">Spiel ist pausiert</p>
+
+      <!-- Hintergrundmusik Lautstärkeregler im Pause-Menü -->
+      <div class="pause-volume-box">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <i data-lucide="music" style="color: var(--primary-gold); width: 20px; height: 20px;"></i>
+          <span style="font-size: 0.95rem; font-weight: 600; color: #e2e8f0;">Musik-Lautstärke:</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <input type="range" id="pause-music-volume" class="volume-slider" style="width: 140px;" min="0" max="100" value="35" aria-label="Musik-Lautstärke" />
+          <span id="pause-music-volume-label" class="volume-label">35%</span>
+        </div>
+      </div>
 
       <div class="menu-buttons">
         <button class="btn-primary" id="btn-resume">

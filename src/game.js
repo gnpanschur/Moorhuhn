@@ -1005,7 +1005,7 @@ export class Game {
 
   _bindEvents() {
     const isInteractiveUI = (target) => {
-      return target && target.closest && target.closest('.hud-pill, .screen-modal, .reload-btn, #ammo-touch-zone, .mobile-pan-btn, .minimap-bar, button, a');
+      return target && target.closest && target.closest('.hud-pill, .screen-modal, .reload-btn, #ammo-touch-zone, .mobile-pan-btn, .minimap-bar, button, a, input, label');
     };
 
     window.addEventListener('resize', () => this._resizeCanvas());

@@ -8,6 +8,7 @@ createIcons({ icons });
 
 const canvas = document.getElementById('game-canvas');
 const game = new Game(canvas);
+soundEngine.init();
 if (game.graphics && game.graphics.preloadBirdSprites) {
   game.graphics.preloadBirdSprites();
 }
@@ -362,6 +363,45 @@ document.getElementById('btn-audio').addEventListener('click', () => {
   const isMuted = soundEngine.toggleMute();
   audioIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
   createIcons({ icons });
+});
+
+// Hintergrundmusik-Lautstärkeregler (HUD, Hauptmenü & Pause)
+const hudVolumeSlider = document.getElementById('hud-music-volume');
+const hudVolumeLabel = document.getElementById('hud-music-volume-label');
+const menuVolumeSlider = document.getElementById('menu-music-volume');
+const menuVolumeLabel = document.getElementById('menu-music-volume-label');
+const pauseVolumeSlider = document.getElementById('pause-music-volume');
+const pauseVolumeLabel = document.getElementById('pause-music-volume-label');
+
+function syncMusicVolumeUI(value) {
+  const intVal = Math.round(value);
+  const text = `${intVal}%`;
+
+  if (hudVolumeSlider && parseInt(hudVolumeSlider.value, 10) !== intVal) hudVolumeSlider.value = intVal;
+  if (hudVolumeLabel) hudVolumeLabel.innerText = text;
+
+  if (menuVolumeSlider && parseInt(menuVolumeSlider.value, 10) !== intVal) menuVolumeSlider.value = intVal;
+  if (menuVolumeLabel) menuVolumeLabel.innerText = text;
+
+  if (pauseVolumeSlider && parseInt(pauseVolumeSlider.value, 10) !== intVal) pauseVolumeSlider.value = intVal;
+  if (pauseVolumeLabel) pauseVolumeLabel.innerText = text;
+}
+
+function handleMusicVolumeInput(e) {
+  const val = parseFloat(e.target.value);
+  soundEngine.setMusicVolume(val / 100);
+  syncMusicVolumeUI(val);
+}
+
+// Initialwert setzen (aus localStorage)
+const initialVol = soundEngine.getMusicVolume() * 100;
+syncMusicVolumeUI(initialVol);
+
+[hudVolumeSlider, menuVolumeSlider, pauseVolumeSlider].forEach(slider => {
+  if (slider) {
+    slider.addEventListener('input', handleMusicVolumeInput);
+    slider.addEventListener('change', handleMusicVolumeInput);
+  }
 });
 
 document.getElementById('btn-menu').addEventListener('click', () => {
