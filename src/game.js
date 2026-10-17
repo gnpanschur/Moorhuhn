@@ -933,7 +933,7 @@ export class Game {
     this.combo = 0;
     this.maxCombo = 0;
     this.lastHitTime = 0;
-    this.comboTimeout = 2000;
+    this.comboTimeout = 3000; // 3,0 Sekunden Zeitfenster für Combo-Ketten
     this.easterEggsDiscovered = 0;
 
     this.ammo = 8;
@@ -1251,10 +1251,10 @@ export class Game {
           this.score += eggRes.reward;
           this.easterEggsDiscovered += 1;
           const totalEggs = this.currentLevelConfig?.easterEggs?.length || this.easterEggs?.eggs?.length || 3;
-          this.particles.addScorePopup(eggRes.x, eggRes.y, `${eggRes.popupText} (${this.easterEggsDiscovered}/${totalEggs})`, '#38bdf8', 32);
+          this.particles.addScorePopup(eggRes.x, eggRes.y, `${eggRes.popupText} (${this.easterEggsDiscovered}/${totalEggs})`, '#38bdf8', 32, 3.0);
           this.particles.spawnFeathers(eggRes.x, eggRes.y, 'gold', 25);
         } else {
-          this.particles.addScorePopup(eggRes.x, eggRes.y, 'TREFFER!', '#facc15', 22);
+          this.particles.addScorePopup(eggRes.x, eggRes.y, 'TREFFER!', '#facc15', 22, 1.8);
         }
       } else if (this.currentLevelConfig && this.currentLevelConfig.theme === 'alpine_meadow' && shotWorldY > 320) {
         soundEngine.playCowMecker();

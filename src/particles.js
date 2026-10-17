@@ -99,17 +99,19 @@ export class ParticleSystem {
     }
   }
 
-  addScorePopup(x, y, text, color = '#FFD700', fontSize = 28) {
+  addScorePopup(x, y, text, color = '#FFD700', fontSize = 28, durationSec = 1.0) {
+    const totalFrames = Math.max(1, durationSec * 60);
+    const decay = 1.0 / totalFrames;
     this.scorePopups.push({
       x: x,
       y: y,
-      vy: -1.8,
+      vy: durationSec > 1.5 ? -0.7 : -1.8,
       text: text,
       color: color,
       fontSize: fontSize,
       scale: 1.4,
       life: 1.0,
-      decay: 0.018
+      decay: decay
     });
   }
 
