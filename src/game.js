@@ -1140,20 +1140,32 @@ export class Game {
     this.easterEggs.initLevel(levelCfg.theme, this.virtualWidth, this.screenHeight);
     this.particles.initWeather(levelCfg.theme, this.virtualWidth, this.screenHeight);
 
-    for (let i = 0; i < 10; i++) {
-      this._spawnRandomChicken();
+    soundEngine.startThemeAmbient(levelCfg.theme);
+
+    if (this.timerInterval) clearInterval(this.timerInterval);
+
+    // 3 Sekunden ruhiges Hintergrundbild mit 3-2-1 Countdown vor Spielbeginn
+    this.state = 'COUNTDOWN';
+    this.countdownDuration = 3.0;
+    this.countdownStartTime = Date.now();
+  }
+
+  _startActualGameplay() {
+    this.state = 'PLAYING';
+    const levelCfg = LEVEL_CONFIGS[this.currentLevelIndex];
+
+    for (let i = 0; i < 12; i++) {
+      this._spawnRandomChicken(true); // Direkt im Sichtfeld verteilen für sofortige Treffer
     }
 
+    const balloonX = Math.max(120, Math.min(this.virtualWidth - 120, this.cameraX + this.screenWidth * 0.45));
     this.chickens.push(new Chicken({
-      x: 300,
+      x: balloonX,
       y: 120,
       type: 'balloon',
       depth: 1,
       direction: 1
     }));
-
-    soundEngine.startThemeAmbient(levelCfg.theme);
-    this.state = 'PLAYING';
 
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timerInterval = setInterval(() => {
@@ -1164,14 +1176,30 @@ export class Game {
         }
       }
     }, 1000);
+
+    this.particles.addScorePopup(this.cameraX + this.screenWidth * 0.5, this.screenHeight * 0.35, 'JAGD FREI! 🎯', '#22c55e', 44, 1.4);
   }
 
   pauseGame() {
-    if (this.state === 'PLAYING') this.state = 'PAUSED';
+    if (this.state === 'PLAYING' || this.state === 'COUNTDOWN') {
+      this.savedStateBeforePause = this.state;
+      if (this.state === 'COUNTDOWN') {
+        this.countdownRemaining = Math.max(0, this.countdownDuration - (Date.now() - this.countdownStartTime) / 1000);
+      }
+      this.state = 'PAUSED';
+    }
   }
 
   resumeGame() {
-    if (this.state === 'PAUSED') this.state = 'PLAYING';
+    if (this.state === 'PAUSED') {
+      if (this.savedStateBeforePause === 'COUNTDOWN' && this.countdownRemaining > 0) {
+        this.state = 'COUNTDOWN';
+        this.countdownDuration = this.countdownRemaining;
+        this.countdownStartTime = Date.now();
+      } else {
+        this.state = 'PLAYING';
+      }
+    }
   }
 
   shoot(customX = null, customY = null) {
@@ -1295,7 +1323,7 @@ export class Game {
     }, 600);
   }
 
-  _spawnRandomChicken() {
+  _spawnRandomChicken(initialScatter = false) {
     const theme = LEVEL_CONFIGS[this.currentLevelIndex].theme;
     const depth = Math.floor(Math.random() * 3) + 1;
     let type = 'medium';
@@ -1311,7 +1339,19 @@ export class Game {
     else if (rand < 0.35 || (theme === 'city' && rand < 0.5) || (theme === 'moorland' && rand < 0.45) || (theme === 'jungle_ruins' && rand < 0.45)) type = Math.random() > 0.5 ? 'dove' : 'owl';
 
     const yPos = 80 + Math.random() * (this.screenHeight * 0.55);
-    const startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
+
+    let startX;
+    let direction;
+    if (initialScatter) {
+      // Wenn die Jagd nach dem 3-Sekunden-Countdown startet: direkt im Sichtfeld verteilen!
+      const minX = Math.max(60, this.cameraX - 80);
+      const maxX = Math.min(this.virtualWidth - 60, this.cameraX + this.screenWidth + 80);
+      startX = minX + Math.random() * (maxX - minX);
+      direction = Math.random() > 0.5 ? 1 : -1;
+    } else {
+      startX = Math.random() > 0.5 ? -40 : this.virtualWidth + 40;
+      direction = startX < 0 ? 1 : -1;
+    }
 
     let outfit = (type === 'helmet' ? 'helmet' : 'none');
     if ((theme === 'aquarium' || theme === 'atlantis') && Math.random() < 0.6) outfit = 'scuba';
@@ -1323,7 +1363,7 @@ export class Game {
       type: type,
       depth: depth,
       outfit: outfit,
-      direction: startX < 0 ? 1 : -1
+      direction: direction
     });
 
     this.chickens.push(chicken);
@@ -1386,7 +1426,13 @@ export class Game {
 
     if (this.recoilY > 0) this.recoilY *= 0.8;
 
-    if (this.state === 'PLAYING') {
+    if (this.state === 'COUNTDOWN') {
+      const elapsed = (Date.now() - this.countdownStartTime) / 1000;
+      this.particles.update(this.virtualWidth, this.screenHeight);
+      if (elapsed >= this.countdownDuration) {
+        this._startActualGameplay();
+      }
+    } else if (this.state === 'PLAYING') {
       const now = Date.now();
       if (this.combo > 0 && now - this.lastHitTime >= this.comboTimeout) {
         this.combo = 0;
@@ -1459,7 +1505,71 @@ export class Game {
       } catch(e) {}
     }
 
-    if (this.state === 'PLAYING') {
+    if (this.state === 'COUNTDOWN') {
+      const elapsed = (Date.now() - this.countdownStartTime) / 1000;
+      const timeLeft = Math.max(0, this.countdownDuration - elapsed);
+      const number = Math.min(3, Math.ceil(timeLeft));
+      const subFraction = 1 - (timeLeft - Math.floor(timeLeft));
+
+      const cx = this.screenWidth * 0.5;
+      const cy = this.screenHeight * 0.44;
+
+      this.ctx.save();
+
+      // Weicher abgedunkelter Center-Glow
+      const glowGrad = this.ctx.createRadialGradient(cx, cy, 20, cx, cy, 260);
+      glowGrad.addColorStop(0, 'rgba(15, 23, 42, 0.7)');
+      glowGrad.addColorStop(0.65, 'rgba(15, 23, 42, 0.35)');
+      glowGrad.addColorStop(1, 'rgba(15, 23, 42, 0)');
+      this.ctx.fillStyle = glowGrad;
+      this.ctx.beginPath();
+      this.ctx.arc(cx, cy, 260, 0, Math.PI * 2);
+      this.ctx.fill();
+
+      // Level Titel & Ankündigung
+      this.ctx.font = '800 24px "Outfit", "Arial Black", sans-serif';
+      this.ctx.textAlign = 'center';
+      this.ctx.textBaseline = 'middle';
+      this.ctx.strokeStyle = '#000000';
+      this.ctx.lineWidth = 5;
+      this.ctx.strokeText(`LEVEL ${levelCfg.id}: ${levelCfg.name.toUpperCase()}`, cx, cy - 85);
+      this.ctx.fillStyle = '#facc15';
+      this.ctx.fillText(`LEVEL ${levelCfg.id}: ${levelCfg.name.toUpperCase()}`, cx, cy - 85);
+
+      this.ctx.font = '700 15px "Outfit", sans-serif';
+      this.ctx.strokeStyle = '#000000';
+      this.ctx.lineWidth = 3;
+      this.ctx.strokeText('BEREIT MACHEN... DIE JAGD BEGINNT GLEICH!', cx, cy - 50);
+      this.ctx.fillStyle = '#cbd5e1';
+      this.ctx.fillText('BEREIT MACHEN... DIE JAGD BEGINNT GLEICH!', cx, cy - 50);
+
+      // Dynamischer Puls-Effekt für die Countdown-Zahl
+      const scale = 0.95 + Math.sin(subFraction * Math.PI) * 0.38;
+      const alpha = Math.min(1, Math.sin(subFraction * Math.PI) * 1.5);
+
+      this.ctx.translate(cx, cy + 30);
+      this.ctx.scale(scale, scale);
+      this.ctx.globalAlpha = Math.max(0.2, Math.min(1, alpha));
+
+      const numStr = number > 0 ? String(number) : 'LOS!';
+      this.ctx.font = '900 115px "Outfit", "Arial Black", sans-serif';
+      this.ctx.strokeStyle = '#020617';
+      this.ctx.lineWidth = 16;
+      this.ctx.strokeText(numStr, 0, 0);
+
+      if (number === 3) {
+        this.ctx.fillStyle = '#fde047';
+      } else if (number === 2) {
+        this.ctx.fillStyle = '#fb923c';
+      } else {
+        this.ctx.fillStyle = '#4ade80';
+      }
+      this.ctx.fillText(numStr, 0, 0);
+
+      this.ctx.restore();
+    }
+
+    if (this.state === 'PLAYING' || this.state === 'COUNTDOWN') {
       this.graphics.renderCrosshair(this.ctx, this.mouseX, this.mouseY, this.recoilY > 2, this.ammo);
     }
   }

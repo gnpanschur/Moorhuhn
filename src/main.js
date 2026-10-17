@@ -87,7 +87,7 @@ let lastTargetReached = null;
 let lastHudVisible = null;
 
 function updateUI() {
-  const isPlayingOrPaused = game.state === 'PLAYING' || game.state === 'PAUSED';
+  const isPlayingOrPaused = game.state === 'PLAYING' || game.state === 'PAUSED' || game.state === 'COUNTDOWN';
 
   if (lastHudVisible !== isPlayingOrPaused) {
     lastHudVisible = isPlayingOrPaused;
